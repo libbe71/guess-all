@@ -2,7 +2,7 @@
 
 * Ruby version: 3.3.0
 
-# Rails Server
+## Rails Server
 
             |Development                      |Production                                 |
 |-----------|---------------------------------|-------------------------------------------|
