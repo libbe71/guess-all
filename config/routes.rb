@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "homepage#index"
-  get "/login", to: "login#index"
-  get "/homepage", to: "homepage#index"
-  get "/homepage/user/:id", to: "homepage#show"
+
+  resources :users
+  #get "/login", to: "login#index"
+  #get "/homepage", to: "homepage#index"
+  #get "/homepage/user/:id", to: "homepage#show"
 end
