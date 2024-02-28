@@ -1,0 +1,23 @@
+version: "0.1"
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.develop
+    environment:
+      - RAILS_ENV=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: footballai_dev_db

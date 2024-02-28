@@ -1,0 +1,72 @@
+# syntax = docker/dockerfile:1
+
+FROM debian:bullseye-slim as base
+
+# Install dependencies for building Ruby
+RUN apt-get update && apt-get install -y build-essential wget autoconf
+
+# Install ruby-install for installing Ruby
+RUN wget https://github.com/postmodern/ruby-install/releases/download/v0.9.3/ruby-install-0.9.3.tar.gz \
+  && tar -xzvf ruby-install-0.9.3.tar.gz \
+  && cd ruby-install-0.9.3/ \
+  && make install
+
+# Install Ruby 3.3.0 with the https://github.com/ruby/ruby/pull/9371 patch
+RUN ruby-install -p https://github.com/ruby/ruby/pull/9371.diff ruby 3.3.0
+
+# Make the Ruby binary available on the PATH
+ENV PATH="/opt/rubies/ruby-3.3.0/bin:${PATH}"
+
+# Rails app lives here
+WORKDIR /rails
+
+# Set development environment
+ENV RAILS_ENV="development" \
+    BUNDLE_DEPLOYMENT="0" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT=""
+
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
+# Install packages needed to build gems and for development
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config \
+    libpq5 libpq-dev
+
+
+
+# Install application gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --without production && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    bundle exec bootsnap precompile --gemfile
+
+# Copy application code
+COPY . .
+
+# Final stage for app image
+FROM base
+
+    
+    # Install packages needed to build gems and for development
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config \
+    libpq5 libpq-dev
+
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails /rails
+
+# Run and own only the runtime files as a non-root user for security
+RUN useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp
+    
+USER rails:rails
+
+# Entrypoint prepares the database.
+# ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+
+# Expose port 3000 for development
+EXPOSE 3000

@@ -1,4 +1,4 @@
-# footballA
+# footballai
 
 * Ruby version: 3.3.0
 
