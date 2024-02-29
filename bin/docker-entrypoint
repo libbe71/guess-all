@@ -1,8 +1,40 @@
 #!/bin/bash -e
+# Function to update Swagger documentation
+update_swagger() {
+    echo "Updating Swagger documentation"
+    ./bin/rake rswag:specs:swaggerize
+}
+migrate-db() {
+    echo "Updating migration"
+    ./bin/rails db:migrate
+}
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:prepare
-fi
+# If running the rails server then create or migrate existing database and update swagger documentation
+echo "preparing db...."
 
+./bin/rails db:prepare
+update_swagger
+
+# Monitor folder spec for changes and update Swagger documentation
+echo "Monitoring spec for changes..."
+while true; do
+    change=$(inotifywait -qq -e modify,move,create,delete -r ./spec)
+    echo "Change detected: $change"
+    update_swagger
+done &
+
+
+# Monitor folder migration for changes and update db
+echo "Monitoring migrate for changes..."
+while true; do
+    change=$(inotifywait -qq -e modify,move,create,delete -r ./db/migrate)
+    echo "Change detected: $change"
+    migrate-db
+done &
+
+
+# Execute additional commands
 exec "${@}"
+
+
+

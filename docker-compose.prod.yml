@@ -1,0 +1,28 @@
+version: "0.1"
+services:
+  web:
+    build:  .
+    environment:
+      - RAILS_ENV=production
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ./app:/rails/app
+      - ./swagger:/rails/swagger
+    
+    ports:
+      - "3000:3000"
+    command: bash -c "rake rswag:specs:swaggerize && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES-db: footballai-back-dev-db
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

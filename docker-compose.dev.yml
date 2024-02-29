@@ -3,16 +3,20 @@ services:
   web:
     build: 
       context: .
-      dockerfile: Dockerfile.develop
+      dockerfile: Dockerfile.dev
     environment:
       - RAILS_ENV=development
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
     volumes:
       - ./app:/rails/app
+      - ./swagger:/rails/swagger
+      - ./spec:/rails/spec
+      - ./db/migrate:/rails/db/migrate
+    
     ports:
       - "3000:3000"
-    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
   db:
@@ -20,4 +24,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: footballai_dev_db
+      POSTGRES-db: footballai-back-dev-db
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

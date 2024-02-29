@@ -1,12 +1,10 @@
-# footballai
+# footballai-back
 
 * Ruby version: 3.3.0
 
 ## Rails Server
 
-            |Development                      |Production                                 |
+|Development|Production|
 |-----------|---------------------------------|-------------------------------------------|
-| start     |bin/rails server -p <port_number>|rails server -e production -p <port_number>|
-|           |                                 |                                           |
-
-* Default port: 3000 | bin/rails server
+| start|docker-compose -f docker-compose.dev.yml up -d|docker-compose -f docker-compose.prod.yml up -d|
+| stop|docker-compose -f docker-compose.dev.yml down -v|docker-compose -f docker-compose.prod.yml down -v|

@@ -4,6 +4,55 @@ info:
   title: API V1
   version: v1
 paths:
+  "/users":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthdate:
+                  type: string
+                  format: date
+                phone_number:
+                  type: string
+                email_address:
+                  type: string
+                password_digest:
+                  type: string
+                state:
+                  type: string
+                city:
+                  type: string
+                address:
+                  type: string
+              required:
+              - username
+              - name
+              - surname
+              - birthdate
+              - phone_number
+              - email_address
+              - password_digest
+              - state
+              - city
+              - address
   "/users/{id}":
     get:
       summary: Retrieves a user
@@ -66,8 +115,63 @@ paths:
                 - address
         '404':
           description: user not found
+    put:
+      summary: Updates a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user updated
+        '404':
+          description: user not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthdate:
+                  type: string
+                  format: date
+                phone_number:
+                  type: string
+                email_address:
+                  type: string
+                password_digest:
+                  type: string
+                state:
+                  type: string
+                city:
+                  type: string
+                address:
+                  type: string
+    delete:
+      summary: Deletes a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: user deleted
+        '404':
+          description: user not found
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+- url: http://localhost:3000
+  description: Main server for API V1

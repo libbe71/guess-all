@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: footballai_dev_db
+  database: footballai-back-dev-db
 
 test:
   <<: *default

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require File.expand_path('../../config/environment', __FILE__)
+
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
@@ -24,12 +26,13 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
-            }
-          }
+          url: "http://#{Rails.application.config.default_url_options[:host]}:#{Rails.application.config.default_url_options[:port]}",
+                  description: "Main server for API V1",
+          #variables: {
+            #defaultHost: {
+              #default: "htfffftp://#{Rails.application.config.default_url_options[:host]}:#{Rails.application.config.default_url_options[:port]}",
+            #}
+          #}
         }
       ]
     }
