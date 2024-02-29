@@ -1,0 +1,73 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  name:
+                    type: string
+                  surname:
+                    type: string
+                  birthdate:
+                    type: string
+                    format: date
+                  phone_number:
+                    type: string
+                  email_address:
+                    type: string
+                  password_digest:
+                    type: string
+                  state:
+                    type: string
+                  city:
+                    type: string
+                  address:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - username
+                - name
+                - surname
+                - birthdate
+                - phone_number
+                - email_address
+                - password_digest
+                - state
+                - city
+                - address
+        '404':
+          description: user not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
