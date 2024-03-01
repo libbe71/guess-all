@@ -2,21 +2,29 @@
 # Function to update Swagger documentation
 update_swagger() {
     echo "Updating Swagger documentation"
-    ./bin/rake rswag:specs:swaggerize
-}
+    if ./bin/rake rswag:specs:swaggerize; then
+        echo "Swagger documentation updated successfully"
+    else
+        echo "Error: Failed to update Swagger documentation"
+    fi
+    }
 migrate-db() {
     echo "Updating migration"
-    ./bin/rails db:migrate
+    ./bin/rails db:rollback | echo "Error: Failed to rollback migration"
+    ./bin/rails db:migrate  | echo "Error: Failed to migrate"
 }
 
 # If running the rails server then create or migrate existing database and update swagger documentation
 echo "preparing db...."
 
+./bin/rails db:create
 ./bin/rails db:prepare
 update_swagger
+migrate-db
 
 # Monitor folder spec for changes and update Swagger documentation
 echo "Monitoring spec for changes..."
+
 while true; do
     change=$(inotifywait -qq -e modify,move,create,delete -r ./spec)
     echo "Change detected: $change"

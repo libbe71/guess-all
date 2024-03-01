@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: db
+  host: <%= ENV['DOCKERIZED'] ? 'db' : 'localhost' %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 
@@ -12,11 +12,11 @@ development:
 
 test:
   <<: *default
-  database: your_test_database_name
+  database: footballai-back-test-db
 
 production:
   <<: *default
-  database: your_production_database_name
+  database: footballai-back-prod-db
   host: your_production_database_host
   username: your_production_database_username
   password: your_production_database_password

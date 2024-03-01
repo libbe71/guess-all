@@ -23,25 +23,34 @@ paths:
               properties:
                 username:
                   type: string
+                  example: john_doe
                 name:
                   type: string
+                  example: John
                 surname:
                   type: string
+                  example: Doe
                 birthdate:
                   type: string
                   format: date
                 phone_number:
                   type: string
+                  example: '1234567890'
                 email_address:
                   type: string
+                  example: johndoe@ex.it
                 password_digest:
                   type: string
+                  example: password
                 state:
                   type: string
+                  example: italy
                 city:
                   type: string
+                  example: rome
                 address:
                   type: string
+                  example: via roma 1
               required:
               - username
               - name
@@ -53,6 +62,65 @@ paths:
               - state
               - city
               - address
+    get:
+      summary: Retrieves all users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Users found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    username:
+                      type: string
+                    name:
+                      type: string
+                    surname:
+                      type: string
+                    birthdate:
+                      type: string
+                      format: date
+                    phone_number:
+                      type: string
+                    email_address:
+                      type: string
+                    password_digest:
+                      type: string
+                    state:
+                      type: string
+                    city:
+                      type: string
+                    address:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - username
+                  - name
+                  - surname
+                  - birthdate
+                  - phone_number
+                  - email_address
+                  - password_digest
+                  - state
+                  - city
+                  - address
+                  - created_at
+                  - updated_at
+        '404':
+          description: no table users found
   "/users/{id}":
     get:
       summary: Retrieves a user
@@ -63,7 +131,7 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: integer
       responses:
         '200':
           description: user found
@@ -73,7 +141,7 @@ paths:
                 type: object
                 properties:
                   id:
-                    type: integer
+                    type: string
                   username:
                     type: string
                   name:
@@ -124,7 +192,7 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: integer
       responses:
         '200':
           description: user updated
@@ -166,9 +234,9 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: integer
       responses:
-        '204':
+        '200':
           description: user deleted
         '404':
           description: user not found
