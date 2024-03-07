@@ -1,0 +1,2 @@
+class LoginOrRegisterController < ApplicationController
+end

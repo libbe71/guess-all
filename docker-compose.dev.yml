@@ -14,6 +14,7 @@ services:
       - ./swagger:/rails/swagger
       - ./spec:/rails/spec
       - ./db/migrate:/rails/db/migrate
+      - ./config:/rails/config
     
     ports:
       - "3000:3000"

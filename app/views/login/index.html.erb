@@ -1,2 +1,75 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<%= form_with(url: login_or_register_path, method: :post) do |form| %>
+  <h2>Login</h2>
+
+  <div class="field">
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Login", name: :login %>
+  </div>
+<% end %>
+
+<%= form_with(model: User.new, url: login_or_register_path, method: :post) do |form| %>
+  <h2>Register</h2>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.date_field :birthdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Register" %>
+  </div>
+<% end %>
