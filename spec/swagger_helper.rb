@@ -30,7 +30,7 @@ RSpec.configure do |config|
                   description: "Main server for API V1",
           #variables: {
             #defaultHost: {
-              #default: "htfffftp://#{Rails.application.config.default_url_options[:host]}:#{Rails.application.config.default_url_options[:port]}",
+              #default: "http://#{Rails.application.config.default_url_options[:host]}:#{Rails.application.config.default_url_options[:port]}",
             #}
           #}
         }

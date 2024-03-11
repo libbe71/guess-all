@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "login#index"
-  get '/login_or_register', to: 'sessions#new', as: :login_or_register
+  get '/login_or_register', to: 'login#index'
   post '/login_or_register', to: 'sessions#create'
   resources :users
   #get "/login", to: "login#index"

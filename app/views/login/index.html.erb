@@ -1,4 +1,8 @@
-<%= form_with(url: login_or_register_path, method: :post) do |form| %>
+<% if alert %>
+  <div class="alert"><%= alert %></div>
+<% end %>
+
+<%= form_with(url: users_path, method: :post) do |form| %>
   <h2>Login</h2>
 
   <div class="field">
@@ -16,7 +20,7 @@
   </div>
 <% end %>
 
-<%= form_with(model: User.new, url: login_or_register_path, method: :post) do |form| %>
+<%= form_with(model: User.new, url: users_path, method: :post) do |form| %>
   <h2>Register</h2>
 
   <div class="field">
@@ -72,4 +76,5 @@
   <div class="actions">
     <%= form.submit "Register" %>
   </div>
+
 <% end %>
