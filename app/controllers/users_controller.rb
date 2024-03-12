@@ -71,17 +71,25 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :name, :surname, :birthdate, :phone_number, :email_address, :password, :state, :city, :address)
     end
 
-    # Token-based authentication for API endpoints
-    def authenticate_user_from_token!
-       
-        token = request.headers['Authorization'].to_s.split(' ').last
-        user = User.find_by(authentication_token: token)
 
-        if user
-        sign_in user, store: false # Assuming you're using Devise for authentication
+    # Token-based authentication for API endpoints using JWT
+    def authenticate_user_from_token!
+        token = request.headers['Authorization'].to_s.split(' ').last
+        if token.present?
+            begin
+                decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+                user_id = decoded_token.first['user_id']
+                user = User.find(user_id)
+                sign_in user, store: false # Assuming you're using Devise for authentication
+            rescue JWT::DecodeError
+                render json: { error: 'Invalid token' }, status: :unauthorized
+            rescue ActiveRecord::RecordNotFound
+                render json: { error: 'User not found' }, status: :unauthorized
+            end
         else
-        render json: { error: 'Invalid token' }, status: :unauthorized
+            render json: { error: 'Token is missing' }, status: :unauthorized
         end
     end
+
 
 end
