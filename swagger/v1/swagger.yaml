@@ -4,6 +4,47 @@ info:
   title: API V1
   version: v1
 paths:
+  "/sessions":
+    post:
+      summary: Creates a session
+      tags:
+      - Sessions
+      parameters: []
+      responses:
+        '201':
+          description: session created
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    token: eyJhbGci  ...  9.eyJ1c2VyX2lkIjoxfQ
+        '404':
+          description: session denied
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Invalid email or password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: johndoe@ex.it
+                    password:
+                      type: string
+                      example: password
+                  required:
+                  - email
+                  - password
   "/users":
     post:
       summary: Creates a user
@@ -124,6 +165,79 @@ paths:
                 example_0:
                   value:
                     error: No users found
+    put:
+      summary: Updates current user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user updated
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    message: User updated successfully
+        '404':
+          description: user not found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    name:
+                      type: string
+                    surname:
+                      type: string
+                    birthdate:
+                      type: string
+                      format: date
+                    phone_number:
+                      type: string
+                    email_address:
+                      type: string
+                    password:
+                      type: string
+                    state:
+                      type: string
+                    city:
+                      type: string
+                    address:
+                      type: string
+    delete:
+      summary: Deletes current user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: user deleted
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    message: User deleted successfully
+        '404':
+          description: user not found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: User not found
   "/users/{id}":
     get:
       summary: Retrieves a user
@@ -167,7 +281,7 @@ paths:
     put:
       summary: Updates a user
       tags:
-      - Users
+      - Admin
       parameters:
       - name: id
         in: path
@@ -224,7 +338,7 @@ paths:
     delete:
       summary: Deletes a user
       tags:
-      - Users
+      - Admin
       parameters:
       - name: id
         in: path
@@ -251,3 +365,12 @@ paths:
 servers:
 - url: http://localhost:3000
   description: Main server for API V1
+components:
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
+      in: header
+      name: Authorization
+security:
+- Authorization: []

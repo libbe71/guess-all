@@ -7,7 +7,7 @@ update_swagger() {
     else
         echo "Error: Failed to update Swagger documentation"
     fi
-    }
+}
 migrate-db() {
     echo "Updating migration"
     ./bin/rails db:rollback | echo "Error: Failed to rollback migration"
@@ -24,7 +24,6 @@ migrate-db
 
 # Monitor folder spec for changes and update Swagger documentation
 echo "Monitoring spec for changes..."
-
 while true; do
     change=$(inotifywait -qq -e modify,move,create,delete -r ./spec)
     echo "Change detected: $change"
@@ -39,6 +38,7 @@ while true; do
     echo "Change detected: $change"
     migrate-db
 done &
+
 
 
 # Execute additional commands

@@ -92,6 +92,71 @@ RSpec.describe 'api/user', type: :request do
         run_test!
       end
     end
+
+    put 'Updates current user' do
+      tags 'Users'
+      
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          user: {
+            type: :object,
+            properties: {
+              username: { type: :string },
+              name: { type: :string },
+              surname: { type: :string },
+              birthdate: { type: :string, format: 'date' },
+              phone_number: { type: :string },
+              email_address: { type: :string },
+              password: { type: :string },
+              state: { type: :string },
+              city: { type: :string },
+              address: { type: :string }
+            }
+          }
+        }
+      }
+
+      response '200', 'user updated' do
+        examples 'application/json' => {
+          message: 'User updated successfully'
+        }
+
+        run_test!
+      end
+
+      response '404', 'user not found' do
+        examples 'application/json' => {
+          error: 'User not found'
+        }
+
+        run_test!
+      end
+    end
+
+    delete 'Deletes current user' do
+      tags 'Users'
+      produces 'application/json'
+      consumes 'application/json'
+      response '200', 'user deleted' do
+        examples 'application/json' => {
+          message: 'User deleted successfully'
+        }
+
+        run_test!
+      end
+
+      response '404', 'user not found' do
+        examples 'application/json' => {
+          error: 'User not found'
+        }
+
+        run_test!
+      end
+    end
+
   end
 
   path '/users/{id}' do
@@ -130,7 +195,7 @@ RSpec.describe 'api/user', type: :request do
     end
 
     put 'Updates a user' do
-      tags 'Users'
+      tags 'Admin'
       
       consumes 'application/json'
       produces 'application/json'
@@ -174,7 +239,7 @@ RSpec.describe 'api/user', type: :request do
     end
 
     delete 'Deletes a user' do
-      tags 'Users'
+      tags 'Admin'
       parameter name: :id, in: :path, type: :integer
 
       response '200', 'user deleted' do
@@ -193,5 +258,6 @@ RSpec.describe 'api/user', type: :request do
         run_test!
       end
     end
+
   end
 end

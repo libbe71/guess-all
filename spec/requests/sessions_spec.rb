@@ -1,37 +1,40 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe "Sessions", type: :request do
-  describe "POST /sessions" do
-    it "authenticates a user and returns a token if the request is JSON" do
-      # Add your setup here, such as creating a user to authenticate with
+RSpec.describe 'api/session', type: :request do
+  path '/sessions' do
+    post 'Creates a session' do
+      tags 'Sessions'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :session, in: :body, schema: {
+        type: :object,
+        properties: {
+          session: {
+            type: :object,
+            properties: {
+              email: { type: :string, example: 'johndoe@ex.it' }, 
+              password: { type: :string, example: 'password' }
+            },
+            required: [ 'email', 'password' ]
+          }
+        }
+      }
 
-      post '/sessions', params: { email: 'user@example.com', password: 'password' }, as: :json
-
-      expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body)).to have_key('token')
+    response '201', 'session created' do
+      examples 'application/json' =>  {
+        token: 'eyJhbGci  ...  9.eyJ1c2VyX2lkIjoxfQ'  
+      }
+      
+      run_test!
     end
 
-    it "sets a session for the user if the request is HTML" do
-      # Add your setup here, such as creating a user to authenticate with
+    response '404', 'session denied' do
+      examples 'application/json' =>  {
+         error: 'Invalid email or password'  
+      }
 
-      post '/sessions', params: { email: 'user@example.com', password: 'password' }
-
-      expect(response).to redirect_to(user_path(User.last))
-      expect(session[:user_id]).to eq(User.last.id)
+      run_test!
     end
-
-    it "returns an error message if credentials are invalid for JSON requests" do
-      post '/sessions', params: { email: 'invalid@example.com', password: 'invalid' }, as: :json
-
-      expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('error')
-    end
-
-    it "redirects to login page with an error message if credentials are invalid for HTML requests" do
-      post '/sessions', params: { email: 'invalid@example.com', password: 'invalid' }
-
-      expect(response).to redirect_to(login_path)
-      expect(flash[:error]).to be_present
     end
   end
 end

@@ -9,10 +9,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "login#index"
-  get '/login_or_register', to: 'login#index'
-  post '/login_or_register', to: 'sessions#create'
+  get '/login', to: 'login#index'
+  get '/register', to: 'login#index'
+  #post '/login_or_register', to: 'sessions#create'
   resources :users
+  post '/sessions', to: 'sessions#create'
   #get "/login", to: "login#index"
   #get "/homepage", to: "homepage#index"
   #get "/homepage/user/:id", to: "homepage#show"
+  delete "/users", to: 'users#self_destroy'
+  put "/users", to: 'users#self_update'
+
 end

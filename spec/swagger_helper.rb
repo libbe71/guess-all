@@ -34,7 +34,18 @@ RSpec.configure do |config|
             #}
           #}
         }
-      ]
+      ],
+     components: {
+        securitySchemes: {
+          Authorization: {
+            type: :http,
+            scheme: :bearer,
+            in: :header,
+            name: :Authorization,
+          },
+        }
+      },
+      security: [{ Authorization:[] }],
     }
   }
 
@@ -43,4 +54,5 @@ RSpec.configure do |config|
   # the key, this may want to be changed to avoid putting yaml in json files.
   # Defaults to json. Accepts ':json' and ':yaml'.
   config.openapi_format = :yaml
+
 end
