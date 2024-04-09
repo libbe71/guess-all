@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     def self_update
         token = request.headers['Authorization'].to_s.split(' ').last
         if token
-            decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+            decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base, true, algorithm: 'HS256')
             user_id = decoded_token.first['user_id']
             @user = User.find(user_id)
             if @user.update(user_params)
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     def self_destroy
         token = request.headers['Authorization'].to_s.split(' ').last
         if token
-            decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+            decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base, true, algorithm: 'HS256')
             user_id = decoded_token.first['user_id']
             @user = User.find(user_id)
 
@@ -106,21 +106,23 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :name, :surname, :birthdate, :phone_number, :email_address, :password, :state, :city, :address)
     end
 
-
     # Token-based authentication for API endpoints using JWT
     def authenticate_user_from_token!
-        puts ("authenticate_user_from_token!")
-        puts (request.headers['Authorization'])
         token = request.headers['Authorization'].to_s.split(' ').last
         if token.present?
             begin
-                decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
-                user_id = decoded_token.first['user_id']
-                user = User.find(user_id)
-                if user
-                    return true
-                else 
-                    render json: { error: 'User not found' }, status: :unauthorized
+                decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base, true, algorithm: 'HS256')
+
+                if(Time.current.to_i < decoded_token.first["exp"])
+                    user_id = decoded_token.first['user_id']
+                    user = User.find(user_id)
+                    if user
+                        return true
+                    else 
+                        render json: { error: 'User not found' }, status: :unauthorized
+                    end
+                else
+                    render json: { error: 'Token expired' }, status: :unauthorized
                 end
             rescue JWT::DecodeError
                 render json: { error: 'Invalid token' }, status: :unauthorized
@@ -131,6 +133,5 @@ class UsersController < ApplicationController
             render json: { error: 'Token is missing' }, status: :unauthorized
         end
     end
-
 
 end

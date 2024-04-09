@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #post '/login_or_register', to: 'sessions#create'
   resources :users
   post '/sessions', to: 'sessions#create'
+  post '/sessions/refresh', to: 'sessions#get_token_from_refresh'
   #get "/login", to: "login#index"
   #get "/homepage", to: "homepage#index"
   #get "/homepage/user/:id", to: "homepage#show"
