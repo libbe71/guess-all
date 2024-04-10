@@ -1,4 +1,4 @@
-# Guess-who-football-edition
+# guess-all
 
 * Ruby version: 3.3.0
 

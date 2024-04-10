@@ -8,15 +8,15 @@ default: &default
 
 development:
   <<: *default
-  database: guess-who-football-edition-dev-db
+  database: guess-all-dev-db
 
 test:
   <<: *default
-  database: guess-who-football-edition-test-db
+  database: guess-all-test-db
 
 production:
   <<: *default
-  database: guess-who-football-edition-prod-db
+  database: guess-all-prod-db
   host: your_production_database_host
   username: your_production_database_username
   password: your_production_database_password

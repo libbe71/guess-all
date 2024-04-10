@@ -20,7 +20,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES-db: guess-who-football-edition-prod-db
+      POSTGRES-db: guess-all-prod-db
   adminer:
     image: adminer
     restart: always
