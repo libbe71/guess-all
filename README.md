@@ -1,4 +1,4 @@
-# footballai-back
+# Guess-who-football-edition
 
 * Ruby version: 3.3.0
 

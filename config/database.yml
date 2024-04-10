@@ -8,15 +8,15 @@ default: &default
 
 development:
   <<: *default
-  database: footballai-back-dev-db
+  database: guess-who-football-edition-dev-db
 
 test:
   <<: *default
-  database: footballai-back-test-db
+  database: guess-who-football-edition-test-db
 
 production:
   <<: *default
-  database: footballai-back-prod-db
+  database: guess-who-football-edition-prod-db
   host: your_production_database_host
   username: your_production_database_username
   password: your_production_database_password
