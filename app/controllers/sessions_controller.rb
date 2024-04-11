@@ -11,8 +11,6 @@ class SessionsController < ApplicationController
             redirect_to user_path(user)
         elsif request.format.json? && user&.authenticate(session_params[:password])
             tokens = create_tokens(user.id, session_params[:email], session_params[:password])
-            puts tokens
-
             render json: tokens
         else
             message = "Invalid email or password"

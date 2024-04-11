@@ -56,6 +56,8 @@ gem 'jwt', '~> 2.2'
 
 gem 'omniauth'
 
+gem "omniauth-rails_csrf_protection"
+
 gem 'omniauth-facebook'
 
 group :development, :test do

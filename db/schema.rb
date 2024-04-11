@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_110953) do
     t.string "username"
     t.string "name"
     t.string "surname"
+    t.string "gender"
     t.date "birthdate"
     t.string "phone_number"
     t.string "email_address"

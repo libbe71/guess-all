@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "login#index"
-  get '/login', to: 'login#index'
+  #get '/login', to: 'login#index'
   get '/register', to: 'login#index'
   #post '/login_or_register', to: 'sessions#create'
   resources :users
@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   #get "/homepage/user/:id", to: "homepage#show"
   delete "/users", to: 'users#self_destroy'
   put "/users", to: 'users#self_update'
+
+  ##Omniauth routes
+  get 'auth/:provider/callback', to: 'omniauth#create'
+  get '/login', to: 'omniauth#new'
 
 end
