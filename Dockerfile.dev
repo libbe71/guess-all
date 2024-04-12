@@ -2,14 +2,17 @@
 
 FROM debian:bullseye-slim as base
 
+ARG FACEBOOK_APP_ID
+ARG FACEBOOK_APP_SECRET
+
 # Install dependencies for building Ruby
 RUN apt-get update && apt-get install -y build-essential wget autoconf
 
 # Install ruby-install for installing Ruby
 RUN wget https://github.com/postmodern/ruby-install/releases/download/v0.9.3/ruby-install-0.9.3.tar.gz \
-  && tar -xzvf ruby-install-0.9.3.tar.gz \
-  && cd ruby-install-0.9.3/ \
-  && make install
+    && tar -xzvf ruby-install-0.9.3.tar.gz \
+    && cd ruby-install-0.9.3/ \
+    && make install
 
 # Install Ruby 3.3.0 with the https://github.com/ruby/ruby/pull/9371 patch
 RUN ruby-install -p https://github.com/ruby/ruby/pull/9371.diff ruby 3.3.0
@@ -24,7 +27,9 @@ WORKDIR /rails
 ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="0" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT=""
+    BUNDLE_WITHOUT="" \
+    FACEBOOK_APP_ID=$FACEBOOK_APP_ID \
+    FACEBOOK_APP_SECRET=$FACEBOOK_APP_SECRET
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -48,8 +53,8 @@ COPY . .
 # Final stage for app image
 FROM base
 
-    
-    # Install packages needed to build gems and for development
+
+# Install packages needed to build gems and for development
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config \
     libpq5 libpq-dev && \
@@ -62,7 +67,7 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
-    
+
 USER rails:rails
 
 # Entrypoint prepares the database.

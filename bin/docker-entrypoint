@@ -11,9 +11,7 @@ echo "preparing db...."
 
 ./bin/rails db:create
 ./bin/rails db:prepare
-update_swagger
 migrate-db
-
 # Monitor folder migration for changes and update db
 echo "Monitoring migrate for changes..."
 while true; do

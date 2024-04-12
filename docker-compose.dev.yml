@@ -1,8 +1,10 @@
-version: "0.1"
 services:
   web:
     build:
       context: .
+      args:
+        - FACEBOOK_APP_ID=${FACEBOOK_APP_ID}
+        - FACEBOOK_APP_SECRET=${FACEBOOK_APP_SECRET}
       dockerfile: Dockerfile.dev
     environment:
       - RAILS_ENV=development
@@ -13,6 +15,7 @@ services:
       - ./app:/rails/app
       - ./db/migrate:/rails/db/migrate
       - ./config:/rails/config
+      - ./bin:/docker-entrypoint
 
     ports:
       - "3000:3000"
