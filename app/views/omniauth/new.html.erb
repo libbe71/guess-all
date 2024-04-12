@@ -4,3 +4,6 @@
 <%= form_tag('/auth/facebook', method: 'post', data: {turbo: false}) do %>
   <button type='submit'>Login with Facebook</button>
 <% end %>
+<%= form_tag('/auth/google', method: 'post', data: {turbo: false}) do %>
+  <button type='submit'>Login with Google</button>
+<% end %>
