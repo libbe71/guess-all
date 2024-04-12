@@ -1,13 +1,5 @@
 #!/bin/bash -e
-# Function to update Swagger documentation
-update_swagger() {
-    echo "Updating Swagger documentation"
-    if ./bin/rake rswag:specs:swaggerize; then
-        echo "Swagger documentation updated successfully"
-    else
-        echo "Error: Failed to update Swagger documentation"
-    fi
-}
+
 migrate-db() {
     echo "Updating migration"
     ./bin/rails db:rollback | echo "Error: Failed to rollback migration"
@@ -21,15 +13,6 @@ echo "preparing db...."
 ./bin/rails db:prepare
 update_swagger
 migrate-db
-
-# Monitor folder spec for changes and update Swagger documentation
-echo "Monitoring spec for changes..."
-while true; do
-    change=$(inotifywait -qq -e modify,move,create,delete -r ./spec)
-    echo "Change detected: $change"
-    update_swagger
-done &
-
 
 # Monitor folder migration for changes and update db
 echo "Monitoring migrate for changes..."

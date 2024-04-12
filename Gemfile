@@ -46,15 +46,11 @@ gem "bootsnap", require: false
 
 gem "pg", "~> 1.5"
 
-gem 'rspec-rails'
-
-gem "rswag"
-
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'jwt', '~> 2.2'
-
 gem 'omniauth'
+
+gem 'oauth2'
 
 gem "omniauth-rails_csrf_protection"
 

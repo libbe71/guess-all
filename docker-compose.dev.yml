@@ -11,8 +11,6 @@ services:
       - DOCKERIZED=true
     volumes:
       - ./app:/rails/app
-      - ./swagger:/rails/swagger
-      - ./spec:/rails/spec
       - ./db/migrate:/rails/db/migrate
       - ./config:/rails/config
 
