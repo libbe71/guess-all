@@ -14,11 +14,13 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
-    scope: 'email', image_size: 'normal'
+    scope: 'email,user_birthday,user_gender,user_hometown', 
+    info_fields: 'email,birthday,first_name,gender,hometown,last_name,location'
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+  scope: 'email,profile,people,birthdate'
 end
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, ENV['TWITTEER_API_KEY'], ENV["TWITTER_API_SECRET_KEY"]

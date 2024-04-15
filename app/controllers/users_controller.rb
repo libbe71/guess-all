@@ -14,10 +14,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+
     if @user.save
       redirect_to @user
     else
-      render :new, status: :unprocessable_entity
+      message = "Invalid email or password"
+      flash[:error] = message
+      redirect_to '/auth'
     end
   end
 
@@ -35,10 +38,9 @@ class UsersController < ApplicationController
     end
   end
     
-    private
-
-    # Only allow a list of trusted parameters through.
-    def user_params
-        params.require(:user).permit(:username, :name, :surname, :birthdate, :phone_number, :email_address, :password, :state, :city, :address)
-    end
+  private
+  # Only allow a list of trusted parameters through.
+  def user_params
+      params.require(:user).permit(:username, :name, :surname, :birthdate, :phone_number, :email_address, :password)
+  end
 end

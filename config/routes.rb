@@ -6,16 +6,19 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'users#index'
+  #root 'users#index'
+  root 'homepage#index'
   resources :users
   #get '/login', to: 'users#index'
-  post '/sessions', to: 'sessions#create'
-  post '/sessions/refresh', to: 'sessions#get_token_from_refresh'
-  delete "/users", to: 'users#self_destroy'
-  put "/users", to: 'users#self_update'
+  #post '/sessions', to: 'sessions#create'
 
-  ##Omniauth routes
-  get '/login', to: 'omniauth#new'
-  get 'auth/:provider/callback', to: 'homepage#index'
+  ##auth routes
+  get '/auth', to: 'auth#login_or_register'
+  post '/auth', to: 'auth#login_or_register'
+  get 'auth/:provider/callback', to: 'omniauth#create'
+
+  post '/auth/create_session', to: 'auth#create_session'
+  post '/users/create', to: 'users#create'
+
 
 end

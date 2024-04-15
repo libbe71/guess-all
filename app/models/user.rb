@@ -6,8 +6,6 @@ class User < ApplicationRecord
   validates :birthdate, presence: true
   validates :phone_number, presence: true, uniqueness: true
   validates :email_address, presence: true, uniqueness: true
-  validates :state, presence: true
-  validates :city, presence: true
 
   has_secure_password
 end

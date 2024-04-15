@@ -1,0 +1,43 @@
+<%= form_with(url: '/users/create', method: :post) do |form| %>
+  <h2>Register</h2>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, name: 'user[username]', value: @username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, name: 'user[name]', value: @name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname, name: 'user[surname]', value: @surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.date_field :birthdate, name: 'user[birthdate]', value: @birthdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, name: 'user[phone_number]', value: @phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address, name: 'user[email_address]', value: @email_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, name: 'user[password]', value: @password %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit "Register" %>
+  </div>
+<% end %>
+
