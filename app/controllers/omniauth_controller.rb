@@ -21,9 +21,7 @@ class OmniauthController < ApplicationController
         @username = user_info&.info&.nickname || user_info&.info&.name || ""
         @name = user_info&.info&.first_name || user_info&.info&.given_name || user_info&.info&.name || ""
         @surname = user_info&.info&.last_name || user_info&.info&.family_name || ""
-        @gender = user_info&.info&.gender || user_info&.extra&.raw_info&.gender || "not specified"
-        @birthdate =  birthDate
-        @phone_number = "" # Facebook does not provide phone number directly
+        @phone_number = ""
         @email_address = user_info&.info&.email || ""
       end
     elsif user_info

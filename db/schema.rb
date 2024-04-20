@@ -18,14 +18,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_110953) do
     t.string "username"
     t.string "name"
     t.string "surname"
-    t.string "gender"
-    t.date "birthdate"
     t.string "phone_number"
     t.string "email_address"
     t.string "password_digest"
-    t.string "state"
-    t.string "city"
-    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

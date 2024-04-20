@@ -6,18 +6,30 @@ migrate-db() {
     ./bin/rails db:migrate  | echo "Error: Failed to migrate"
 }
 
+tailwind-precompile() {
+    echo "Updating migration"
+    rake assets:precompile  | echo "Error: Failed to precompile css"
+}
+
 # If running the rails server then create or migrate existing database and update swagger documentation
 echo "preparing db...."
 
 ./bin/rails db:create
 ./bin/rails db:prepare
-migrate-db
+tailwind-precompile
 # Monitor folder migration for changes and update db
 echo "Monitoring migrate for changes..."
 while true; do
     change=$(inotifywait -qq -e modify,move,create,delete -r ./db/migrate)
     echo "Change detected: $change"
     migrate-db
+done &
+
+echo "Monitoring views for changes..."
+while true; do
+    change=$(inotifywait -qq -e modify,move,create,delete -r ./app/views)
+    echo "Change detected: $change"
+    tailwind-precompile
 done &
 
 

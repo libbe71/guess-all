@@ -36,3 +36,6 @@
 
 # Ignore .DS_Store files
 .vscode/*
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
