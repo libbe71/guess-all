@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   post '/auth/create_session', to: 'auth#create_session'
   post '/users/create', to: 'users#create'
 
+  post '/users/check_username_availability', to: 'users#check_username_availability'
+
 
 end

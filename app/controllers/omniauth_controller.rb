@@ -12,20 +12,15 @@ class OmniauthController < ApplicationController
       birthDate = Date.strptime(user_info&.extra&.raw_info&.birthday, "%m/%d/%Y")
     end 
 
-    if user_info && user_info&.info&.email
+    if user_info
       user = User.find_by(email_address: user_info&.info&.email)
       if user
         session[:user_id] = user.id
         redirect_to "/users/#{user.id}"
       else
-        @username = user_info&.info&.nickname || user_info&.info&.name || ""
-        @name = user_info&.info&.first_name || user_info&.info&.given_name || user_info&.info&.name || ""
-        @surname = user_info&.info&.last_name || user_info&.info&.family_name || ""
-        @phone_number = ""
+        @username = user_info&.info&.nickname || user_info&.info&.username || user_info&.info&.name || user_info&.info&.last_name || user_info&.info&.family_name || ""
         @email_address = user_info&.info&.email || ""
       end
-    elsif user_info
-      redirect_to '/auth'
     else
       redirect_to '/auth'
     end

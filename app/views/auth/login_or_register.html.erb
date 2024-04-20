@@ -1,14 +1,15 @@
-<div class="w-full m-auto"> 
+
+<div class="m-auto"> 
   <div class="flip-card flex flex-col justify-center"> 
     <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
       <div class="relative m-auto flip-card-front py-5">
         <div class="text-xl pb-5 font-bold text-tertiary-default">Login</div> 
           <%= form_with( url: '/auth/create_session', method: :post) do |form| %>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-              <%= form.text_field :email_address, name: 'auth[email]', class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
+              <%= form.text_field :identifier, name: 'auth[identifier]', class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail or username" %>
             </div>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm">
-              <%= form.password_field :password, name: 'auth[password]', class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg  shadow-md', placeholder: "password" %>
+              <%= form.password_field :password, name: 'auth[password]', class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg  shadow-md', placeholder: "password" %>
             </div>
             <div class='w-1/2 m-auto max-w-xs'>
               <%= form.submit "Login", name: :login, class:"px-10 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" %>
@@ -16,7 +17,7 @@
           <% end %>
         <div class="my-8 h-0 w-3/4 mx-auto" ></div>
         <%= form_tag('/auth/facebook', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 rounded-lg shadow-md max-w-xs px-6 py-2 bg-white text-sm font-mediumtransform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center  ">
+          <button type='submit' class="w-4/5 rounded-lg shadow-md max-w-xs px-6 py-2 bg-white dark:bg-black dark:text-white dark:border dark:border-tertiary-default text-sm font-mediumtransform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center  ">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0">
@@ -31,7 +32,7 @@
           </button>
         <% end %>
         <%= form_tag('/auth/google_oauth2', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
+          <button type='submit' class="w-4/5 transform dark:bg-black dark:text-white dark:border dark:border-tertiary-default hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"viewBox="-0.5 0 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-401.000000, -860.000000)">
@@ -56,7 +57,7 @@
           </button>
         <% end %>
         <%= form_tag('/auth/twitter', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
+          <button type='submit' class="w-4/5 dark:bg-black dark:text-white dark:border dark:border-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -4 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC">
@@ -71,36 +72,33 @@
           </button>
         <% end %>
       </div>
-    <div class="absolute flip-card-back py-5 inset-0">
-      <div class="text-xl pb-5 font-bold text-tertiary-default">Register</div>
-        <%= form_with(url: '/users/create', method: :post) do |form|%>
-          <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-            <%= form.text_field :username, name: 'user[username]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill shadow-md', placeholder: "username" %>
-          </div>
-          <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-            <%= form.text_field :name, name: 'user[name]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "name" %>
-          </div>
-          <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-            <%= form.text_field :surname, name: 'user[surname]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "surname" %>
-          </div>
-          <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-            <%= form.text_field :email_address, name: 'user[email_address]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-          <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-          <%= form.password_field :password, name: 'user[password]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "password" %>
-          </div>
-          <div class='w-1/2 m-auto max-w-xs'>
-            <%= form.submit "Register", class:"px-10 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" %>
-          </div>
-        <% end %>
+      <div class="absolute flip-card-back py-5 inset-0">
+        <div class="text-xl mb-10 font-bold text-tertiary-default">Register</div>
+          <%= form_with(url: '/users/create', method: :post) do |form|%>
+            <div class="w-3/4 m-auto relative mb-10 max-w-sm focus:outline-none">
+              <%= form.text_field :username, id:"identifier_input_field", name: 'user[username]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill shadow-md', placeholder: "username" %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_input_field" id="usernameAvailabilityMessage">Username is already taken</label>
+            </div>
+            <div class="w-3/4 m-auto relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
+              <%= form.text_field :email_address, id:"email_input_field", name: 'user[email_address]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_input_field" id="emailValidityMessage">E-mail not valid</label>
+            </div>
+            <div class="w-3/4 m-auto relative flex mb-20 rounded-xl max-w-sm focus:outline-none">
+            <%= form.password_field :password, name: 'user[password]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "password" %>
+            </div>
+            <div class='w-1/2 m-auto max-w-xs'>
+              <%= form.submit "Register", class:"px-10 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex mt-6 w-1/2 mx-auto max-w-xs mb-12 bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text:black">
+        <button id="toggle_log" class="cursor-pointer w-full p-2"
+          href="/download">
+          Register
+        </button>
       </div>
     </div>
-  </div>
-  <div class="flex mt-6 w-1/2 mx-auto max-w-xs mb-12 bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text:black">
-    <button id="toggle_log" class="cursor-pointer w-full p-2"
-      href="/download">
-      Register
-    </button>
   </div>
 </div>
 
@@ -119,54 +117,77 @@
     
       filpCard.classList.toggle('flip');
     });
+     
+    const usernameInput = document.getElementById('identifier_input_field');
+    // Username availability check
+    if(usernameInput){
+      usernameInput.addEventListener('input', function() {
+        const username = usernameInput.value.trim();
+        if (username.length === 0) return; // Skip if the username is empty
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/users/check_username_availability', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify({ username: username })
+        })
+        .then(response => {
+           response.json()
+            .then(data => {
+              const messageElement = document.getElementById('usernameAvailabilityMessage');
+              if (data.available) {
+                messageElement.classList.add('hidden');
+                usernameInput.classList.add('border-none');
+                usernameInput.classList.remove('border');
+                usernameInput.classList.remove('border-error-default');
+                usernameInput.classList.remove('focus:border-error-default');
+              } else {
+                messageElement.classList.remove('hidden');
+                usernameInput.classList.remove('border-none');
+                usernameInput.classList.add('border');
+                usernameInput.classList.add('border-error-default');
+                usernameInput.classList.add('focus:border-error-default');
+                
+              }
+            })
+        })
+        .catch(error => {
+          console.error('Error checking username availability:', error);
+        });
+      });
+    }
+    const emailInput = document.getElementById('email_input_field');
+
+if(emailInput) {
+  emailInput.addEventListener('input', function() {
+    const email = emailInput.value.trim();
+
+    const emailValidityMessage = document.getElementById('emailValidityMessage');
+
+    if (email.length === 0 || validateEmail(email)) {
+      emailValidityMessage.classList.add('hidden');
+      emailInput.classList.add('border-none');
+      emailInput.classList.remove('border');
+      emailInput.classList.remove('border-error-default');
+      emailInput.classList.remove('focus:border-error-default');
+    } else {
+      emailValidityMessage.classList.remove('hidden');
+      emailInput.classList.remove('border-none');
+      emailInput.classList.add('border');
+      emailInput.classList.add('border-error-default');
+      emailInput.classList.add('focus:border-error-default');
+    }
+  });
+}
+
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
   });
 </script>
-
-
-
-    <div class="absolute flip-card-back py-5 shadow-xl inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg rounded-3xl">
-      <div class="mx-auto text-xl pb-5">Register</div>
-        <%= form_with(url: '/users/create', method: :post) do |form|%>
-
-          <div >
-            <%= form.label :username %>
-            <%= form.text_field :username, name: 'user[username]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :name %>
-            <%= form.text_field :name, name: 'user[name]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :surname %>
-            <%= form.text_field :surname, name: 'user[surname]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :birthdate %>
-            <%= form.date_field :birthdate, name: 'user[birthdate]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :phone_number %>
-            <%= form.text_field :phone_number, name: 'user[phone_number]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :email_address %>
-            <%= form.text_field :email_address, name: 'user[email_address]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div >
-            <%= form.label :password %>
-            <%= form.password_field :password, name: 'user[password]' , class:'bg-secondary-default focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-          </div>
-
-          <div class="actions">
-            <%= form.submit "Register" %>
-          </div>
-
-        <% end %>
-      </div>
-    </div>

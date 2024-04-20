@@ -39,9 +39,45 @@
           </div>
         </div>
       </nav>
-    <div class="flex-1 overflow-hidden bg-light-background-default flex justify-center align-middle">
+
+
+    <div class="flex-1 overflow-hidden bg-light-background-default flex justify-center align-middle relative">
+      <% if flash[:notice].present? || flash[:error].present? %>
+        <div id="flash-messages" class="absolute top-4 left-0 w-full flex justify-center items-center">
+          <% if flash[:notice].present? %>
+            <div id="notice-message" class="m-auto bg-secondary-default opacity-75 text-white py-2 px-4 rounded-md text-center">
+              <%= flash[:notice] %>
+              <button id="close-button" class="text-white dark:text-black ml-2 focus:outline-none">X</button>
+            </div>
+          <% elsif flash[:error].present? %>
+            <div id="error-message" class="m-auto bg-primary-default opacity-75 text-white py-2 px-4 rounded-md text-center">
+              <%= flash[:error] %>
+              <button id="close-button" class="text-white dark:text-black ml-2 focus:outline-none">X</button>
+              </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
-    </main>
-  </body>
-</html>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const flashMessages = document.getElementById('flash-messages');
+      const closeButton = document.getElementById('close-button');
+
+      if (flashMessages) {
+        setTimeout(function() {
+          flashMessages.classList.add('hidden');
+        }, 10000);
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener('click', function() {
+          flashMessages.classList.add('hidden');
+        });
+      }
+    });
+  </script>
+

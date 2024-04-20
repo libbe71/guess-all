@@ -13,3 +13,69 @@
 }
 
 */
+input.no-autocomplete-field-green:-webkit-autofill,
+input.no-autocomplete-field-green:-webkit-autofill:hover,
+input.no-autocomplete-field-green:-webkit-autofill:focus,
+textarea.no-autocomplete-field-green:-webkit-autofill,
+textarea.no-autocomplete-field-green:-webkit-autofill:hover,
+textarea.no-autocomplete-field-green:-webkit-autofill:focus,
+select.no-autocomplete-field-green:-webkit-autofill,
+select.no-autocomplete-field-green:-webkit-autofill:hover,
+select.no-autocomplete-field-green:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #84cc16 inset;
+  -webkit-text-fill-color: white;
+  box-shadow: 0 0 0px 1000px #84cc16 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  color: white;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+   input.no-autocomplete-field-green:-webkit-autofill,
+   input.no-autocomplete-field-green:-webkit-autofill:hover,
+   input.no-autocomplete-field-green:-webkit-autofill:focus,
+   textarea.no-autocomplete-field-green:-webkit-autofill,
+   textarea.no-autocomplete-field-green:-webkit-autofill:hover,
+   textarea.no-autocomplete-field-green:-webkit-autofill:focus,
+   select.no-autocomplete-field-green:-webkit-autofill,
+   select.no-autocomplete-field-green:-webkit-autofill:hover,
+   select.no-autocomplete-field-green:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #84cc16 inset;
+    -webkit-text-fill-color: rgb(9, 0, 0);
+    box-shadow: 0 0 0px 1000px #84cc16 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    color: rgb(0, 0, 0);
+  }
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+    /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the back side */
+.flip-card-back {
+    transform: rotateY(180deg);
+}

@@ -28,6 +28,12 @@ module.exports = {
         },
         'tertiary':{
           default: '#7c3aed',
+        },
+        'success':{
+          default: '#ef5350',
+        },
+        'error':{
+          default: '#ef5350',
         } 
       },
     },
