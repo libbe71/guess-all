@@ -5,6 +5,10 @@ services:
       args:
         - FACEBOOK_APP_ID=${FACEBOOK_APP_ID}
         - FACEBOOK_APP_SECRET=${FACEBOOK_APP_SECRET}
+        - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+        - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+        - TWITTEER_API_KEY=${TWITTEER_API_KEY}
+        - TWITTER_API_SECRET_KEY=${TWITTER_API_SECRET_KEY}
       dockerfile: Dockerfile.dev
     environment:
       - RAILS_ENV=development
