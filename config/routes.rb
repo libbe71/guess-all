@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -7,20 +8,29 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   #root 'users#index'
-  root 'homepage#index'
+  root 'auth#login_or_register'
+  
   resources :users
+  get '/user/:id', to: 'users#show'
+
   #get '/login', to: 'users#index'
   #post '/sessions', to: 'sessions#create'
 
   ##auth routes
   get '/auth', to: 'auth#login_or_register'
   post '/auth', to: 'auth#login_or_register'
-  get 'auth/:provider/callback', to: 'omniauth#create'
+  get '/auth/:provider/callback', to: 'omniauth#create'
 
   post '/auth/create_session', to: 'auth#create_session'
   post '/users/create', to: 'users#create'
 
   post '/users/check_username_availability', to: 'users#check_username_availability'
 
+  get '/error', to: 'generic_error#index'
 
+  #get '/home', to: 'homepage#index'
+
+
+
+  match '*unmatched', to: 'auth#login_or_register', via: :all
 end

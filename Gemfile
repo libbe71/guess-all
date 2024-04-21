@@ -90,3 +90,5 @@ group :test do
 end
 
 
+
+gem "timeout", "~> 0.4.1"

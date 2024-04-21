@@ -30,7 +30,10 @@ module.exports = {
           default: '#7c3aed',
         },
         'success':{
-          default: '#ef5350',
+          default: '#84cc16',
+        },
+        'warning':{
+          default: '#fde047',
         },
         'error':{
           default: '#ef5350',

@@ -13,18 +13,18 @@ export function login_or_registerFlip() {
 }
 
 export function setAlerts() {
-      const flashMessages = document.getElementById('flash-messages');
-      const closeButton = document.getElementById('close-button');
+  const flashMessages = document.getElementById('flash-messages');
+  const closeButton = document.getElementById('close-button');
 
-      if (flashMessages) {
-        setTimeout(function() {
-          flashMessages.classList.add('hidden');
-        }, 10000);
-      }
+  if (flashMessages) {
+    setTimeout(function() {
+      flashMessages.classList.add('hidden');
+    }, 10000);
+  }
 
-      if (closeButton) {
-        closeButton.addEventListener('click', function() {
-          flashMessages.classList.add('hidden');
-        });
-      }
+  if (closeButton) {
+    closeButton.addEventListener('click', function() {
+      flashMessages.classList.add('hidden');
+    });
+  }
 }

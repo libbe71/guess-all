@@ -14,13 +14,10 @@ class UsersController < ApplicationController
 def create
   @user = User.new(user_params)
   if @user.save
-    flash[:notice] = "Registration succesfull."
+    flash[:notice] = "Registration succesfull"
     redirect_to @user
   else
-    flash[:error] = 'Registration failed. Please try again.'
-     puts '//////////////////////////////////////'
-     puts @user.errors.full_messages
-     puts '//////////////////////////////////////'
+    flash[:error] = 'Registration failed. Please try again'
     redirect_to '/auth'
   end
 end

@@ -1,0 +1,2 @@
+module GenericErrorHelper
+end
