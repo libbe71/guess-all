@@ -8,6 +8,11 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
+
+
+
   </head>
 
   <body>
@@ -61,23 +66,3 @@
       <%= yield %>
     </div>
   </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const flashMessages = document.getElementById('flash-messages');
-      const closeButton = document.getElementById('close-button');
-
-      if (flashMessages) {
-        setTimeout(function() {
-          flashMessages.classList.add('hidden');
-        }, 10000);
-      }
-
-      if (closeButton) {
-        closeButton.addEventListener('click', function() {
-          flashMessages.classList.add('hidden');
-        });
-      }
-    });
-  </script>
-
