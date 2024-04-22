@@ -30,9 +30,7 @@ Rails.application.routes.draw do
 
     get '/error', to: 'generic_error#index'
 
-    get '/omniauth/:username/:email/auth', to: 'auth#manage_omniauth'
-
-    #get '/home', to: 'homepage#index'
+    get "/logout", to: 'auth#destroy_session'
 
 
 

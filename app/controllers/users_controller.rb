@@ -29,11 +29,9 @@ class UsersController < ApplicationController
 def create
   @user = User.new(user_params)
   current_locale = I18n.locale || I18n.default_locale
-  puts @user.twitter_id
-  puts"///////////////////////////////////////"
   if @user.save
     flash[:notice] = "#{t("snackbar.registerSuccess")}"
-    redirect_to "/#{current_locale}/user/#{@user.id}"
+    redirect_to "/#{current_locale}/auth"
   else
     raise UsersError, "#{t("snackbar.registerError")}"
   end

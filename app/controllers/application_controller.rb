@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+before_action :set_current_user
     rescue_from StandardError, with: :handle_exception
 
     def handle_exception(exception)
@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
 
     def default_url_options
         { locale: I18n.locale }
+    end
+    private
+    def set_current_user
+        @current_user = User.find_by(id: session[:user_id])
     end
 end

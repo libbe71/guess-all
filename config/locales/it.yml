@@ -45,6 +45,7 @@ it:
     registerSuccess: "Registrazione avvenuta con successo"
     registerError: "Registration fallita. Per favore riprova"
     userUpdateError: "C'è stato un errore, impossibile modificare l'utente"
+    logoutSuccess: "Logout avvenuto con successo"
   error:
     defaultUsersErrorMessage: "Errore utente"
     defaultAuthErrorMessage: "Errore login"

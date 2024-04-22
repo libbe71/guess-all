@@ -30,17 +30,12 @@ class AuthController < ApplicationController
       
   end
 
-
-  def manage_omniauth
-    @username = params[:username]
-    @email_address = params[:email]
-    render 'login_or_register', username: @username, email_address: @email_address
-
-    rescue => e
-      message = e.message
-      flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+  def destroy_session
+    session[:user_id] = nil
+    flash[:notice] = t('snackbar.logoutSuccess')
+    redirect_to root_path
   end
+
 
   private
 

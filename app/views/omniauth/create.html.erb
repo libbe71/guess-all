@@ -14,7 +14,7 @@
               <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="password_login_field" id="passwordLoginValidityMessage"><%= t('login_or_register.usernameCheck') %></label>
             </div>
             <div class="w-1/2 m-auto text-center max-w-xs">
-              <%= form.submit "#{t('login_or_register.login')}", id:"login_button", name: :login, disabled:true,  class:"px-10 disabled:bg-opacity-50 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>
+              <%= form.submit "#{t('login_or_register.login')}", id:"login_button", name: :login, disabled:true,  class: "disabled:bg-opacity-50 w-1/2 mx-auto text-center max-w-[150px] text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>
             </div>
           <% end %>
         <div class="my-8 h-0 w-3/4 mx-auto" ></div>
