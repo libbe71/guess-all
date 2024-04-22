@@ -12,7 +12,7 @@ class GlobalExceptionHandler
       Rails.logger.error "Unhandled error occurred: #{exception.message}"
 
       # Render a generic error page or response
-      redirect_to '/auth'
+      redirect_to "/#{current_locale}/auth"
     end
   end
 end

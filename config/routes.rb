@@ -4,33 +4,40 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  #root 'users#index'
-  root 'auth#login_or_register'
-  
-  resources :users
-  get '/user/:id', to: 'users#show'
+  # config/routes.rb
+  scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+    get "up" => "rails/health#show", as: :rails_health_check
 
-  #get '/login', to: 'users#index'
-  #post '/sessions', to: 'sessions#create'
+    # Defines the root path route ("/")
+    #root 'users#index'
+    
+    resources :users
+    get '/user/:id', to: 'users#show'
 
-  ##auth routes
-  get '/auth', to: 'auth#login_or_register'
-  post '/auth', to: 'auth#login_or_register'
-  get '/auth/:provider/callback', to: 'omniauth#create'
+    #get '/login', to: 'users#index'
+    #post '/sessions', to: 'sessions#create'
 
-  post '/auth/create_session', to: 'auth#create_session'
-  post '/users/create', to: 'users#create'
+    ##auth routes
+    get '/auth', to: 'auth#login_or_register'
+    post '/auth', to: 'auth#login_or_register'
+    get '/auth/:provider/callback', to: 'omniauth#create'
 
-  post '/users/check_username_availability', to: 'users#check_username_availability'
+    post '/auth/create_session', to: 'auth#create_session'
+    post '/users/create', to: 'users#create'
 
-  get '/error', to: 'generic_error#index'
+    post '/users/check_username_availability', to: 'users#check_username_availability'
 
-  #get '/home', to: 'homepage#index'
+    get '/error', to: 'generic_error#index'
+
+    get '/omniauth/:username/:email/auth', to: 'auth#manage_omniauth'
+
+    #get '/home', to: 'homepage#index'
 
 
 
-  match '*unmatched', to: 'auth#login_or_register', via: :all
+    match '*unmatched', to: 'auth#login_or_register', via: :all
+  end
+  root to: "auth#login_or_register"
+
 end

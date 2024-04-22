@@ -1,22 +1,25 @@
 <div class="m-auto"> 
+
   <div class="flip-card flex flex-col justify-center"> 
     <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
       <div class="relative m-auto flip-card-front py-5">
-        <div class="text-xl pb-5 font-bold text-tertiary-default">Login</div> 
-          <%= form_with( url: '/auth/create_session', method: :post) do |form| %>
+        <div class="text-xl pb-5 font-bold text-tertiary-default"><%= t('login_or_register.login') %></div> 
+          <%= form_with( url: "/#{I18n.locale || I18n.default_locale}/auth/create_session", method: :post) do |form| %>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
-              <%= form.text_field :identifier, name: 'auth[identifier]', class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail or username" %>
+              <%= form.text_field :identifier, id:"identifier_login_field", name: "auth[identifier]", class:"bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill  shadow-md", placeholder:  "#{t('login_or_register.e-mail')} #{t('login_or_register.or')} #{t('login_or_register.username')}" %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_login_field" id="identifierLoginValidityMessage"><%= t('login_or_register.usernameCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm">
-              <%= form.password_field :password, name: 'auth[password]', class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg  shadow-md', placeholder: "password" %>
+              <%= form.password_field :password, id:"password_login_field", name: "auth[password]", class:"bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg  shadow-md", placeholder: "#{t('login_or_register.password')}" %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="password_login_field" id="passwordLoginValidityMessage"><%= t('login_or_register.usernameCheck') %></label>
             </div>
-            <div class='w-1/2 m-auto max-w-xs'>
-              <%= form.submit "Login", name: :login, class:"px-10 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" %>
+            <div class="w-1/2 m-auto text-center max-w-xs">
+              <%= form.submit "#{t('login_or_register.login')}", id:"login_button", name: :login, disabled:true,  class:"px-10 disabled:bg-opacity-50 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>
             </div>
           <% end %>
         <div class="my-8 h-0 w-3/4 mx-auto" ></div>
-        <%= form_tag('/auth/facebook', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 rounded-lg shadow-md max-w-xs px-6 py-2 bg-white dark:bg-black dark:text-white dark:border dark:border-tertiary-default text-sm font-mediumtransform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center  ">
+        <%= form_tag("/auth/facebook", method: "post", data: {turbo: false}) do %>
+          <button type="submit" class="w-4/5 transform dark:bg-black dark:text-white dark:border dark:border-tertiary-default hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0">
@@ -27,11 +30,11 @@
                 </g>
               </g>
             </svg>
-            <span>Continue with Facebook</span>
+            <span><%= t('login_or_register.buttonOauth') %> Facebook</span>
           </button>
         <% end %>
-        <%= form_tag('/auth/google_oauth2', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 transform dark:bg-black dark:text-white dark:border dark:border-tertiary-default hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
+        <%= form_tag("/auth/google_oauth2", method: "post", data: {turbo: false}) do %>
+          <button type="submit" class="w-4/5 transform dark:bg-black dark:text-white dark:border dark:border-tertiary-default hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"viewBox="-0.5 0 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-401.000000, -860.000000)">
@@ -52,11 +55,11 @@
                 </g>
               </g>
             </svg>
-            <span>Continue with Google</span>
+            <span><%= t('login_or_register.buttonOauth') %> Google</span>
           </button>
         <% end %>
-        <%= form_tag('/auth/twitter', method: 'post', data: {turbo: false}) do %>
-          <button type='submit' class="w-4/5 dark:bg-black dark:text-white dark:border dark:border-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
+        <%= form_tag("/auth/twitter", method: "post", data: {turbo: false}) do %>
+          <button type="submit" class="w-4/5 dark:bg-black dark:text-white dark:border dark:border-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out my-2 m-auto flex items-center bg-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -4 48 48" version="1.1">
               <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC">
@@ -67,34 +70,34 @@
                 </g>
               </g>
             </svg>
-            <span>Continue with Twitter</span>
+            <span><%= t('login_or_register.buttonOauth') %> Twitter</span>
           </button>
         <% end %>
       </div>
       <div class="absolute flip-card-back py-5 inset-0">
-        <div class="text-xl mb-10 font-bold text-tertiary-default">Register</div>
-          <%= form_with(url: '/users/create', method: :post) do |form|%>
+        <div class="text-xl mb-10 font-bold text-tertiary-default"><%= t('login_or_register.register')  %></div>
+          <%= form_with(url: "/#{I18n.locale || I18n.default_locale}/users/create", method: :post) do |form|%>
             <div class="w-3/4 m-auto relative mb-10 max-w-sm focus:outline-none">
-              <%= form.text_field :username, id:"identifier_input_field", name: 'user[username]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill shadow-md', placeholder: "username" %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_input_field" id="usernameAvailabilityMessage">Username is already taken</label>
+              <%= form.text_field :username, id: "username_register_field", name: "user[username]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.username')}", value: @username %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="username_register_field" id="usernameRegisterAvailabilityMessage"><%= t('login_or_register.usernameCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
-              <%= form.text_field :email_address, id:"email_input_field", name: 'user[email_address]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "e-mail" %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_input_field" id="emailValidityMessage">E-mail not valid</label>
+              <%= form.text_field :email_address, id: "email_register_field", name: "user[email_address]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.e-mail')}", value: @email_address %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_register_field" id="emailRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-20 rounded-xl max-w-sm focus:outline-none">
-            <%= form.password_field :password, name: 'user[password]' , class:'bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none  focus:ring-0 w-full rounded-lg autofill  shadow-md', placeholder: "password" %>
+              <%= form.password_field :password, id: "password_register_field", name: "user[password]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.password')}" %>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="password_register_field" id="passwordRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
             </div>
-            <div class='w-1/2 m-auto max-w-xs'>
-              <%= form.submit "Register", class:"px-10 text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" %>
+            <div class="m-auto max-w-xs mx-auto">
+              <%= form.submit "#{t('login_or_register.register')}", disabled: true, id: "register_button", class: "disabled:bg-opacity-50 w-1/2 mx-auto text-center max-w-[150px] text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>
             </div>
           <% end %>
         </div>
       </div>
       <div class="flex mt-6 w-1/2 mx-auto max-w-xs mb-12 bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text:black">
-        <button id="toggle_log" class="cursor-pointer w-full p-2"
-          href="/download">
-          Register
+        <button id="toggle_log" class="cursor-pointer w-full p-2">
+          <%= t('login_or_register.register') %>
         </button>
       </div>
     </div>

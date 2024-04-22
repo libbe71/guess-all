@@ -27,27 +27,25 @@
 #       "yes": yup
 #       enabled: "ON"
 
-en:
+it:
   login_or_register:
-    login: "Login"
-    register: "Register"
+    login: "Accedi"
+    register: "Registrati"
     e-mail: "e-mail"
-    username: "username"
-    or: "or"
+    username: "nome utente"
+    or: "o"
     password: "password"
-    buttonOauth: "continue with"
-    usernameCheck: "Username not available"
-    emailCheck: "E-mail not valid"
+    buttonOauth: "Continua con"
+    usernameCheck: "Username non disponibile"
+    emailCheck: "E-mail non valida"
   snackbar:   
-    loginSuccess: "Login succesfull"
-    loginError: "Invalid email/username or password"
-    oAuthError: "OAuth Unauthorized error"
-    registerSuccess: "Registration succesfull"
-    registerError: "Registration failed. Please try again"
-    userUpdateError: "An error occurred, can't update the user"
+    loginSuccess: "Login avvenuto con successo"
+    loginError: "Email o username e/o password non validi"
+    oAuthError: "OAuth errore nell'autorizzazione"
+    registerSuccess: "Registrazione avvenuta con successo"
+    registerError: "Registration fallita. Per favore riprova"
+    userUpdateError: "C'è stato un errore, impossibile modificare l'utente"
   error:
-    defaultUserErrorMessage: "User Error"
-    defaultAuthErrorMessage: "Auth Error"
-    defaultOmniauthErrorMessage: "Omniauth Error"
-
-    
+    defaultUsersErrorMessage: "Errore utente"
+    defaultAuthErrorMessage: "Errore login"
+    defaultOmniauthErrorMessage: "Errore omniauth"

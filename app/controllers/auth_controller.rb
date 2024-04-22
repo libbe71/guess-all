@@ -1,24 +1,45 @@
 class AuthController < ApplicationController
   def login_or_register
     if logged_in?
+      current_locale = I18n.locale || I18n.default_locale
       # User is logged in
       # You can redirect them to another page or render a different view
-      redirect_to "/user/#{current_user["id"]}"
+      redirect_to "/#{current_locale}/user/#{current_user["id"]}"
     end
+    rescue => e
+      message = e.message
+      flash[:error] = message
+      redirect_to "/#{current_locale}/auth"
   end
   def create_session
     identifier = auth_params[:identifier].downcase
     user = User.where("LOWER(email_address) = ? OR LOWER(username) = ?", identifier, identifier).first
+    current_locale = I18n.locale || I18n.default_locale
 
     if user&.authenticate(auth_params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "Login succesfull"
-      redirect_to "/users/#{user.id}"
+      flash[:notice] = t('snackbar.loginSuccess')
+      redirect_to "/#{current_locale}/user/#{user.id}"
     else
-      message = "Invalid email/username or password"
-      flash[:error] = message
-      redirect_to '/auth'
+      raise AuthError, t('snackbar.loginError')
     end
+    rescue => e
+      message = e.message
+      flash[:error] = message
+      redirect_to "/#{current_locale}/auth"
+      
+  end
+
+
+  def manage_omniauth
+    @username = params[:username]
+    @email_address = params[:email]
+    render 'login_or_register', username: @username, email_address: @email_address
+
+    rescue => e
+      message = e.message
+      flash[:error] = message
+      redirect_to "/#{current_locale}/auth"
   end
 
   private

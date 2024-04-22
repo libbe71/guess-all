@@ -1,20 +1,10 @@
 class GenericErrorController < ApplicationController
-  before_action :clean_facebook_omniauth_fragment
-  
     def index
         begin
+            current_locale = I18n.locale || I18n.default_locale
             message = "An error occurred, you have been redirect to homepage"
             flash[:error] = message
-            redirect_to "/"
+            redirect_to "/#{current_locale}/"
         end
     end
-
-  private
-
-    def clean_facebook_omniauth_fragment
-        if request.fullpath.include?('#_=_')
-            redirect_to request.fullpath.split('#').first, status: :moved_permanently
-        end
-    end
-
 end
