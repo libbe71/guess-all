@@ -38,6 +38,7 @@ it:
     buttonOauth: "Continua con"
     usernameCheck: "Username non disponibile"
     emailCheck: "E-mail non valida"
+    emptyCheck: "Il campo non può essere vuoto"
   snackbar:   
     loginSuccess: "Login avvenuto con successo"
     loginError: "Email o username e/o password non validi"

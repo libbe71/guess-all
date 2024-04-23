@@ -1,5 +1,19 @@
 <div class="m-auto"> 
-
+  <div class="flex flex-rows justify-center mb-10 sm:hidden">
+  <!-- Locale toggle buttons -->
+  <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
+    <% if I18n.locale == :en %>
+      <%= link_to "Italiano", url_for(locale: 'it'), class: "text-black dark:text-white max-w-xs cursor-pointer p-a transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+      <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
+        English
+      </div>
+    <% else %>
+      <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
+        Italiano
+      </div>
+      <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+    <% end %>
+  </div>
   <div class="flip-card flex flex-col justify-center"> 
     <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
       <div class="relative m-auto flip-card-back py-5">
@@ -7,11 +21,11 @@
           <%= form_with( url: "/#{I18n.locale || I18n.default_locale}/auth/create_session", method: :post) do |form| %>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
               <%= form.text_field :identifier, id:"identifier_login_field", name: "auth[identifier]", class:"bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill  shadow-md", placeholder:  "#{t('login_or_register.e-mail')} #{t('login_or_register.or')} #{t('login_or_register.username')}" %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_login_field" id="identifierLoginValidityMessage"><%= t('login_or_register.usernameCheck') %></label>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_login_field" id="identifierLoginValidityMessage"><%= t('login_or_register.emptyCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm">
               <%= form.password_field :password, id:"password_login_field", name: "auth[password]", class:"bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg  shadow-md", placeholder: "#{t('login_or_register.password')}" %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="password_login_field" id="passwordLoginValidityMessage"><%= t('login_or_register.usernameCheck') %></label>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="password_login_field" id="passwordLoginValidityMessage"><%= t('login_or_register.emptyCheck') %></label>
             </div>
             <div class="w-1/2 m-auto text-center max-w-xs">
               <%= form.submit "#{t('login_or_register.login')}", id:"login_button", name: :login, disabled:true,  class: "disabled:bg-opacity-50 w-1/2 mx-auto text-center max-w-[150px] text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>

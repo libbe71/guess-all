@@ -17,35 +17,40 @@
 
   <body>
     <main class="w-screen min-h-screen bg-white dark:bg-black flex flex-col">
-      <nav class="bg-secondary-default dark:bg-tertiary-default hidden sm:flex justify-between items-center p-4 border-gray-200">
+      <nav class="bg-secondary-default dark:bg-tertiary-default hidden sm:flex justify-between items-center p-4 border-gray-200 mb-10">
         <div class="flex items-center space-x-3 rtl:space-x-reverse flex-1">
           <img src="/images/logo.png" class="h-8" alt="Flowbite Logo" />
           <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">Guess All</span>
         </div>
-
         <div class="flex justify-center flex-1">
           <!-- Locale toggle buttons -->
-          <div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">
+          <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
             <% if I18n.locale == :en %>
+            <div class="max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">
               <%= link_to "Italiano", url_for(locale: 'it'), class: "text-white dark:text-black" %>
+            </div>
+            <div class="max-w-xs bg-secondary-default p-2 rounded-md text-white dark:text-black">
+              English
+            </div>
             <% else %>
-              <%= link_to "English", url_for(locale: 'en'), class: "text-white dark:text-black" %>
+              <div class="max-w-xs bg-secondary-default p-2 rounded-md text-white dark:text-black">
+                Italiano
+              </div>
+              <div class="max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">
+                <%= link_to "English", url_for(locale: 'en'), class: "text-white dark:text-black" %>
+              </div>
             <% end %>
-          </div>
         </div>
 
         <div class="flex justify-end flex-1">
           <!-- Logout button -->
-          <div class="max-w-xs bg-primary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">
             <% if current_user.present? %>
-              <%= link_to "Logout", "/logout", class: "text-white dark:text-black" %>
+              <div class="max-w-xs bg-primary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">
+                <%= link_to "Logout", "/logout", class: "text-white dark:text-black" %>
+              </div>
             <% end %>
-          </div>
         </div>
       </nav>
-
-
-
 
     <div class="flex-1 overflow-hidden bg-light-background-default flex justify-center align-middle relative">
       <% if flash.present? %>

@@ -1,15 +1,22 @@
 export function login_or_registerFlip() {
-    const toggle = document.getElementById('toggle_log');
+    const toggleRegister = document.getElementById('toggle_register');
+    const toggleLogin = document.getElementById('toggle_login');
+    if (toggleRegister && toggleLogin) {
+      toggleLogin.addEventListener('click', function () {
+         handleFlip(toggleLogin,toggleRegister)
+      });
+      toggleRegister.addEventListener('click', function () {
+         handleFlip(toggleLogin,toggleRegister)
+      });
+    }
+}
 
-    toggle && toggle.addEventListener('click', function () {
-        const filpCard = document.getElementById('flipCard');
-        if (toggle.innerHTML === "Login")
-            toggle.innerHTML = "Register"
-        else
-            toggle.innerHTML = "Login"
-    
-        filpCard.classList.toggle('flip');
-    });
+function handleFlip(toggleLogin,toggleRegister) {
+  
+    const filpCard = document.getElementById('flipCard');
+    toggleLogin.classList.toggle("hidden")
+    toggleRegister.classList.toggle("hidden")
+    filpCard.classList.toggle('flip');
 }
 
 export function setAlerts() {
