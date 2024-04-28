@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     
     resources :users
     get '/user/:id', to: 'users#show'
+    get '/user/:id/settings', to: 'users#settings'
+    get '/user/:id/profile', to: 'users#profile'
 
     #get '/login', to: 'users#index'
     #post '/sessions', to: 'sessions#create'

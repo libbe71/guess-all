@@ -79,3 +79,8 @@ select.no-autocomplete-field-green:-webkit-autofill:focus {
 .flip-card-back {
     transform: rotateY(180deg);
 }
+
+
+.toSquare {
+  aspect-ratio: 1 / 1;
+}

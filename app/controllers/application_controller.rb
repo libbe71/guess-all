@@ -5,7 +5,7 @@ before_action :set_current_user
     def handle_exception(exception)
     # Handle the exception here
     Rails.logger.error(exception.message)
-    render plain: 'An error occurred', status: :internal_server_error
+    render plain: `An error occurred #{exception.message}`, status: :internal_server_error
     end
 
 

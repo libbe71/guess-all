@@ -51,5 +51,9 @@ en:
     defaultUserErrorMessage: "User Error"
     defaultAuthErrorMessage: "Auth Error"
     defaultOmniauthErrorMessage: "Omniauth Error"
+  user:
+    profile: "Profile"
+    settings: "Settings"
+    logout: "Logout"
 
     

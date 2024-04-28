@@ -51,3 +51,7 @@ it:
     defaultUsersErrorMessage: "Errore utente"
     defaultAuthErrorMessage: "Errore login"
     defaultOmniauthErrorMessage: "Errore omniauth"
+  user:
+    profile: "Profilo"
+    settings: "Impostazioni"
+    logout: "Esci"

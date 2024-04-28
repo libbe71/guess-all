@@ -17,6 +17,23 @@ class UsersController < ApplicationController
       redirect_to "/#{current_locale}/auth"
   end
 
+  def settings
+    @user = User.find(params[:id])
+
+    rescue => e
+      message = e.message 
+      flash[:error] = message
+      redirect_to "/#{current_locale}/auth"
+  end
+  def profile
+    @user = User.find(params[:id])
+
+    rescue => e
+      message = e.message 
+      flash[:error] = message
+      redirect_to "/#{current_locale}/auth"
+  end
+
   def new
     @user = User.new
 
