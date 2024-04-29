@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   def show
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   def settings
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
   def profile
     @user = User.find(params[:id])
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   def new
@@ -40,15 +40,19 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
 def create
   @user = User.new(user_params)
   current_locale = I18n.locale || I18n.default_locale
+
+  if user_update_params.twitter_id == ""
+    user_update_params.twitter_id = nil;
+  end
   if @user.save
     flash[:notice] = "#{t("snackbar.registerSuccess")}"
-    redirect_to "/#{current_locale}/auth"
+    redirect_to "/#{current_locale || "it"}/auth"
   else
     raise UsersError, "#{t("snackbar.registerError")}"
   end
@@ -56,7 +60,7 @@ def create
   rescue => e
     message = e.message 
     flash[:error] = message
-    redirect_to "/#{current_locale}/auth"
+    redirect_to "/#{current_locale || "it"}/auth"
 end
 
   def edit
@@ -65,15 +69,14 @@ end
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   def update
     @user = User.find(params[:id])
-
-    if @user.update(user_params)
+    if @user.update(user_update_params)
       current_locale = I18n.locale || I18n.default_locale
-      redirect_to "/#{current_locale}/#{@user}"
+      redirect_to "/#{current_locale || "it"}/#{@user.id}"
     else
       raise UsersError, "#{t("snackbar.userUpdateError")}"
     end
@@ -81,18 +84,22 @@ end
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   def check_username_availability
     username = params[:username]
+    current_user = User.find_by(id: session[:user_id]) if session[:user_id]
     user = User.where('lower(username) = ?', username.downcase).first
-    render json: { available: user.nil? }
+    ret = (user.nil? || user.id === current_user.id)
+    puts  current_user.id
+    puts user.id
+    render json: { available: ret  }
 
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   private
@@ -100,5 +107,8 @@ end
   # Only allow a list of trusted parameters through.
   def user_params
       params.require(:user).permit(:username, :email_address, :password, :twitter_id)
+  end
+  def user_update_params
+    params.require(:user).permit(:username, :email_address, :password)
   end
 end

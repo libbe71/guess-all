@@ -39,7 +39,7 @@ it:
     usernameCheck: "Username non disponibile"
     emailCheck: "E-mail non valida"
     emptyCheck: "Il campo non può essere vuoto"
-  snackbar:   
+  snackbar:
     loginSuccess: "Login avvenuto con successo"
     loginError: "Email o username e/o password non validi"
     oAuthError: "OAuth errore nell'autorizzazione"
@@ -55,3 +55,6 @@ it:
     profile: "Profilo"
     settings: "Impostazioni"
     logout: "Esci"
+  edit:
+    title: "Modifica username e password"
+    button: "Modifica"

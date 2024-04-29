@@ -30,14 +30,14 @@ export function checkRegisterPassword() {
       const registerPasswordValidityMessage = document.getElementById('passwordRegisterValidityMessage');
       if (password.length > 0) {
         registerPasswordValidityMessage.classList.add('hidden');
-        passwordInput.classList.add('border-none');
-        passwordInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
+        //passwordInput.classList.add('border-none');
+        //passwordInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
         registerPasswordValid = true;
         enableRegisterButton();
       } else {
         registerPasswordValidityMessage.classList.remove('hidden');
-        passwordInput.classList.remove('border-none');
-        passwordInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
+        //passwordInput.classList.remove('border-none');
+        //passwordInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
         registerPasswordValid = false;
         disableRegisterButton();
       }
@@ -64,14 +64,14 @@ function validateRegisterUsername(usernameInput) {
         const messageElement = document.getElementById('usernameRegisterAvailabilityMessage');
         if (data.available) {
           messageElement.classList.add('hidden');
-          usernameInput.classList.add('border-none');
-          usernameInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
+          //usernameInput.classList.add('border-none');
+          //usernameInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
           loginUsernameValid = true;
           enableRegisterButton();
         } else {
           messageElement.classList.remove('hidden');
-          usernameInput.classList.remove('border-none');
-          usernameInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
+          //usernameInput.classList.remove('border-none');
+          //usernameInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
           loginUsernameValid = false;
           disableRegisterButton();
         }

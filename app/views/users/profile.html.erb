@@ -1,3 +1,26 @@
-<div class="text-black dark:text-white">
-    Profile
+
+  <div class="flip-card flex flex-col justify-center"> 
+    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
+      <div class=" py-5 inset-0">
+        <div class="text-xl mb-10 font-bold text-tertiary-default">
+            <%= t('edit.title')  %>
+        </div>
+        <%= form_with(url: "/#{I18n.locale || I18n.default_locale}/users/#{current_user.id}/update", method: :patch) do |form|%>
+            <div class="w-3/4 m-auto relative mb-10 max-w-sm focus:outline-none">
+                <%= form.text_field :username, id: "username_register_field", name: "user[username]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.username')}", value: @user.username %>
+                <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="username_register_field" id="usernameRegisterAvailabilityMessage"><%= t('login_or_register.usernameCheck') %></label>
+            </div>
+            <div class="w-3/4 m-auto relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
+            <%= form.text_field :email_address, class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", value: current_user.email_address, readonly: true %>
+
+            </div>
+                <div class="w-3/4 m-auto relative flex mb-20 rounded-xl max-w-sm focus:outline-none">
+                <%= form.password_field :password, id: "password_register_field", name: "user[password]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "••••••••" %>
+            </div>
+                <div class="m-auto max-w-xs mx-auto">
+                <%= form.submit "#{t('edit.button')}", class: "disabled:bg-opacity-50 w-1/2 mx-auto text-center max-w-[150px] text-white dark:text-black py-2 bg-primary-default items-center rounded-md shadow-2xl cursor-pointer overflow-hidden disabled:cursor-default" %>
+            </div>
+        <% end %>
+    </div>
+  </div>      
 </div>

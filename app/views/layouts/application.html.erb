@@ -17,11 +17,14 @@
 
   <body>
     <main class="w-screen min-h-screen bg-white dark:bg-black flex flex-col">
+
       <nav class="bg-secondary-default dark:bg-tertiary-default hidden sm:flex justify-between items-center p-4 border-gray-200">
-        <div class="flex items-center space-x-3 rtl:space-x-reverse flex-1">
-          <img src="/images/logo.png" class="h-8" alt="Guess all Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">Guess All</span>
-        </div>
+        <%= link_to "/" do %>
+          <div class="flex items-center space-x-3 rtl:space-x-reverse flex-1">
+            <img src="/images/logo.png" class="h-8" alt="Guess all Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">Guess All</span>
+          </div>
+        <% end %>
         <div class="flex justify-center flex-1">
           <!-- Locale toggle buttons -->
           <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
@@ -66,28 +69,36 @@
       </nav>
       <% if current_user.present? %>
 
-        <nav class="shadow-xl dark:bg-tertiary-default flex flex-row-reverse sm:hidden justify-start items-center p-2 border-gray-200">
-          <%= link_to "/logout" do %>
-            <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
-              <img src="/images/icons/logout_primary.png" class="h-8 dark:hidden" alt="Settings" />
-              <img src="/images/icons/logout_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
+        <nav class="shadow-xl dark:bg-tertiary-default flex sm:hidden justify-between items-center p-2 border-gray-200">
+          <%= link_to "/user/#{current_user.id}" do %>
+            <div class="flex flex-start items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
+              <img src="/images/icons/home.png" class="h-8 dark:hidden" alt="Home" />
+              <img src="/images/icons/home.png" class="h-8 hidden dark:block" alt="Home" />
             </div>
           <% end %>
-          <%= link_to "/user/#{current_user.id}/settings" do %>
-            <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
-              <img src="/images/icons/setting_secondary.png" class="h-8 dark:hidden" alt="Settings" />
-              <img src="/images/icons/setting_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
+          <div class="flex flex-row-reverse items-center" >
+            <%= link_to "/logout" do %>
+              <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
+                <img src="/images/icons/logout_primary.png" class="h-8 dark:hidden" alt="Settings" />
+                <img src="/images/icons/logout_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
+              </div>
+            <% end %>
+            <%= link_to "/user/#{current_user.id}/settings" do %>
+              <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
+                <img src="/images/icons/setting_secondary.png" class="h-8 dark:hidden" alt="Settings" />
+                <img src="/images/icons/setting_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
+              </div>
+            <% end %>
+            <div class="flex flex-end items-center space-x-3 rtl:space-x-reverse cursor-pointer">
+                <%= button_to current_user.username, "/user/#{current_user.id}/profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
             </div>
-          <% end %>
-          <div class="flex flex-end items-center space-x-3 rtl:space-x-reverse cursor-pointer">
-              <%= button_to current_user.username, "/user/#{current_user.id}/profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
           </div>
         </nav>
       <% end %>
       
       <div class="flex-1 overflow-hidden bg-light-background-default flex justify-center align-middle relative">
         <% if flash.present? %>
-          <div id="flash-messages" class="absolute top-2 sm:top-0 left-0 w-full flex justify-center items-center ">
+          <div id="flash-messages" class="absolute z-50 top-2 sm:top-0 left-0 w-full flex justify-center items-center ">
             <% if flash[:notice].present? %>
               <div id="notice-message" class="m-auto bg-success-default bg-opacity-25 text-success-default py-2 px-4 rounded-md text-center">
                 <%= flash[:notice] %>

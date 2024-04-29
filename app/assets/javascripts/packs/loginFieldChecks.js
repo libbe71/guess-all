@@ -9,14 +9,14 @@ export function checkLoginIdentifier() {
       const identifierLoginValidityMessage = document.getElementById('identifierLoginValidityMessage');
       if (identifierLoginValidityMessage && identifier.length > 0) {
         identifierLoginValidityMessage.classList.add('hidden');
-        identifierInput.classList.add('border-none');
-        identifierInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
+        //identifierInput.classList.add('border-none');
+        //identifierInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
         loginIdentifierValid = true;
         enableLoginButton();
       } else {
         identifierLoginValidityMessage.classList.remove('hidden');
-        identifierInput.classList.remove('border-none');
-        identifierInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
+        //identifierInput.classList.remove('border-none');
+        //identifierInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
         loginIdentifierValid = false;
         disableLoginButton();
       }
@@ -32,14 +32,14 @@ export function checkLoginPassword() {
       const passwordLoginValidityMessage = document.getElementById('passwordLoginValidityMessage');
       if (password.length > 0) {
         passwordLoginValidityMessage.classList.add('hidden');
-        passwordInput.classList.add('border-none');
-        passwordInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
+        //passwordInput.classList.add('border-none');
+        //passwordInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
         loginPasswordValid = true;
         enableLoginButton();
       } else {
         passwordLoginValidityMessage.classList.remove('hidden');
-        passwordInput.classList.remove('border-none');
-        passwordInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
+        //passwordInput.classList.remove('border-none');
+        //passwordInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
         loginPasswordValid = false;
         disableLoginButton();
       }
