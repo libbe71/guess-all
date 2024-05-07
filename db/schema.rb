@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_110953) do
     t.string "email_address"
     t.string "twitter_id"
     t.string "password_digest"
+    t.string "locale"
+    t.string "theme"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

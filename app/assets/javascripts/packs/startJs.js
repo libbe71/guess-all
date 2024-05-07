@@ -4,6 +4,7 @@ import { checkLoginIdentifier, checkLoginPassword } from "./loginFieldChecks.js"
 import { login_or_registerFlip, setAlerts } from "./loginToggle.js"
 import { userDropDown } from "./userDropDown.js"
 import { toSquareHome } from "./toSquare.js"
+import { changeTheme } from "./changeTheme.js"
 
 export function startOnLoad() {
     if (window.location.hash === '#_=_') {
@@ -17,6 +18,7 @@ export function startOnLoad() {
     login_or_registerFlip();
     userDropDown()
     setAlerts();
+    changeTheme();
 
     toSquareHome()
 }

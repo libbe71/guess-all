@@ -18,6 +18,8 @@ class AuthController < ApplicationController
 
     if user&.authenticate(auth_params[:password])
       session[:user_id] = user.id
+      current_locale =  user&.locale || I18n.locale || I18n.default_locale
+      I18n.locale = current_locale
       flash[:notice] = t('snackbar.loginSuccess')
       redirect_to "/#{current_locale}/user/#{user.id}"
     else

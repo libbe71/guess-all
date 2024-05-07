@@ -58,3 +58,5 @@ en:
   edit:
     title: "Edit username and password"
     button: "Edit"
+  settings:
+    title: "Settings"

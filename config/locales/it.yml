@@ -58,3 +58,5 @@ it:
   edit:
     title: "Modifica username e password"
     button: "Modifica"
+  settings:
+    title: "Impostazioni"

@@ -1,1 +1,29 @@
-settings
+
+<div class="flip-card flex flex-col justify-center"> 
+    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
+        <div class=" py-5 inset-0">
+            <div class="text-xl mb-10 font-bold text-tertiary-default">
+                <%= t('settings.title')  %>
+            </div>
+            <div class="flex flex-rows justify-center items-center">
+                <!-- Locale toggle buttons -->
+                <% if I18n.locale == :en %>
+                    <%= link_to "Italiano", url_for(locale: 'it'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+                    <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
+                        English
+                    </div>
+                <% else %>
+                    <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
+                        Italiano
+                    </div>
+                    <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+                <% end %>
+            </div>
+            <div class="py-8">
+                <div id="light-mode-button" class="max-w-xs p-2 inline-block cursor-pointer rounded-md text-black dark:text-white transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">Light Mode</div>
+                <div id="dark-mode-button" class="max-w-xs p-2 inline-block cursor-pointer rounded-md text-black dark:text-white transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">Dark Mode</div>
+                <div id="auto-mode-button" class="max-w-xs inline-block bg-tertiary-default p-2 rounded-md text-white dark:text-black">Auto Mode</div>
+            </div>
+        </div>
+    </div>      
+</div>

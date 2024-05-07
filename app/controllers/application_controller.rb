@@ -8,6 +8,9 @@ before_action :set_current_user
     render plain: `An error occurred #{exception.message}`, status: :internal_server_error
     end
 
+    def error
+        render :error
+    end
 
     around_action :switch_locale
 
@@ -21,6 +24,6 @@ before_action :set_current_user
     end
     private
     def set_current_user
-        @current_user = User.find_by(id: session[:user_id])
+        @current_user = User.find_by(id: session[:user_id]) || nil
     end
 end

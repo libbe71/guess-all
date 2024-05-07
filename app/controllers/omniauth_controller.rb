@@ -29,7 +29,7 @@ class OmniauthController < ApplicationController
       if user
         session[:user_id] = user.id
         flash[:notice] = t('snackbar.loginSuccess')
-        redirect_to user_path(user, locale: @current_locale)
+        redirect_to user_path(user, locale: user.locale || @current_locale)
       end
     else
       raise OmniauthError, "#{t("snackbar.oAuthError")}"
