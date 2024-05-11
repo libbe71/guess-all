@@ -5,6 +5,7 @@ import { login_or_registerFlip, setAlerts } from "./loginToggle.js"
 import { userDropDown } from "./userDropDown.js"
 import { toSquareHome } from "./toSquare.js"
 import { changeTheme } from "./changeTheme.js"
+import { logout } from "./logout.js"
 
 export function startOnLoad() {
     if (window.location.hash === '#_=_') {
@@ -19,6 +20,7 @@ export function startOnLoad() {
     userDropDown()
     setAlerts();
     changeTheme();
+    logout();
 
     toSquareHome()
 }

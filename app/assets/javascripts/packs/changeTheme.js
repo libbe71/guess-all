@@ -1,15 +1,16 @@
 export const changeTheme = () => {
 
+    const autoModeButton = document.getElementById('auto-mode-button');
+    const darkModeButton = document.getElementById('dark-mode-button');
+    const lightModeButton = document.getElementById('light-mode-button');
+    const themeField = document.getElementById("theme-field");
 
     // Apply theme on page load
     applyTheme();
 
     // Whenever the user explicitly chooses light mode
-    document.getElementById('light-mode-button').addEventListener('click', function () {
-
-        const autoModeButton = document.getElementById('auto-mode-button');
-        const darkModeButton = document.getElementById('dark-mode-button');
-        const lightModeButton = document.getElementById('light-mode-button');
+    lightModeButton && lightModeButton.addEventListener('click', function () {
+        themeField.value = "light";
         lightModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
         lightModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
         autoModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
@@ -21,10 +22,8 @@ export const changeTheme = () => {
     });
 
     // Whenever the user explicitly chooses dark mode
-    document.getElementById('dark-mode-button').addEventListener('click', function () {
-        const autoModeButton = document.getElementById('auto-mode-button');
-        const darkModeButton = document.getElementById('dark-mode-button');
-        const lightModeButton = document.getElementById('light-mode-button');
+    darkModeButton && darkModeButton.addEventListener('click', function () {
+        themeField.value = "dark";
         darkModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
         darkModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
         autoModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
@@ -36,10 +35,8 @@ export const changeTheme = () => {
     });
 
     // Whenever the user explicitly chooses to respect the OS preference
-    document.getElementById('auto-mode-button').addEventListener('click', function () {
-        const autoModeButton = document.getElementById('auto-mode-button');
-        const darkModeButton = document.getElementById('dark-mode-button');
-        const lightModeButton = document.getElementById('light-mode-button');
+    autoModeButton && autoModeButton.addEventListener('click', function () {
+        themeField.value = "auto";
         autoModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
         autoModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
         darkModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
@@ -51,10 +48,16 @@ export const changeTheme = () => {
     });
 }
     // theme.js
-const applyTheme = () => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
+export const applyTheme = () => {
+    const html = document.getElementById("html");
+    if (localStorage.theme === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html && html.classList.remove('light');
+        html && html.classList.add('dark');
+    } else if (localStorage.theme === 'light') {
+        html && html.classList.add('light');
+        html && html.classList.remove('dark');
     } else {
-        document.documentElement.classList.remove('dark');
+        html && html.classList.remove('dark');
+        html && html.classList.remove('light');
     }
 };

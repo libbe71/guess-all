@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
   def show
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
   def settings
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
   def profile
     @user = User.find(params[:id])
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
   def new
@@ -40,16 +40,16 @@ class UsersController < ApplicationController
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
 def create
-  current_locale = I18n.locale || I18n.default_locale || "it"
-  @user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: current_locale, twitter_id: user_create_params[:twitter_id] || nil)
+  @current_locale = I18n.locale || I18n.default_locale || "it"
+  @user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: @current_locale, twitter_id: user_create_params[:twitter_id] || nil)
   save = @user.save;
   if save
     flash[:notice] = "#{t("snackbar.registerSuccess")}"
-    redirect_to "/#{current_locale || "it"}/auth"
+    redirect_to "/#{@current_locale || "it"}/auth"
   else
     raise UsersError, "#{t("snackbar.registerError")}"
   end
@@ -57,7 +57,7 @@ def create
   rescue => e
     message = e.message 
     flash[:error] = message
-    redirect_to "/#{current_locale || "it"}/auth"
+    redirect_to "/#{@current_locale || "it"}/auth"
 end
 
   def edit
@@ -66,14 +66,14 @@ end
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_update_params)
-      current_locale = I18n.locale || I18n.default_locale || it
-      redirect_to "/#{current_locale || "it"}/#{@user.id}"
+      @current_locale = I18n.locale || I18n.default_locale || it
+      redirect_to "/#{@current_locale || "it"}/#{@user.id}"
     else
       raise UsersError, "#{t("snackbar.userUpdateError")}"
     end
@@ -81,30 +81,18 @@ end
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
-
-  def change_locale
+  def save_settings
     @user = User.find(params[:id])
-    if !@user.update(locale_params)
-      raise UsersError, "#{t("snackbar.userChangeLocaleError")}"
-    end
-
-    rescue => e
-      message = e.message 
-      flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
-  end
-  def change_theme
-    @user = User.find(params[:id])
-    if !@user.update(theme_params)
+    if !@user.update(settings_params)
       raise UsersError, "#{t("snackbar.userChangeThemeError")}"
     end
 
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
 
@@ -119,20 +107,17 @@ end
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{current_locale || "it"}/auth"
+      redirect_to "/#{@current_locale || "it"}/auth"
   end
 
   private
-    
+
   # Only allow a list of trusted parameters through.
   def user_create_params
       params.require(:user).permit(:username, :email_address, :password, :twitter_id)
   end
-  def locale_params
-      params.require(:user).permit(:locale)
-  end
-  def theme_params
-      params.require(:user).permit(:theme)
+  def settings_params
+      params.permit(:locale, :theme)
   end
   def user_update_params
     params.require(:user).permit(:username, :email_address, :password)

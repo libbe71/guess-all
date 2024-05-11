@@ -26,4 +26,8 @@ before_action :set_current_user
     def set_current_user
         @current_user = User.find_by(id: session[:user_id]) || nil
     end
+
+    def set_current_locale
+        @current_locale = I18n.locale || I18n.default_locale
+    end
 end

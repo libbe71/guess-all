@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<%= tag.div(id:"html", class: "#{@current_user&.theme || ""}") do%>
   <head>
     <title>guess all</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -19,14 +20,14 @@
     <main class="w-screen min-h-screen bg-white dark:bg-black flex flex-col">
 
       <nav class="bg-secondary-default dark:bg-tertiary-default hidden sm:flex justify-between items-center p-4 border-gray-200">
-        <%= link_to "/", class:"flex items-center flex-1" do %>
+        <%= link_to "#{I18n.locale || :it}/", class:"flex items-center flex-1" do %>
           <div class="flex items-center space-x-3 rtl:space-x-reverse flex-1">
             <img src="/images/logo.png" class="h-8" alt="Guess all Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">Guess All</span>
           </div>
         <% end %>
         <div class="flex justify-center flex-1">
-         <% if !current_user.present? %>
+         <% if !@current_user.present? %>
           <!-- Locale toggle buttons -->
           <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
           <% if I18n.locale == :en %>
@@ -54,44 +55,44 @@
             </div>
           -->
           <div class="text-center relative min-w-32">
-          <% if current_user.present? %>
+          <% if @current_user.present? %>
             <button id="desktop-user-button" class="mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md">
-              <%= current_user.username %>
+              <%= @current_user.username %>
             </button>
             <div id="desktop-user-dropdown" class="absolute w-full hidden top-8 py-2 z-20">
               <div class="relative mx-auto w-32 shadow-xl dark:bg-black dark:border dark:border-secondary-default bg-white rounded-md shadow-xl">
-                <%= link_to "#{t("user.profile")}", "/user/#{current_user.id}/profile",  class:"block rounded-t-md px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
-                <%= link_to "#{t("user.settings")}", "/user/#{current_user.id}/settings",  class:"block px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
-                <%= link_to "#{t("user.logout")}", "/logout",  class:"block rounded-b-md px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
+                <%= link_to "#{t("user.profile")}", "/#{I18n.locale || it}/user/#{@current_user.id}/profile",  class:"block rounded-t-md px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
+                <%= link_to "#{t("user.settings")}", "/#{I18n.locale || it}/user/#{@current_user.id}/settings",  class:"block px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
+                <%= link_to "#{t("user.logout")}", "/logout", id:"logout-desktop",  class:"block rounded-b-md px-4 py-2 text-sm text-black hover:bg-tertiary-default hover:text-white dark:hover:text-secondary-default dark:text-secondary-default" %>
               </div>
             </div>
           <% end %>
 
         </div>
       </nav>
-      <% if current_user.present? %>
+      <% if @current_user.present? %>
         <nav class="shadow-xl dark:bg-tertiary-default flex sm:hidden justify-between items-center p-2 border-gray-200">
-          <%= link_to "/user/#{current_user.id}" do %>
+          <%= link_to "/#{I18n.locale || it}/user/#{@current_user.id}" do %>
             <div class="flex flex-start items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
               <img src="/images/icons/home.png" class="h-8 dark:hidden" alt="Home" />
               <img src="/images/icons/home.png" class="h-8 hidden dark:block" alt="Home" />
             </div>
           <% end %>
           <div class="flex flex-row-reverse items-center" >
-            <%= link_to "/logout" do %>
+            <%= link_to "/logout", id:"logout-mobile" do %>
               <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
                 <img src="/images/icons/logout_primary.png" class="h-8 dark:hidden" alt="Settings" />
                 <img src="/images/icons/logout_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
               </div>
             <% end %>
-            <%= link_to "/user/#{current_user.id}/settings" do %>
+            <%= link_to "/#{I18n.locale || it}/user/#{@current_user.id}/settings" do %>
               <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
                 <img src="/images/icons/setting_secondary.png" class="h-8 dark:hidden" alt="Settings" />
                 <img src="/images/icons/setting_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />
               </div>
             <% end %>
             <div class="flex flex-end items-center space-x-3 rtl:space-x-reverse cursor-pointer">
-                <%= button_to current_user.username, "/user/#{current_user.id}/profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+                <%= button_to @current_user.username, "/#{I18n.locale || it}/user/#{@current_user.id}/profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
             </div>
           </div>
         </nav>
@@ -124,7 +125,7 @@
       </div>
     </main>
   </body>
-</html>
+<% end %>
 
 
 

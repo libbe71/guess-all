@@ -101,7 +101,6 @@
             </div>
             <div class="w-3/4 m-auto hidden relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
               <%= form.text_field :twitter_id, name: "user[twitter_id]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", value: @twitter_id %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_register_field" id="emailRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-20 rounded-xl max-w-sm focus:outline-none">
               <%= form.password_field :password, id: "password_register_field", name: "user[password]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.password')}" %>

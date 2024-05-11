@@ -86,14 +86,14 @@ export function validateRegisterEmail(emailInput) {
   const emailRegisterValidityMessage = document.getElementById('emailRegisterValidityMessage');
   if (email.length === 0 || validateEmail(email)) {
     emailRegisterValidityMessage.classList.add('hidden');
-    emailInput.classList.add('border-none');
-    emailInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
+    //emailInput.classList.add('border-none');
+    //emailInput.classList.remove('border', 'border-error-default', 'focus:border-error-default');
     registerEmailValid = true;
     enableRegisterButton();
   } else {
     emailRegisterValidityMessage.classList.remove('hidden');
-    emailInput.classList.remove('border-none');
-    emailInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
+    //emailInput.classList.remove('border-none');
+    //emailInput.classList.add('border', 'border-error-default', 'focus:border-error-default');
     registerEmailValid = false;
     disableRegisterButton();
   }

@@ -35,7 +35,8 @@ Rails.application.routes.draw do
 
     get "/logout", to: 'auth#destroy_session'
 
-    patch "/change_locale", to: 'users#change_locale'
+    #patch "/change_locale", to: 'users#change_locale'
+    patch "/user/:id/save_settings", to: 'users#save_settings'
 
     match '*unmatched', to: 'auth#login_or_register', via: :all
   end

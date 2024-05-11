@@ -4,7 +4,7 @@ class AuthController < ApplicationController
       current_locale = I18n.locale || I18n.default_locale
       # User is logged in
       # You can redirect them to another page or render a different view
-      redirect_to "/#{current_locale}/user/#{current_user["id"]}"
+      redirect_to "/#{current_locale}/user/#{@current_user["id"]}"
     end
     rescue => e
       message = e.message
@@ -18,7 +18,9 @@ class AuthController < ApplicationController
 
     if user&.authenticate(auth_params[:password])
       session[:user_id] = user.id
-      current_locale =  user&.locale || I18n.locale || I18n.default_locale
+      if user&.locale
+        current_locale =  user&.locale
+      end
       I18n.locale = current_locale
       flash[:notice] = t('snackbar.loginSuccess')
       redirect_to "/#{current_locale}/user/#{user.id}"
@@ -50,6 +52,6 @@ class AuthController < ApplicationController
   end
 
   def logged_in?
-    !!current_user
+    !!@current_user
   end
 end

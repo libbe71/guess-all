@@ -5,7 +5,7 @@
   <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
   
     <% if I18n.locale == :en %>
-      <%= link_to "Italiano", { controller: :users, action: :change_locale, locale: :it }, class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+      <%= link_to "Italiano", class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
         English
       </div>
@@ -13,7 +13,7 @@
         <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
           Italiano
         </div>
-        <%= link_to "English", { controller: :users, action: :change_locale, locale: :en }, class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+        <%= link_to "English", class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <% end %>
     </div>
 
@@ -100,7 +100,7 @@
             </div>
             <div class="w-3/4 m-auto relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
               <%= form.text_field :email_address, id: "email_register_field", name: "user[email_address]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.e-mail')}", value: @email_address %>
-              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_register_field" id="emailRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
+              <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="email_register_field" id="emailRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-20 rounded-xl max-w-sm focus:outline-none">
               <%= form.password_field :password, id: "password_register_field", name: "user[password]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.password')}" %>
