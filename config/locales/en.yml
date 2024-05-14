@@ -47,6 +47,7 @@ en:
     registerError: "Registration failed. Please try again"
     userUpdateError: "An error occurred, can't update the user"
     logoutSuccess: "Logout successful"
+    editSuccess: "Edit successful"
   error:
     defaultUserErrorMessage: "User Error"
     defaultAuthErrorMessage: "Auth Error"

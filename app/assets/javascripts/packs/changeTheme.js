@@ -5,6 +5,7 @@ export const changeTheme = () => {
     const lightModeButton = document.getElementById('light-mode-button');
     const themeField = document.getElementById("theme-field");
 
+
     // Apply theme on page load
     applyTheme();
 
@@ -47,17 +48,50 @@ export const changeTheme = () => {
         applyTheme();
     });
 }
-    // theme.js
 export const applyTheme = () => {
     const html = document.getElementById("html");
-    if (localStorage.theme === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        html && html.classList.remove('light');
+    if (localStorage.theme === 'dark') {
+        html && html.classList.remove('light', 'hidden');
         html && html.classList.add('dark');
+        updateSettings("dark")
     } else if (localStorage.theme === 'light') {
         html && html.classList.add('light');
-        html && html.classList.remove('dark');
+        html && html.classList.remove('dark', 'hidden');
+        updateSettings("light")
     } else {
-        html && html.classList.remove('dark');
-        html && html.classList.remove('light');
+        autoTheme();
+        updateSettings(null)
     }
 };
+
+export const autoTheme = () => {
+    const html = document.getElementById('html');
+    
+    const autoDarkThemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    const autoLightThemeMedia = window.matchMedia('(prefers-color-scheme: light)');
+    
+    const applyTheme = () => {
+        if (!localStorage.getItem("theme") && autoDarkThemeMedia.matches) {
+            html.classList.remove('light', 'hidden');
+            html.classList.add('dark');
+        } else if (!localStorage.getItem("theme") && autoLightThemeMedia.matches) {
+            html.classList.add('light');
+            html.classList.remove('dark', 'hidden');
+        }
+    };
+
+    applyTheme();
+
+    autoDarkThemeMedia.addEventListener("change", applyTheme);
+    autoLightThemeMedia.addEventListener("change", applyTheme);
+};
+
+function updateSettings(theme) {
+    const form = document.getElementById('form-theme')
+    const field = document.getElementById('theme-field')
+    if(field)
+        field.value = theme;
+    
+    // Submit the form automatically
+   form && form.submit();
+}

@@ -4,7 +4,7 @@ import { checkLoginIdentifier, checkLoginPassword } from "./loginFieldChecks.js"
 import { login_or_registerFlip, setAlerts } from "./loginToggle.js"
 import { userDropDown } from "./userDropDown.js"
 import { toSquareHome } from "./toSquare.js"
-import { changeTheme } from "./changeTheme.js"
+import { changeTheme, applyTheme, autoTheme} from "./changeTheme.js"
 import { logout } from "./logout.js"
 
 export function startOnLoad() {
@@ -21,6 +21,7 @@ export function startOnLoad() {
     setAlerts();
     changeTheme();
     logout();
-
+    applyTheme();
+    autoTheme();
     toSquareHome()
 }

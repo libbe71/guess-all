@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController  
+  before_action :require_login, except: [:new, :create, :check_username_availability]
   def index
     @users = User.all
 
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @current_user = User.find(params[:id])
 
     rescue => e
       message = e.message 
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def settings
-    @user = User.find(params[:id])
+    @current_user = User.find(params[:id])
 
     rescue => e
       message = e.message 
@@ -26,8 +27,7 @@ class UsersController < ApplicationController
       redirect_to "/#{@current_locale || "it"}/auth"
   end
   def profile
-    @user = User.find(params[:id])
-
+    @current_user = User.find(params[:id])
     rescue => e
       message = e.message 
       flash[:error] = message
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @current_user = User.new
 
     rescue => e
       message = e.message 
@@ -44,10 +44,10 @@ class UsersController < ApplicationController
   end
 
 def create
-  @current_locale = I18n.locale || I18n.default_locale || "it"
-  @user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: @current_locale, twitter_id: user_create_params[:twitter_id] || nil)
-  save = @user.save;
+  user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: @current_locale, twitter_id: user_create_params[:twitter_id] || nil)
+  save = user.save;
   if save
+    @current_user = user
     flash[:notice] = "#{t("snackbar.registerSuccess")}"
     redirect_to "/#{@current_locale || "it"}/auth"
   else
@@ -72,7 +72,7 @@ end
   def update
     @user = User.find(params[:id])
     if @user.update(user_update_params)
-      @current_locale = I18n.locale || I18n.default_locale || it
+      flash[:notice] = t('snackbar.editSuccess')
       redirect_to "/#{@current_locale || "it"}/#{@user.id}"
     else
       raise UsersError, "#{t("snackbar.userUpdateError")}"
@@ -95,19 +95,19 @@ end
       redirect_to "/#{@current_locale || "it"}/auth"
   end
 
-
   def check_username_availability
+    puts "///////////////////////////////" 
     username = params[:username]
-    current_user = User.find_by(id: session[:user_id]) if session[:user_id]
     user = User.where('lower(username) = ?', username.downcase).first
-
-    ret = !!(user.nil? || (current_user && user.id === current_user.id))
+    puts user 
+    #user.nil? check if user in db; (current_user && user.id === current_user.id) check the current user isn't displayed as already taken (edit)
+    ret = !!(user.nil? || (@current_user && user.id === @current_user.id))
     render json: { available: ret  }
 
     rescue => e
       message = e.message 
       flash[:error] = message
-      redirect_to "/#{@current_locale || "it"}/auth"
+      redirect_to "/#{current_locale || "it"}/auth"
   end
 
   private
@@ -120,6 +120,14 @@ end
       params.permit(:locale, :theme)
   end
   def user_update_params
-    params.require(:user).permit(:username, :email_address, :password)
+    params.permit(:username, :email_address, :password)
+  end
+
+  #basic resctrict actions
+  def require_login
+    unless @current_user
+      flash[:error] = "You must be logged in to access this page"
+      redirect_to "/#{@current_locale || "it"}/auth"
+    end
   end
 end

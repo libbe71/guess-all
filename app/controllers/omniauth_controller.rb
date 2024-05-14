@@ -1,6 +1,4 @@
 class OmniauthController < ApplicationController
-  before_action :set_current_locale
-
   def new
     render :new
     rescue => e
@@ -12,6 +10,7 @@ class OmniauthController < ApplicationController
     user_info = request&.env['omniauth.auth']
 
     if user_info
+      #manage all possible ways to take username from different providers
       @username = user_info&.info&.nickname || user_info&.info&.username || user_info&.info&.name || user_info&.info&.last_name || user_info&.info&.family_name || ""
       @email_address = user_info&.info&.email || ""
       provider = user_info&.provider
@@ -29,7 +28,10 @@ class OmniauthController < ApplicationController
       if user
         session[:user_id] = user.id
         flash[:notice] = t('snackbar.loginSuccess')
-        redirect_to user_path(user, locale: user.locale || @current_locale)
+        if (user.locale)
+          @current_locale = user.locale;
+        end
+        redirect_to user_path(user, locale: @current_locale)
       end
     else
       raise OmniauthError, "#{t("snackbar.oAuthError")}"
@@ -38,11 +40,4 @@ class OmniauthController < ApplicationController
       flash[:error] = "#{e.message}"
       redirect_to auth_path(locale: @current_locale)
   end
-
-  private
-
-  def set_current_locale
-    @current_locale = I18n.locale || I18n.default_locale
-  end
-  
 end

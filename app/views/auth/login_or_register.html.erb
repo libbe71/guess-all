@@ -5,7 +5,7 @@
   <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
   
     <% if I18n.locale == :en %>
-      <%= link_to "Italiano", class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+      <%= link_to "Italiano", url_for(locale: 'it'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
         English
       </div>
@@ -13,10 +13,9 @@
         <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
           Italiano
         </div>
-        <%= link_to "English", class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+        <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <% end %>
     </div>
-
   <div class="flip-card flex flex-col justify-center"> 
     <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
       <div class="relative m-auto flip-card-front py-5">

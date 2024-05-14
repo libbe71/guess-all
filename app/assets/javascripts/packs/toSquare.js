@@ -23,7 +23,6 @@ export function toSquareHome() {
         const toSquare = document.getElementById(id);
         if (toSquare) {
             const parent = toSquare.parentNode;
-            console.log(parent.clientHeight, parent.clientWidth)
             if (parent.clientHeight < parent.clientWidth) {
                 toSquare.style.width = `${parent.clientHeight}px`;
             } else {

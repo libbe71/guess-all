@@ -59,8 +59,8 @@ function validateRegisterUsername(usernameInput) {
         },
         body: JSON.stringify({ username: username })
       })
-      .then(response => response.json())
-      .then(data => {
+        .then(response => { console.log(response); return response.json() })
+        .then(data => {
         const messageElement = document.getElementById('usernameRegisterAvailabilityMessage');
         if (data.available) {
           messageElement.classList.add('hidden');

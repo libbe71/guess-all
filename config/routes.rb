@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
   # config/routes.rb
+  root to: "auth#login_or_register"
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     get "up" => "rails/health#show", as: :rails_health_check
 
@@ -29,7 +30,6 @@ Rails.application.routes.draw do
     post '/auth/create_session', to: 'auth#create_session'
     post '/users/create', to: 'users#create'
 
-    post '/users/check_username_availability', to: 'users#check_username_availability'
 
     get '/error', to: 'generic_error#index'
 
@@ -38,8 +38,8 @@ Rails.application.routes.draw do
     #patch "/change_locale", to: 'users#change_locale'
     patch "/user/:id/save_settings", to: 'users#save_settings'
 
-    match '*unmatched', to: 'auth#login_or_register', via: :all
   end
-  root to: "auth#login_or_register"
+  post '/users/check_username_availability', to: 'users#check_username_availability'
 
+  match '*unmatched', to: 'auth#login_or_register', via: :all
 end
