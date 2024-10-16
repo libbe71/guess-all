@@ -64,6 +64,10 @@ gem "tailwindcss-rails", "~> 2.4"
 
 gem "importmap-rails"
 
+gem "noticed"
+
+gem 'will_paginate', '~> 3.3'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -92,3 +96,4 @@ end
 
 
 gem "timeout", "~> 0.4.1"
+

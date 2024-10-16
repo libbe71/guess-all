@@ -28,36 +28,51 @@
 #       enabled: "ON"
 
 en:
-  login_or_register:
-    login: "Login"
-    register: "Register"
-    e-mail: "e-mail"
-    username: "username"
-    or: "or"
-    password: "password"
-    buttonOauth: "Continue with"
-    usernameCheck: "Username not available"
-    emailCheck: "E-mail not valid"
-    emptyCheck: "Field can't be empty"
-  snackbar:
-    loginSuccess: "Login successful"
-    loginError: "Invalid email/username or password"
-    oAuthError: "OAuth Unauthorized error"
-    registerSuccess: "Registration succesfull"
-    registerError: "Registration failed. Please try again"
-    userUpdateError: "An error occurred, can't update the user"
-    logoutSuccess: "Logout successful"
-    editSuccess: "Edit successful"
-  error:
-    defaultUserErrorMessage: "User Error"
-    defaultAuthErrorMessage: "Auth Error"
-    defaultOmniauthErrorMessage: "Omniauth Error"
-  user:
-    profile: "Profile"
-    settings: "Settings"
-    logout: "Logout"
-  edit:
-    title: "Edit username and password"
-    button: "Edit"
-  settings:
-    title: "Settings"
+    login_or_register:
+        login: "Login"
+        register: "Register"
+        e-mail: "e-mail"
+        username: "username"
+        or: "or"
+        password: "password"
+        buttonOauth: "Continue with"
+        usernameCheck: "Username not available"
+        emailCheck: "E-mail not valid"
+        emptyCheck: "Field can't be empty"
+    snackbar:
+        loginSuccess: "Login successful"
+        loginError: "Invalid email/username or password"
+        oAuthError: "OAuth Unauthorized error"
+        registerSuccess: "Registration succesfull"
+        registerError: "Registration failed. Please try again"
+        userUpdateError: "An error occurred, can't update the user"
+        logoutSuccess: "Logout successful"
+        editSuccess: "Edit successful"
+    error:
+        defaultUserErrorMessage: "User Error"
+        defaultAuthErrorMessage: "Auth Error"
+        defaultOmniauthErrorMessage: "Omniauth Error"
+    user:
+        profile: "Profile"
+        settings: "Settings"
+        logout: "Logout"
+    edit:
+        title: "Edit username and password"
+        button: "Edit"
+    settings:
+        title: "Settings"
+    friends:
+        add: "Add friends"
+        request:
+            sent: "Sent"
+            received: "Received"
+        tabs:
+            friends: "Friends"
+            sent: "Sent"
+            received: "Received"
+        search:
+            searchBar: "Enter username or email"
+            sendInvite: "Send friend's request"
+    games:
+        start: "Start a new game"
+        ongoing: "Ongoing games"

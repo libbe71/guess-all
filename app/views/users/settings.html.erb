@@ -36,9 +36,8 @@
         </div>
         <div class="py-8">
             <%= form_with(id: "form-theme", url: "/user/#{@current_user.id}/save_settings", method: :patch, local: true) do |form| %>
-                <%= form.hidden_field :locale, id: "locale-field", value: I18n.locale %>
-                <%= form.hidden_field :theme, id: "theme-field", value: @current_user.theme %>
-                <%# Removed submit button %>
+                <%= form.hidden_field "user[locale]", id: "locale-field", value: I18n.locale %>
+                <%= form.hidden_field "user[theme]", id: "theme-field", value: @current_user.theme %>
             <% end %>
         </div>
     </div>     

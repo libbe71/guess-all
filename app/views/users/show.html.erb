@@ -2,15 +2,16 @@
   <div id="homepage_desktop" class="invisible grid grid-cols-2 grid-flow-row w-full h-full">
     <div class="relative flex justify-center w-full h-full items-center shadow-inner dark:border-r-2 dark:border-t-2 dark:border-tertiary-default"> 
       <div class="absolute m-auto w-4/5 h-4/5 flex justify-center items-center">
-        <div id="toSquare1" class="bg-secondary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+        <a href="<%=@current_user.id%>/games/" id="toSquare1" class="bg-secondary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
           <div>
             <img src="/images/homePage/newGame_white.png" class="w-1/3 m-auto dark:hidden" alt="Start new game" />
             <img src="/images/homePage/newGame_dark.png" class="w-1/3 m-auto hidden dark:block" alt="Start new game" />
           </div>
 
-        </div>
+        </a>
       </div>
     </div>
+
     <div class="relative flex justify-center w-full h-full items-center shadow-inner dark:border-r-2 dark:border-t-2 dark:border-tertiary-default">
       <div  class="absolute m-auto w-4/5 h-4/5 flex justify-center items-center">
         <div id="toSquare2" class="bg-tertiary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-outr">
@@ -21,16 +22,18 @@
         </div>
       </div>
     </div>
+
     <div class="relative flex justify-center w-full h-full items-center shadow-inner dark:border-r-2 dark:border-t-2 dark:border-tertiary-default">
       <div class="absolute m-auto w-4/5 h-4/5">
-        <div id="toSquare3" class="bg-primary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+        <a href="<%=@current_user.id%>/friends/" id="toSquare3" class="bg-primary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
           <div>
             <img src="/images/homePage/friends_white.png" class="w-1/3 m-auto dark:hidden" alt="Sets" />
             <img src="/images/homePage/friends_dark.png" class="w-1/3 m-auto hidden dark:block" alt="Sets" />
           </div>
-        </div>
+        </a>
       </div>
     </div>
+
     <div class="relative flex justify-center w-full h-full items-center shadow-inner dark:border-r-2 dark:border-t-2 dark:border-tertiary-default">
       <div class="absolute m-auto w-4/5 h-4/5">
         <div id="toSquare4" class="bg-secondary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
@@ -41,19 +44,21 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
+
 <div class="flex flex-col justify-between w-full h-auto visible sm:hidden">
-  <div class="justify-center flex w-full h-full">
+  <div id="homepage_mobile" class="justify-center flex w-full h-full">
     <div class="relative flex justify-center w-full h-full items-center shadow-inner"> 
       <div class="absolute m-auto w-3/5 h-full flex justify-center items-center">
-        <div id="toSquare1" class="bg-tertiary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+        <a href="<%=@current_user.id%>/games/" id="toSquare5" class="bg-secondary-default dark:text-white shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default aspect-1 m-auto rounded-full text-center flex justify-center items-center cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
           <div>
-            <img src="/images/homePage/newGame_secondary.png" class="w-1/3 m-auto dark:hidden" alt="Start new game" />
+            <img src="/images/homePage/newGame_dark.png" class="w-1/3 m-auto dark:hidden" alt="Start new game" />
             <img src="/images/homePage/newGame_dark.png" class="w-1/3 m-auto hidden dark:block" alt="Start new game" />
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -69,10 +74,10 @@
       </div>
 
       <div class="items-center space-x-3">
-        <div class="cursor-pointer">
+        <a href="<%=@current_user.id%>/friends/" class="cursor-pointer">
           <img src="/images/homePage/friends_white.png" class="w-12 m-auto dark:hidden" alt="Sets" />
           <img src="/images/homePage/friends_dark.png" class="w-12 m-auto hidden dark:block" alt="Sets" />
-        </div>
+        </a>
       </div>
 
       <div class="items-center space-x-3">

@@ -5,7 +5,7 @@
         <div class="text-xl mb-10 font-bold text-tertiary-default">
             <%= t('edit.title')  %>
         </div>
-        <%= form_with(url: "/#{I18n.locale || I18n.default_locale}/users/#{@current_user.id}/update", method: :patch) do |form|%>
+        <%= form_with(url: "/#{I18n.locale || I18n.default_locale}/users/#{@current_user.id}update", method: :patch) do |form|%>
             <div class="w-3/4 m-auto relative mb-10 max-w-sm focus:outline-none">
                 <%= form.text_field :username, id: "username_register_field", name: "user[username]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.username')}", value: @current_user.username %>
                 <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="username_register_field" id="usernameRegisterAvailabilityMessage"><%= t('login_or_register.usernameCheck') %></label>

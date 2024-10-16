@@ -1,0 +1,12 @@
+<h1>Game between <%= @game.player1.username %> and <%= @game.player2.username %></h1>
+
+<p>Status: <%= @game.status %></p>
+
+<div id="game-play-area" data-game-id="<%= @game.id %>">
+  <!-- This is where real-time game updates will appear -->
+</div>
+
+<div>
+  <input type="text" id="move-input" placeholder="Enter your move" />
+  <button id="make-move-button">Make Move</button>
+</div>

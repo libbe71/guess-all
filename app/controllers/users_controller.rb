@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  before_action :require_login, except: [:new, :create, :check_username_availability]
+  before_action :authorize_user!, except: [:new, :create, :check_username_availability]
   def index
     @users = User.all
 
@@ -96,7 +96,6 @@ end
   end
 
   def check_username_availability
-    puts "///////////////////////////////" 
     username = params[:username]
     user = User.where('lower(username) = ?', username.downcase).first
     puts user 
@@ -117,7 +116,7 @@ end
       params.require(:user).permit(:username, :email_address, :password, :twitter_id)
   end
   def settings_params
-      params.permit(:locale, :theme)
+      params.require(:user).permit(:locale, :theme)
   end
   def user_update_params
     params.permit(:username, :email_address, :password)

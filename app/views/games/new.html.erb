@@ -1,0 +1,11 @@
+<h1>Start a New Game</h1>
+
+<%= form_with model: @game, local: true do |f| %>
+  <div>
+    <%= f.label :player2_id, "Select a friend to play with:" %>
+    <%= f.collection_select :player2_id, @friends, :id, :username %>
+  </div>
+  
+  <%= f.submit "Start Game" %>
+<% end %>
+

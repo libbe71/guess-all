@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :twitter_id, uniqueness: true, :allow_blank => true, :allow_nil => true
 
   has_secure_password
+
+  #has many :notifications, as: :recipient
 end

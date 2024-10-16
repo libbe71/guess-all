@@ -1,0 +1,40 @@
+
+<div class="w-full ">
+    <%= link_to "/#{@current_locale}/user/#{@current_user.id}", id:"logout-mobile", class:"absolute" do %>
+    <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
+    <img src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>
+      <!--<img src="/images/icons/logout_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />-->
+    </div>
+  <% end %>
+    <input id="users-search-sent" class= "w-11/12 justify-center sm:w-2/3 placeholder-tertiary-default dark:placeholder-black text-tertiary-default dark:text-black bg-white dark:bg-tertiary-default  m-auto mt-12 px-6 py-2 m-auto rounded-md flex outline-none bg-white border-none focus:border-none focus:ring-0 shadow-xl" , placeholder = "<%= t('friends.search.searchBar') %>" />
+
+    <div class="flex flex-rows justify-center mt-10">
+      <%= link_to t('friends.tabs.friends'), url_for("/#{@current_locale}/user/#{@current_user.id}/friends"), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+      <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
+        <%= t('friends.tabs.sent') %>
+      </div>
+      <%= link_to t('friends.tabs.received'), url_for("/#{@current_locale}/user/#{@current_user.id}/friends/search_received"), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+    </div>
+    <div class="relative h-[calc(100%-275px)] dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
+      <% if @sent.present? %>
+        <ul id="users-list">
+          <% @sent.each do |user| %>
+            <div class="px-4 py-4 sm:px-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg leading-6 font-medium text-black dark:text-tertiary-default"><%= user.username %></h3>
+                <div class="flex items-center justify-start">
+                  <p class="text-sm font-medium text-gray-500"><span class="text-green-600"><%= t('friends.request.sent') %></span></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </ul>
+      <% end %>
+    <div>
+  </div>
+</div>
+
+<div class="flex mt-6 w-1/2 mx-auto max-w-xs bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md">
+  <%= link_to t('friends.add'), url_for("/user/#{@current_user.id}/friends/search_users"), class: "text-center w-full p-2 text-white dark:text-black max-w-xs cursor-pointer p-2 rounded-md" %>
+</div>
+

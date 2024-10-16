@@ -28,36 +28,51 @@
 #       enabled: "ON"
 
 it:
-  login_or_register:
-    login: "Accedi"
-    register: "Registrati"
-    e-mail: "e-mail"
-    username: "nome utente"
-    or: "o"
-    password: "password"
-    buttonOauth: "Continua con"
-    usernameCheck: "Username non disponibile"
-    emailCheck: "E-mail non valida"
-    emptyCheck: "Il campo non può essere vuoto"
-  snackbar:
-    loginSuccess: "Login avvenuto con successo"
-    loginError: "Email o username e/o password non validi"
-    oAuthError: "OAuth errore nell'autorizzazione"
-    registerSuccess: "Registrazione avvenuta con successo"
-    registerError: "Registration fallita. Per favore riprova"
-    userUpdateError: "C'è stato un errore, impossibile modificare l'utente"
-    logoutSuccess: "Logout avvenuto con successo"
-    editSuccess: "Modifica avvenuta con successo"
-  error:
-    defaultUsersErrorMessage: "Errore utente"
-    defaultAuthErrorMessage: "Errore login"
-    defaultOmniauthErrorMessage: "Errore omniauth"
-  user:
-    profile: "Profilo"
-    settings: "Impostazioni"
-    logout: "Esci"
-  edit:
-    title: "Modifica username e password"
-    button: "Modifica"
-  settings:
-    title: "Impostazioni"
+    login_or_register:
+        login: "Accedi"
+        register: "Registrati"
+        e-mail: "e-mail"
+        username: "nome utente"
+        or: "o"
+        password: "password"
+        buttonOauth: "Continua con"
+        usernameCheck: "Username non disponibile"
+        emailCheck: "E-mail non valida"
+        emptyCheck: "Il campo non può essere vuoto"
+    snackbar:
+        loginSuccess: "Login avvenuto con successo"
+        loginError: "Email o username e/o password non validi"
+        oAuthError: "OAuth errore nell'autorizzazione"
+        registerSuccess: "Registrazione avvenuta con successo"
+        registerError: "Registration fallita. Per favore riprova"
+        userUpdateError: "C'è stato un errore, impossibile modificare l'utente"
+        logoutSuccess: "Logout avvenuto con successo"
+        editSuccess: "Modifica avvenuta con successo"
+    error:
+        defaultUsersErrorMessage: "Errore utente"
+        defaultAuthErrorMessage: "Errore login"
+        defaultOmniauthErrorMessage: "Errore omniauth"
+    user:
+        profile: "Profilo"
+        settings: "Impostazioni"
+        logout: "Esci"
+    edit:
+        title: "Modifica username e password"
+        button: "Modifica"
+    settings:
+        title: "Impostazioni"
+    friends:
+        add: "Aggiungi amici"
+        request:
+            sent: "Inviata"
+            received: "Ricevuta"
+        tabs:
+            friends: "Amici"
+            sent: "Inviate"
+            received: "Ricevute"
+        search:
+            searchBar: "Inserisci username o email"
+            sendInvite: "Invia richiesta di amicizia"
+    games:
+        start: "Inizia una nuova partita"
+        ongoing: "Partite in corso"

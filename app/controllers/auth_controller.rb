@@ -35,6 +35,7 @@ class AuthController < ApplicationController
     flash[:notice] = t('snackbar.logoutSuccess')
     redirect_to root_path
   end
+  
 
   private
 
@@ -45,4 +46,5 @@ class AuthController < ApplicationController
   def logged_in?
     !!@current_user
   end
+
 end

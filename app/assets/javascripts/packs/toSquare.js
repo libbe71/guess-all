@@ -35,6 +35,7 @@ export function toSquareHome() {
     toSquare("toSquare2");
     toSquare("toSquare3");
     toSquare("toSquare4");
+    toSquare("toSquare5");
 
     const homepage = document.getElementById("homepage_desktop");
     if (homepage) {

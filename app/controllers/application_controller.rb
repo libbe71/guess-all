@@ -1,32 +1,49 @@
 class ApplicationController < ActionController::Base
-    before_action :set_current_user
-        rescue_from StandardError, with: :handle_exception
-    around_action :switch_locale
-    def handle_exception(exception)
-        # Handle the exception here
-        Rails.logger.error(exception.message)
-        render plain: `An error occurred #{exception.message}`, status: :internal_server_error
-    end
+  before_action :set_current_user 
+  around_action :switch_locale
 
-    def error
-        render :error
-    end
+  def error
+    render :error
+  end
 
-    def switch_locale(&action)
-        set_current_locale
-        locale = params[:locale] || I18n.default_locale
-        I18n.with_locale(locale, &action)
-    end
+  def switch_locale(&action)
+    set_current_locale
+    locale = params[:locale] || @current_user&.locale || session[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
 
+
+
+  # General method to ensure the logged-in user matches the user from the URL
     private
-    def set_current_user
-        if session[:user_id]
-            @current_user = User.find_by(id: session[:user_id])
-        end
-        @current_user ||= nil
-    end
 
-    def set_current_locale
-        @current_locale = I18n.locale || I18n.default_locale
+  def authorize_user!
+    user_id = params[:id] # Use snake_case for variables in Ruby
+    if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
     end
+  end
+
+  private
+
+  def set_current_user
+    if session[:user_id]
+      @current_user = User.find_by(id: session[:user_id])
+    end
+    @current_user ||= nil
+  end
+
+  def set_current_locale
+    if params[:locale]
+      I18n.locale = params[:locale]
+      session[:locale] = I18n.locale # Save locale to session
+      if @current_user
+        @current_user.update(locale: I18n.locale) # Optionally save locale to the user if logged in
+      end
+    else
+      I18n.locale = session[:locale] || I18n.default_locale
+    end
+    @current_locale = I18n.locale
+  end
 end

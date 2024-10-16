@@ -6,6 +6,7 @@ import { userDropDown } from "./userDropDown.js"
 import { toSquareHome } from "./toSquare.js"
 import { changeTheme, applyTheme, autoTheme} from "./changeTheme.js"
 import { logout } from "./logout.js"
+import { friends, friendsSent, friendsReceived, gamesToStart, users } from "./friends.js"
 
 export function startOnLoad() {
     if (window.location.hash === '#_=_') {
@@ -23,5 +24,10 @@ export function startOnLoad() {
     logout();
     applyTheme();
     autoTheme();
-    toSquareHome()
+    toSquareHome();
+    friends();
+    friendsSent();
+    friendsReceived();
+    gamesToStart();
+    users();
 }

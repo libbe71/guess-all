@@ -17,7 +17,7 @@
       <% end %>
     </div>
   <div class="flip-card flex flex-col justify-center"> 
-    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
+    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] rounded-md ">
       <div class="relative m-auto flip-card-front py-5">
         <div class="text-xl pb-5 font-bold text-tertiary-default"><%= t('login_or_register.login') %></div> 
           <%= form_with( url: "/#{I18n.locale || I18n.default_locale}/auth/create_session", method: :post) do |form| %>
@@ -111,7 +111,7 @@
           <% end %>
         </div>
       </div>
-      <div class="flex mt-6 w-1/2 mx-auto max-w-xs mb-12 bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text:black">
+      <div class="flex mt-6 w-1/2 mx-auto max-w-xs bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text:black">
         <button id="toggle_register" class="cursor-pointer w-full p-2">
           <%= t('login_or_register.register') %>
         </button>
