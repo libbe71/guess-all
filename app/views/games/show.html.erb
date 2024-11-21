@@ -1,12 +1,52 @@
-<h1>Game between <%= @game.player1.username %> and <%= @game.player2.username %></h1>
+<div id="game" class="flex-cols sm:mx-[20%] mx-[5%] hidden">
+  <div id="selected-character" data-selected-character-name="<%= @game && @game.player1.id == @current_user.id ? @game.player1_choosen_character : @game.player2_choosen_character  %>">
+   
+  </div>
+  <div data-n-player="<%= @game && @game.player1.id == @current_user.id ? '1' : '2' %>" data-discarded-characters="<%= @game && @game.player1.id == @current_user.id ? @game.player1_characters_discarded : @game.player2_characters_discarded %>" class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 border-2 border-secondary-default items-start h-[600px] overflow-y-scroll" id="card-container">
+  </div>
+  <button id="saveDiscardedCharactersButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 hidden">Save</button>
 
-<p>Status: <%= @game.status %></p>
 
-<div id="game-play-area" data-game-id="<%= @game.id %>">
-  <!-- This is where real-time game updates will appear -->
+  <%
+=begin%>
+ <div class="<%= @game.round.id != @current_user.id ? '' : 'hidden' %>">
+    Last question: <span id="last_question"></span>
+    <br/>
+    Last response: <span id="last_response"></span>
+  </div> 
+<%
+=end%>
+  <% if @game.round.id == @current_user.id %>
+  <div id="questions_game">
+    <h3>Send question</h3>
+    <form>
+      <input type="text" id="message_input" placeholder="Enter your question here...">
+      <button type="button" id="send_button">Send</button>
+    </form>
+
+    <form>
+      <h3>Choose a character</h3>
+      <select>
+      </select>
+      <button type="button" id="send_answer_button">Send</button>
+    </form>
+  </div>
+<% end %>
 </div>
 
-<div>
-  <input type="text" id="move-input" placeholder="Enter your move" />
-  <button id="make-move-button">Make Move</button>
+<div id="questionModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+    <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg">
+        <p id="questionText" class="mb-4"></p>
+        <button id="yesButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">Yes</button>
+        <button id="noButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+    </div>
+</div>
+<div id="responsePopUp" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+    <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg">
+        <p id="responseText" class="mb-4"></p>
+    </div>
+</div>
+<div id="loader_game" class="flex flex-col items-center justify-center h-screen space-y-4">
+  <div class="w-16 h-16 border-4 border-t-transparent border-gray-300 rounded-full animate-spin"></div>
+  <p class="text-gray-500 text-lg font-semibold">Waiting for the other player</p>
 </div>

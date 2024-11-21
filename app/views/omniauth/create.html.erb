@@ -14,9 +14,9 @@
       <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
     <% end %>
   </div>
-  <div class="flip-card flex flex-col justify-center"> 
-    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
-      <div class="relative m-auto flip-card-back py-5">
+  <div class="flip-card-login flex flex-col justify-center"> 
+    <div id="flipCard" class="relative dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] sm:w-[400px] rounded-md ">
+      <div class="relative m-auto flip-card-login-back py-5">
         <div class="text-xl pb-5 font-bold text-tertiary-default"><%= t('login_or_register.login') %></div> 
           <%= form_with( url: "/#{I18n.locale || I18n.default_locale}/auth/create_session", method: :post) do |form| %>
             <div class="w-3/4 m-auto relative flex mb-6 rounded-xl max-w-sm focus:outline-none">
@@ -88,7 +88,7 @@
           </button>
         <% end %>
       </div>
-      <div class="absolute flip-card-front py-5 inset-0">
+      <div class="absolute flip-card-login-front py-5 inset-0">
         <div class="text-xl mb-10 font-bold text-tertiary-default"><%= t('login_or_register.register')  %></div>
           <%= form_with(url: "/#{I18n.locale || I18n.default_locale}/users/create", method: :post) do |form|%>
             <div class="w-3/4 m-auto relative mb-10 max-w-sm focus:outline-none">

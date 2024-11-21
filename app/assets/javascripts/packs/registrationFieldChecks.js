@@ -59,7 +59,7 @@ function validateRegisterUsername(usernameInput) {
         },
         body: JSON.stringify({ username: username })
       })
-        .then(response => { console.log(response); return response.json() })
+        .then(response => { return response.json() })
         .then(data => {
         const messageElement = document.getElementById('usernameRegisterAvailabilityMessage');
         if (data.available) {

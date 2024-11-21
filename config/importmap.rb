@@ -3,4 +3,4 @@
 pin "application"
 pin "scheduler" # @0.23.0
 pin "@rails/actioncable", to: "actioncable.esm.js"
-pin_all_from "app/javascript/channels", under: "channels"
+# pin_all_from "app/assets/javascript/channels", under: "channels"

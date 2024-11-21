@@ -14,7 +14,7 @@
         <%= link_to t('friends.tabs.sent'), url_for("/#{@current_locale}/user/#{@current_user.id}/friends/search_sent"), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
         <%= link_to t('friends.tabs.received'), url_for("/#{@current_locale}/user/#{@current_user.id}/friends/search_received"), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
     </div>
-    <div class="relative h-[calc(100%-275px)] dark:border-tertiary-default shadow-md dark:border flip-card-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
+    <div class="relative h-[calc(100%-275px)] dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
         <% if @friends.present? %>
             <ul id="users-list">
               <% if @friends.present? %>

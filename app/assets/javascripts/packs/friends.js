@@ -79,7 +79,6 @@ export const gamesToStart = () => {
     fetch(`/friends/search_friends/`)
       .then(response =>  response.json() )
       .then(users => {
-        console.log(users)
         if (userList) {
           let usersListHtml = "";
           users && users.forEach(user => {
@@ -291,7 +290,10 @@ function startNewGame(friendId) {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      window.location.href = `/games/${data.game_id}`; // Redirect to the game show page
+        const fullURL = window.location.href
+        const urlSplitted = fullURL?.split("/")
+        const urlGames = urlSplitted.slice(0, urlSplitted.length-1).join("/")
+        window.location.href = `${urlGames}/${data.game_id}/select_character/1`; // Redirect to the game show page
     } else {
       alert('Unable to start the game');
     }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_08_175304) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_02_181427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,8 +31,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_175304) do
     t.bigint "winner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "player1_choosen_character"
+    t.string "player2_choosen_character"
+    t.bigint "round_id"
+    t.string "player1_characters_discarded"
+    t.string "player2_characters_discarded"
     t.index ["player1_id"], name: "index_games_on_player1_id"
     t.index ["player2_id"], name: "index_games_on_player2_id"
+    t.index ["round_id"], name: "index_games_on_round_id"
     t.index ["winner_id"], name: "index_games_on_winner_id"
   end
 
@@ -75,5 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_175304) do
   add_foreign_key "friends", "users", column: "user2_id"
   add_foreign_key "games", "users", column: "player1_id"
   add_foreign_key "games", "users", column: "player2_id"
+  add_foreign_key "games", "users", column: "round_id"
   add_foreign_key "games", "users", column: "winner_id"
 end

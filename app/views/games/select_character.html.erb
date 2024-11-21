@@ -1,0 +1,128 @@
+<div class="flex-cols sm:mx-[20%] mx-[5%]">
+	
+	<div class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 items-start h-[600px] overflow-y-scroll" id="select-character-container">
+	</div>
+	<div id="confirmationPopup" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 shadow-xl rounded-lg hidden text-center items-center">
+		<p className="py-2 my-2">Are you sure you want to select this character?</p>
+		<div id="selected-character-image-container" className="m-auto text-center items-center ì">
+		</div>
+		<div className="m-auto">
+			<button id="confirmYes" class="bg-blue-500 text-white p-2 rounded">Yes</button>
+			<button id="confirmNo" class="bg-red-500 text-white p-2 rounded">No</button>
+		</div>
+	</div>
+</div>
+
+<script>
+// Array of names to display on the cards
+const males = ['aldo',"giacomo", "giovanni", "luca", "mariello", "lucio", "mario", "olmo", "paolo", "pino", "sergio", "simone"];
+const females = ['anna', 'aurora', "ilaria", 'elisa', "emma", "federica", "gaia", "giulia", "jessica", "lucia", "margherita", "martina"];
+
+// Get the container
+const container = document.getElementById('select-character-container');
+// Function to create a card
+function createCard(name, gender) {
+    //<img src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>
+    const fullURL = window.location.href
+    const urlSplitted = fullURL?.split("/")
+    const player = urlSplitted.pop()
+    const gameId = urlSplitted[urlSplitted.length-2]
+    const card = document.createElement('div');
+    card.className = 'self-center cursor-pointer'
+    card.id=`id-card-${name}`
+    const cardInner = document.createElement('div');
+    cardInner.className="relative overflow-hidden w-[100px] h-[120px] text-center text-white bg-blue-500 rounded-t-xl border-4 border-black"
+
+    const cardFrontImage = document.createElement('img');
+    cardFrontImage.src=`/images/games/characters/${name}.png`
+    cardFrontImage.className="object-fill"
+
+    const cardFrontFooter = document.createElement('div');
+    const cardFrontFooterText = document.createElement('div');
+    if(gender==="male")
+      cardFrontFooter.className = 'absolute bottom-0 border-none bg-blue-500 text-white overflow-y-scroll w-[92px]';
+    else 
+      cardFrontFooter.className = 'absolute bottom-0 border-none bg-pink-500 text-white overflow-y-scroll w-[92px]';
+    cardFrontFooterText.textContent = name;  // Set the name to display on the front
+
+    cardFrontFooter.appendChild(cardFrontImage);
+    cardFrontFooter.appendChild(cardFrontFooterText);
+    cardInner.appendChild(cardFrontFooter);
+    cardInner.appendChild(cardFrontImage);
+    
+
+
+    // Append the front and back to the inner container
+
+    // Append the inner container to the main card element
+    card.appendChild(cardInner);
+
+    // Add flip functionality
+card.addEventListener('click', function () {
+    const popup = document.getElementById('confirmationPopup');
+    const imageContainer = document.getElementById('selected-character-image-container');
+	imageContainer.removeChild(imageContainer.firstChild);
+    popup.className = popup.className.replace(" hidden") + ' block';  // Show the popup
+    const cardImage = document.createElement('img');
+    cardImage.src=`/images/games/characters/${name}.png`
+    cardImage.className="object-fill w-[100px] h-[100px] m-auto my-[20px]"
+	imageContainer.appendChild(cardImage)
+	
+    const yesBtn = document.getElementById('confirmYes');
+    const noBtn = document.getElementById('confirmNo');
+
+    yesBtn.onclick = function () {
+        popup.className = popup.className + ' hidden';  // Hide popup on confirmation
+        if (player && gameId) {
+            fetch(`/games/${gameId}/save_selected_character`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    player: player,
+                    character: name
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+					const fullURL = window.location.href
+    				const urlSplitted = fullURL?.split("/")
+					window.location.href = urlSplitted.slice(0, urlSplitted.length-2).join("/")
+
+                } else {
+                    console.error(data)
+                    alert("Error selecting character.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Error selecting character.");
+
+            });
+        } else {
+            container.className = container.className.replace(" hidden", "");
+        }
+    };
+
+    noBtn.onclick = function () {
+        popup.className = popup.className+" hidden";  // Hide popup if user cancels
+    };
+});
+
+
+    return card;
+}
+
+
+// Create and append cards for each name in the array
+males.forEach(name => {
+    container.appendChild(createCard(name, "male"));
+});
+females.forEach(name => {
+    container.appendChild(createCard(name, "female"));
+});
+
+</script>

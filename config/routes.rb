@@ -53,13 +53,18 @@ Rails.application.routes.draw do
     get "/user/:id/friends/search_received", to: 'friends#index_received'
     get "/user/:id/friends", to: 'friends#index'
 
-    resources :games, only: [:index, :new, :create, :show]
     get  "/user/:id/games" , to: 'games#index'
     get  "/user/:id/games/create" , to: 'games#create'
     get  "/user/:id/games/:gameId" , to: 'games#show'
+    get '/user/:id/games/:gameId/select_character/:player', to: 'games#select_character'
 
   end
   post  "/games/new" , to: 'games#new'
+  post  "/games/:gameId/save_selected_character" , to: 'games#save_selected_character'
+  post  "/games/:gameId/save_discarded_characters" , to: 'games#save_discarded_characters'
+  post  "/games/:gameId/is_answer_correct" , to: 'games#is_answer_correct'
+  post  "/games/:gameId/toggle_round", to: 'games#toggle_round'
+
   post '/users/check_username_availability', to: 'users#check_username_availability'
   post '/friends/create', to: 'friends#create'
   post "/friends/delete", to: 'friends#delete'
