@@ -1,14 +1,16 @@
 <div class="flex-cols sm:mx-[20%] mx-[5%]">
-	
+    <h1 class="text-4xl font-bold m-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-10 mb-4" >
+        <%= t('games.selectCharacter.title') %>
+    </h1>
 	<div class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 items-start h-[600px] overflow-y-scroll" id="select-character-container">
 	</div>
 	<div id="confirmationPopup" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 shadow-xl rounded-lg hidden text-center items-center">
-		<p className="py-2 my-2">Are you sure you want to select this character?</p>
+		<p className="py-2 my-2"><%= t('games.selectCharacter.popUp') %></p>
 		<div id="selected-character-image-container" className="m-auto text-center items-center ì">
 		</div>
 		<div className="m-auto">
-			<button id="confirmYes" class="bg-blue-500 text-white p-2 rounded">Yes</button>
-			<button id="confirmNo" class="bg-red-500 text-white p-2 rounded">No</button>
+			<button id="confirmYes" class="bg-blue-500 text-white w-[50px] p-2 rounded transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"><%= t('games.selectCharacter.yesBtn') %></button>
+			<button id="confirmNo" class="bg-red-500 text-white w-[50px] p-2 rounded transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">No</button>
 		</div>
 	</div>
 </div>

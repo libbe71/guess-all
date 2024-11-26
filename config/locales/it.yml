@@ -76,3 +76,19 @@ it:
     games:
         start: "Inizia una nuova partita"
         ongoing: "Partite in corso"
+        selectCharacter:
+            title: "Seleziona un personaggio"
+            popUp: "Sei sicuro di voler selezionare questo personaggio?"
+            yesBtn: "Si"
+        match: 
+            title: "Gioca"
+            questions: 
+                title: "Fai la tua mossa"
+                placeholderQuestion: "Fai una domanda"
+                placeholderSelectcharacter: ggg
+                selectedCharacterTitle: "Personaggio scelto"
+                cardsLeftTitle: "Caselle rimaste all'avversario"
+                yesBtn: "Si"
+                save: "Salva"
+
+

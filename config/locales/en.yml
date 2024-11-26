@@ -76,3 +76,18 @@ en:
     games:
         start: "Start a new game"
         ongoing: "Ongoing games"
+        selectCharacter:
+            title: Select a character
+            popUp: Are you sure you want to select this character?
+            yesBtn: "Yes"
+        match: 
+            title: "Play"
+            questions: 
+                title: Make your move
+                placeholderQuestion: Enter a question here
+                placeholderSelectcharacter: ggg
+                selectedCharacterTitle: "Choosen character"
+                cardsLeftTitle: "Opponent cards left"
+                yesBtn: "Yes"
+                save: "Save"
+

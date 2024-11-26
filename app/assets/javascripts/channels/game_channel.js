@@ -17,6 +17,9 @@ const consumer = createConsumer()
 const cardContainer = document?.getElementById('card-container');
 const gameContainer = document?.getElementById('game');
 const nPlayer = cardContainer?.getAttribute('data-n-player');
+const currentLocale = document
+    .querySelector('meta[name="locale"]')
+    .getAttribute("content");
 const urlPath = window.location.pathname;
 const fullURL = window.location.href
 const urlSplitted = fullURL?.split("/")
@@ -162,52 +165,70 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const createQuestionsGame = () => {
+    const game_footer = document.getElementById("game_footer")
     // Create the main container div
     const questionsGameDiv = document.createElement("div");
     questionsGameDiv.id = "questions_game";
+    questionsGameDiv.className="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center"
+
+
+    const questionsGameH3 = document.createElement("h3");
+
+    if(currentLocale==="it")
+        questionsGameH3.textContent = "Fai la tua mossa"
+    else if(currentLocale==="en")
+        questionsGameH3.textContent = "Make your move"
+    questionsGameH3.className = "text-md font-medium text-gray-700 mb-5 items-center mx-auto  text-center"
   
-    // Create and append the first heading
-    const sendQuestionHeading = document.createElement("h3");
-    sendQuestionHeading.textContent = "Send question";
-    questionsGameDiv.appendChild(sendQuestionHeading);
   
-    // Create the first form
+    const questionFormContainer = document.createElement("div");
+    questionFormContainer.class = "flex items-center mx-auto"
+
+
     const questionForm = document.createElement("form");
+    questionForm.className = "flex items-center mb-4 mx-auto";
   
     const messageInput = document.createElement("input");
+    messageInput.className = "flex-grow p-1.5 text-sm w-[165px] border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
     messageInput.type = "text";
     messageInput.id = "message_input";
-    messageInput.placeholder = "Enter your question here...";
-    questionForm.appendChild(messageInput);
+    if(currentLocale==="it")
+        messageInput.placeholder = "Fai una domanda";
+    else if(currentLocale==="en")
+        messageInput.placeholder = "Enter a question here";
   
     const sendButton = document.createElement("button");
+    sendButton.className = "bg-blue-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-blue-600 transition"
     sendButton.type = "button";
     sendButton.id = "send_button";
-    sendButton.textContent = "Send";
+    sendButton.textContent = "->";
   
     // Add event listener to the first button
     sendButton.addEventListener("click", (event, input) => {
         sendQuestionEL(event, messageInput);
     });
-  
+    questionsGameDiv.appendChild(questionsGameH3);
+
+    questionForm.appendChild(messageInput);
     questionForm.appendChild(sendButton);
-    questionsGameDiv.appendChild(questionForm);
-  
-    // Create and append the second heading
-    const chooseCharacterHeading = document.createElement("h3");
-    chooseCharacterHeading.textContent = "Choose a character";
-    questionsGameDiv.appendChild(chooseCharacterHeading);
-  
+    questionFormContainer.appendChild(questionForm);
+    questionsGameDiv.appendChild(questionFormContainer);
     // Create the second form
-    const characterForm = document.createElement("form");
+    const answerForm = document.createElement("form");  
+
+    const answerFormContainer = document.createElement("div");
+    answerFormContainer.class = "flex items-center mx-auto"
   
     const characterSelect = document.createElement("select");
-    characterForm.appendChild(characterSelect);
+    characterSelect.className = "flex-grow p-1.5 w-[165px] text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    answerForm.appendChild(characterSelect);
   
     const sendAnswerButton = document.createElement("button");
     sendAnswerButton.type = "button";
     sendAnswerButton.id = "send_answer_button";
-    sendAnswerButton.textContent = "Send";
+    sendAnswerButton.textContent = "->";
+    sendAnswerButton.className = "bg-green-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-green-600 transition"
+
   
     // Add event listener to the second button
     sendAnswerButton.addEventListener("click", () => {
@@ -215,13 +236,13 @@ const createQuestionsGame = () => {
       sendAnswerEL(selectedOption)
     });
   
-    characterForm.appendChild(sendAnswerButton);
-    questionsGameDiv.appendChild(characterForm);
+    answerForm.appendChild(sendAnswerButton);
+    answerFormContainer.appendChild(answerForm);
+    questionsGameDiv.appendChild(answerFormContainer)
   
     // Append the div to the body or another container in the DOM
-    const gameContainer = document.getElementById("game");
-    if (gameContainer) {
-      gameContainer.appendChild(questionsGameDiv);
+    if (game_footer) {
+        game_footer.appendChild(questionsGameDiv);
       updateSelectOptions()
     } else {
       console.error("No container with ID 'game' found.");
@@ -281,13 +302,19 @@ const sendAnswerEL = (selectedCharacter) =>{
         .then(data => {
             if (data.success) {
                 if(!!data?.isCorrect){
-                    showResponsePopUp("You Won")
+                    if(currentLocale==="it")
+                        showResponsePopUp("Hai vinto")
+                    else if(currentLocale==="en")
+                        showResponsePopUp("You Won")
                     window.location.href = urlSplitted.slice(0,urlSplitted.length-1).join("/")
                     gameChannel.speak(currentUser, 'end_game', "You Lose"); 
 
                 }
                 else{
-                    showResponsePopUp("Answer Wrong")
+                    if(currentLocale==="it")
+                        showResponsePopUp("Risposta sbagliata")
+                    else if(currentLocale==="en")
+                        showResponsePopUp("Answer Wrong")
                     fetch(`/games/${gameId}/toggle_round`, {
                         method: 'POST',
                         headers: {
@@ -339,7 +366,12 @@ const updateSelectOptions = () => {
     // Add a default option
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
-    defaultOption.textContent = 'Choose a character';
+    
+
+    if(currentLocale==="it")
+        defaultOption.textContent = 'Scegli una risposta';
+    else if(currentLocale==="en")
+        defaultOption.textContent = 'Select an answer';
     selectElement.appendChild(defaultOption);
 
     // Add non-discarded characters as options
@@ -489,7 +521,7 @@ function createSelectedCharacterCard() {
     const name = container?.getAttribute('data-selected-character-name');
     const gender = males.includes(name) ? "male" : "female"
     const card = document.createElement('div');
-    card.className = 'self-center w-[100px]'
+    card.className = 'self-center w-[100px] m-auto'
     const cardInner = document.createElement('div');
     cardInner.className = 'flip-card-game-inner'; //TODO: check
 
