@@ -1,11 +1,13 @@
 class GamesController < ApplicationController
+  before_action :check_user, only: [:show, :select_character]
   before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]
 
-  # List all games (e.g. all started or finished games)
   def index
-    @games = Game.where(status: ["started"]).order(created_at: :desc)
+    @games = Game.where(status: "started")
+                 .where("player1_id = :user OR player2_id = :user", user: @current_user.id)
+                 .order(created_at: :desc)
   end
 
   # Show a specific game (gameplay view)
@@ -151,4 +153,14 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:player2_id)
   end
+
+  def check_user 
+    @game = Game.find(params[:gameId])
+    if @game.player1.id != @current_user.id && @game.player2.id != @current_user.id 
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
 end
+
