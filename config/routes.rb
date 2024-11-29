@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   post  "/games/:gameId/save_discarded_characters" , to: 'games#save_discarded_characters'
   post  "/games/:gameId/is_answer_correct" , to: 'games#is_answer_correct'
   post  "/games/:gameId/toggle_round", to: 'games#toggle_round'
+  post  "/games/:gameId/make_move", to: 'games#make_move'
 
   post '/users/check_username_availability', to: 'users#check_username_availability'
   post '/friends/create', to: 'friends#create'

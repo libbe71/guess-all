@@ -75,7 +75,8 @@ en:
             sendInvite: "Send friend's request"
     games:
         start: "Start a new game"
-        ongoing: "Ongoing games"
+        ongoing: "Games"
+        ongoingGames: "Show ended games"
         selectCharacter:
             title: Select a character
             popUp: Are you sure you want to select this character?

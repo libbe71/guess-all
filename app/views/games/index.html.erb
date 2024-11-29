@@ -7,18 +7,44 @@
 
 	<h1 class="text-4xl font-bold m-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-10" ><%= t('games.ongoing') %></h1>
 
-	<div class="relative dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 h-[calc(100vh-300px)] min-h-[90px] overflow-scroll">
-		<ul>
-			<% @games.each do |game| %>
-				<a href="/<%= @current_locale %>/user/<%= @current_user.id %>/games/<%= game.id %>"  class="px-4 py-4 sm:px-6">
-					<div class="transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer">
-						<div class="text-secondary-default text-bold dark:text-tertiary-default">Game <%= game.id %></div> 
-						<div class="text-primary-default dark:text-tertiary-default text-xl"><%= game.player1.username %> VS <%= game.player2.username %></div>
-					</div>
-				</a>
-			<% end %>
-		</ul>
-	</div>
+<div class="relative">
+  <!-- Toggle Button -->
+  <div class="flex justify-center mt-2">
+    <button 
+      id="toggle-button" 
+      class="px-4 py-2 bg-secondary-default dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default text-white rounded shadow hover:bg-primary-dark transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"
+      >
+      <%= t('games.ongoingGames') %>
+    </button>
+  </div>
+
+  <!-- Ongoing Games -->
+  <div id="ongoing-games" class="dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-4 h-[calc(100vh-310px)] min-h-[90px] overflow-scroll">
+    <ul>
+      <% @games.each do |game| %>
+        <a href="/<%= @current_locale %>/user/<%= @current_user.id %>/games/<%= game.id %>" class="px-4 py-4 sm:px-6">
+          <div class="transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer">
+            <div class="text-secondary-default text-bold dark:text-tertiary-default">Game <%= game.id %></div>
+            <div class="text-primary-default dark:text-tertiary-default text-xl"><%= game.player1.username %> VS <%= game.player2.username %></div>
+          </div>
+        </a>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Ended Games -->
+  <div id="ended-games" class="hidden dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-4 h-[calc(100vh-310px)] min-h-[90px] overflow-scroll">
+    <ul>
+      <% @ended_games.each do |game| %>
+        <a href="/<%= @current_locale %>/user/<%= @current_user.id %>/games/<%= game.id %>" class="px-4 py-4 sm:px-6">
+          <div class="transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer">
+            <div class="text-secondary-default text-bold dark:text-tertiary-default">Game <%= game.id %></div>
+            <div class="text-primary-default dark:text-tertiary-default text-xl"><%= game.player1.username %> VS <%= game.player2.username %></div>
+          </div>
+        </a>
+      <% end %>
+    </ul>
+  </div>
 	<div class="flex mt-6 w-1/2 mx-auto max-w-xs bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md">
 		<a href="create" class="text-center w-full p-2 text-white dark:text-black max-w-xs cursor-pointer p-2 rounded-md">
 			<%= t('games.start') %>

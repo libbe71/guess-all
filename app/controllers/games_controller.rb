@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :check_user, only: [:show, :select_character]
-  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round]
+  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]
 
@@ -8,6 +8,9 @@ class GamesController < ApplicationController
     @games = Game.where(status: "started")
                  .where("player1_id = :user OR player2_id = :user", user: @current_user.id)
                  .order(created_at: :desc)
+    @ended_games = Game.where(status: "finished")
+                .where("player1_id = :user OR player2_id = :user", user: @current_user.id)
+                .order(created_at: :desc)
   end
 
   # Show a specific game (gameplay view)
@@ -46,10 +49,6 @@ class GamesController < ApplicationController
   
   
   def is_answer_correct
-    # unless @game.players.include?(@current_user)
-    #   render json: { error: 'Unauthorized' }, status: :forbidden
-    #   return
-    # end
     if params[:player] == "1"
       if @game.player2_choosen_character == params[:character]
         if @game.update(status: 'finished', winner_id: @current_user.id)
@@ -123,6 +122,18 @@ class GamesController < ApplicationController
 
   # Create a new game session between two users
   def Create
+  end
+  
+  def make_move
+    question = params[:question]
+    answer = params[:answer]
+    # Create the move with the current user
+    @game.moves.create!(
+      question: question,
+      answer: answer,
+      position: position,
+      user: @current_user
+    )
   end
 
   private

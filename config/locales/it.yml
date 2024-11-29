@@ -75,7 +75,8 @@ it:
             sendInvite: "Invia richiesta di amicizia"
     games:
         start: "Inizia una nuova partita"
-        ongoing: "Partite in corso"
+        ongoing: "Partite"
+        ongoingGames: "Mostra partite terminate"
         selectCharacter:
             title: "Seleziona un personaggio"
             popUp: "Sei sicuro di voler selezionare questo personaggio?"

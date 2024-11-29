@@ -39,21 +39,16 @@ if(gameContainer){
             console.log(data.sender, currentUser, currentUser !== data.sender)
             if(currentUser !== data.sender){
                 if(data.type === "question") {
-                    // const questionModal = document.getElementById('questionModal');
-                    // const questionText = document.getElementById('questionText');
-                    // questionText.innerText = data.message;
-                    // questionModal.style.display = 'block';
-                    createQuestionModal(data.message, ()=>gameChannel.speak(currentUser, "response", "Yes"), ()=>gameChannel.speak(currentUser, "response", "No"))
-                    
-                } 
-                else if(data.type === "answer") {
-                    createQuestionsGame()
+                    createQuestionModal(data.message, ()=>gameChannel.speak(currentUser, "response", {question: data.message, answer: "Yes"}), ()=>gameChannel.speak(currentUser, "response", {question: data.message, answer:"No"}))
                 } 
                 else if(data.type === "response") {
-                    showResponsePopUp(data.message)
-                    // const lastResponse = document.getElementById('last_response');
-                    // lastResponse.innerText = data.message
-                    
+                    if(data.message){
+                        showResponsePopUp(data.message.answer)
+                        makeMove(data.message.question, data.message.answer)
+
+                    }
+                    else
+                        createQuestionsGame()
                 } 
                 else if(data.type === "end_game") {
                     showResponsePopUp(data.message)
@@ -81,15 +76,6 @@ if(gameContainer){
                             gameContainer.className = gameContainer.className.replaceAll(" hidden", "");
                         }
                     }
-                }
-                else {
-                    messages.innerHTML += `<p>${data.message}</p>`;
-                }
-            }
-            else {
-                if(data.type === "question") {
-                    const lastQuestion = document.getElementById('last_question');
-                    lastQuestion.innerText = data.message
                 }
             }
         },
@@ -274,19 +260,22 @@ if(gameContainer){
             .then(data => {
                 if (data.success) {
                     if(!!data?.isCorrect){
-                        if(currentLocale==="it")
-                            showResponsePopUp("Hai vinto")
-                        else if(currentLocale==="en")
-                            showResponsePopUp("You Won")
+                        let response = "Hai vinto"
+                         if(currentLocale==="en")
+                            response = "You Won"
+                        //here
+                        makeMove(selectedCharacter+"?", response)
+                        showResponsePopUp(response)
                         window.location.href = urlSplitted.slice(0,urlSplitted.length-1).join("/")
                         gameChannel.speak(currentUser, 'end_game', "You Lose"); 
 
                     }
                     else{
-                        if(currentLocale==="it")
-                            showResponsePopUp("Risposta sbagliata")
-                        else if(currentLocale==="en")
-                            showResponsePopUp("Answer Wrong")
+                        let response = "Risposta sbagliata"
+                        if(currentLocale==="en")
+                            response = "Answer Wrong"
+                        makeMove(selectedCharacter+"?", response)
+                        showResponsePopUp(response)
                         fetch(`/games/${gameId}/toggle_round`, {
                             method: 'POST',
                             headers: {
@@ -309,15 +298,14 @@ if(gameContainer){
                     
                     }
 
-                    gameChannel.speak(currentUser, 'answer'); 
+                    gameChannel.speak(currentUser, 'response'); 
                     removeQuestionsGame()
                 } else {
                     alert("Error looking for opponent selected character");
                 }
             })
             .catch(error => {
-                alert("Error looking for opponent selected characte", error);
-        
+                alert("Error looking for opponent selected characte", error);   
             });
         }
     }
@@ -613,5 +601,28 @@ if(gameContainer){
         setTimeout(()=>{
             responsePopUp.style.display = 'none';
         },2000)
+    }
+    function makeMove(question, answer){
+        console.log("before")
+        fetch(`/games/${gameId}/make_move`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                question: question,
+                answer: answer
+            })
+        })
+        .then(()=>{
+            console.log("then")
+
+        })
+        .catch(error => {
+
+            console.log("catch")
+            alert("Error saving changes", error);
+        })
     }
 }
