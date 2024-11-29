@@ -50,10 +50,11 @@ const gameChannel = consumer.subscriptions.create({ channel: "GameChannel", game
         console.log(data.sender, currentUser, currentUser !== data.sender)
         if(currentUser !== data.sender){
             if(data.type === "question") {
-                const questionModal = document.getElementById('questionModal');
-                const questionText = document.getElementById('questionText');
-                questionText.innerText = data.message;
-                questionModal.style.display = 'block';
+                // const questionModal = document.getElementById('questionModal');
+                // const questionText = document.getElementById('questionText');
+                // questionText.innerText = data.message;
+                // questionModal.style.display = 'block';
+                createQuestionModal(data.message, ()=>gameChannel.speak(currentUser, "response", "Yes"), ()=>gameChannel.speak(currentUser, "response", "No"))
                 
             } 
             else if(data.type === "answer") {
@@ -114,24 +115,6 @@ const gameChannel = consumer.subscriptions.create({ channel: "GameChannel", game
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const yesBtn= document.getElementById('yesButton')
-  yesBtn && yesBtn.addEventListener('click', function() {
-      gameChannel.speak(currentUser, "response", "Yes");
-      document.getElementById('questionModal').style.display = 'none';
-      createQuestionsGame();
-  });
-
-  const noBtn = document.getElementById('noButton')
-  noBtn && noBtn.addEventListener('click', function() {
-      gameChannel.speak(currentUser, "response", "No");
-      document.getElementById('questionModal').style.display = 'none';
-      createQuestionsGame();
-  });
-
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     const input = document?.getElementById('message_input');
     const sendButton = document.getElementById('send_button');
     console.log(sendButton)
@@ -169,7 +152,7 @@ const createQuestionsGame = () => {
     // Create the main container div
     const questionsGameDiv = document.createElement("div");
     questionsGameDiv.id = "questions_game";
-    questionsGameDiv.className="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center"
+    questionsGameDiv.className="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center dark:border-2 dark:border-tertiary-default"
 
 
     const questionsGameH3 = document.createElement("h3");
@@ -178,18 +161,18 @@ const createQuestionsGame = () => {
         questionsGameH3.textContent = "Fai la tua mossa"
     else if(currentLocale==="en")
         questionsGameH3.textContent = "Make your move"
-    questionsGameH3.className = "text-md font-medium text-gray-700 mb-5 items-center mx-auto  text-center"
+    questionsGameH3.className = "text-md font-medium text-secondary-default dark:text-tertiary-default mb-5 items-center mx-auto  text-center"
   
   
     const questionFormContainer = document.createElement("div");
-    questionFormContainer.class = "flex items-center mx-auto"
+    questionFormContainer.className = "flex items-center mx-auto"
 
 
     const questionForm = document.createElement("form");
     questionForm.className = "flex items-center mb-4 mx-auto";
   
     const messageInput = document.createElement("input");
-    messageInput.className = "flex-grow p-1.5 text-sm w-[165px] border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    messageInput.className = "flex-grow p-1.5 border-y-2 border-l-2 border-r-none text-sm w-[165px] text-white placeholder-white bg-secondary-default border-secondary-default dark:text-tertiary-default dark:border-tertiary-default dark:bg-transparent dark:placeholder-tertiary-default rounded-l-md focus-visible:ring-transparent focus-visible:border-secondary-default"
     messageInput.type = "text";
     messageInput.id = "message_input";
     if(currentLocale==="it")
@@ -198,7 +181,7 @@ const createQuestionsGame = () => {
         messageInput.placeholder = "Enter a question here";
   
     const sendButton = document.createElement("button");
-    sendButton.className = "bg-blue-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-blue-600 transition"
+    sendButton.className = "bg-primary-default dark:bg-tertiary-default dark:border-tertiary-default text-white text-sm py-1.5 px-3 rounded-r-md border-y-2 border-primary-default transform hover:scale-x-110 transition duration-300 ease-out"
     sendButton.type = "button";
     sendButton.id = "send_button";
     sendButton.textContent = "->";
@@ -217,17 +200,17 @@ const createQuestionsGame = () => {
     const answerForm = document.createElement("form");  
 
     const answerFormContainer = document.createElement("div");
-    answerFormContainer.class = "flex items-center mx-auto"
+    answerFormContainer.className = "flex items-center mx-auto"
   
     const characterSelect = document.createElement("select");
-    characterSelect.className = "flex-grow p-1.5 w-[165px] text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    characterSelect.className = "flex-grow cursor-pointer p-1.5 w-[165px] text-sm border-y-2 border-l-2 border-r-none rounded-l-md focus:outline-none  text-white placeholder-white bg-secondary-default border-secondary-default dark:text-tertiary-default dark:border-tertiary-default dark:bg-transparent dark:placeholder-tertiary-default focus-visible:ring-transparent focus-visible:border-secondary-default"
     answerForm.appendChild(characterSelect);
   
     const sendAnswerButton = document.createElement("button");
     sendAnswerButton.type = "button";
     sendAnswerButton.id = "send_answer_button";
     sendAnswerButton.textContent = "->";
-    sendAnswerButton.className = "bg-green-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-green-600 transition"
+    sendAnswerButton.className = "bg-primary-default border-primary-default border-y-2 dark:bg-tertiary-default dark:border-tertiary-default text-white text-sm py-1.5 px-3 rounded-r-md  transform hover:scale-x-110 transition duration-300 ease-out"
 
   
     // Add event listener to the second button
@@ -404,7 +387,80 @@ function arraysHaveSameValues(arr1, arr2) {
   // If all checks passed, the arrays have the same values
   return true;
 }
+// Create the modal dynamically using JavaScript
+function createQuestionModal(text = 'Are you sure?', onYes = () => {}, onNo = () => {}) {
+    // Create the overlay
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'questionModal';
+    modalOverlay.className = 'fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full';
 
+    // Create the modal content container
+    const modalContent = document.createElement('div');
+    modalContent.className = 'question-modal-popup';
+
+
+    // Create the question header
+    const questionHeader = document.createElement('H3');
+    questionHeader.id = 'questionHeader';
+    if(currentLocale==="it"){
+        questionHeader.textContent = "Domanda dell'avversario:";
+    }
+    else{
+        questionHeader.textContent = "Opponent question:";
+    }
+    questionHeader.className = 'mb-2 font-bold text-lg text-secondary-default dark-tertiary';
+    
+    // Create the question text
+    const questionText = document.createElement('p');
+    questionText.id = 'questionText';
+    questionText.className = 'mb-4 ml-2';
+    questionText.textContent = text;
+
+    // Create the Yes button
+    const yesButton = document.createElement('button');
+    yesButton.id = 'yesButton';
+    yesButton.className = 'yes-btn question-modal-btn font-bold py-2 px-4 rounded mr-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out';
+    yesButton.textContent = 'Yes';
+
+    // Create the No button
+    const noButton = document.createElement('button');
+    noButton.id = 'noButton';
+    noButton.className = 'no-btn question-modal-btn font-bold py-2 px-4 rounded mr-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out';
+    noButton.textContent = 'No';
+
+    // Append buttons and question text to the modal content
+    modalContent.appendChild(questionHeader);
+    modalContent.appendChild(questionText);
+    modalContent.appendChild(yesButton);
+    modalContent.appendChild(noButton);
+
+    // Append the modal content to the overlay
+    modalOverlay.appendChild(modalContent);
+
+    // Append the modal to the body
+    document.body.appendChild(modalOverlay);
+
+    // Function to remove the modal
+    function removeModal() {
+        if (modalOverlay.parentNode) {
+            modalOverlay.parentNode.removeChild(modalOverlay);
+        }
+    }
+
+    // Attach event listeners to buttons
+    yesButton.addEventListener('click', () => {
+        onYes(); // Call the Yes callback
+        createQuestionsGame()
+        removeModal(); // Destroy the modal
+        
+    });
+
+    noButton.addEventListener('click', () => {
+        onNo(); // Call the No callback
+        createQuestionsGame()
+        removeModal(); // Destroy the modal
+    });
+}
 
 
 

@@ -82,6 +82,7 @@ en:
             yesBtn: "Yes"
         match: 
             title: "Play"
+            waiting: Waiting for the other player
             questions: 
                 title: Make your move
                 placeholderQuestion: Enter a question here
@@ -90,4 +91,5 @@ en:
                 cardsLeftTitle: "Opponent cards left"
                 yesBtn: "Yes"
                 save: "Save"
+                answerPopUpTitle: "Answer:"
 

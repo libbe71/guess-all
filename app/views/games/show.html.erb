@@ -1,86 +1,76 @@
-<div id="game" class="flex-cols sm:mx-[20%] mx-[5%] hidden">
-    <h1 class="text-4xl font-bold mx-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-10 mb-4" >
-      <%= t('games.match.title') %>
-    </h1>
-  <div data-n-player="<%= @game && @game.player1.id == @current_user.id ? '1' : '2' %>" data-discarded-characters="<%= @game && @game.player1.id == @current_user.id ? @game.player1_characters_discarded : @game.player2_characters_discarded %>" class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 border-t-4 border-r-2 shadow-xl border-secondary-default items-start h-[600px] overflow-y-scroll" id="card-container">
-  </div>
-
-  <button id="saveDiscardedCharactersButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-auto hidden w-full m-2"><%= t('games.match.questions.save') %></button>
-
-  <%
-=begin%>
- <div class="<%= @game.round.id != @current_user.id ? '' : 'hidden' %>">
-    Last question: <span id="last_question"></span>
-    <br/>
-    Last response: <span id="last_response"></span>
-  </div> 
-<%
-=end%>
-
-  <div id="game_footer" class="flex justify-between flex-wrap text-center">
-    <div id="selected-character" class="p-2 my-4 mx-auto rounded-md shadow-xl" data-selected-character-name="<%= @game && @game.player1.id == @current_user.id ? @game.player1_choosen_character : @game.player2_choosen_character  %>">
-      <h3 class="text-md font-medium text-gray-700 mb-3 w-[150px]"><%= t('games.match.questions.selectedCharacterTitle') %></h3>
+  <div id="game" class="flex-cols sm:mx-[20%] mx-[5%] hidden">
+      <h1 class="text-4xl font-bold mx-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-10 mb-4" >
+        <%= t('games.match.title') %>
+      </h1>
+    <div data-n-player="<%= @game && @game.player1.id == @current_user.id ? '1' : '2' %>" data-discarded-characters="<%= @game && @game.player1.id == @current_user.id ? @game.player1_characters_discarded : @game.player2_characters_discarded %>" class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 border-t-4 border-r-2 shadow-xl border-secondary-default dark:bg-tertiary-default  dark:border-primary-default items-start h-[600px] overflow-y-scroll" id="card-container">
     </div>
-    <div class="p-2 items-center mx-auto my-4 rounded-md shadow-xl min-h-[172px]" >
-      <h3 class="text-md font-medium text-gray-700 mb-10 flex items-center mx-auto text-center"><%= t('games.match.questions.cardsLeftTitle') %></h3>
-      <div class="text-md font-medium text-primary-default font-size-4 text-4xl text-center items-center m-auto">29</div>
-    </div>
-    <% if @game.round.id == @current_user.id %>
-      
-      <div id="questions_game" class="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center">
-        <h3 class="text-md font-medium text-gray-700 mb-5 items-center mx-auto  text-center"><%= t('games.match.questions.title') %></h3>
 
-        <div class="flex items-center mx-auto">
-          <form class="flex items-center mb-4 mx-auto">
-            <input 
-              type="text" 
-              id="message_input" 
-              placeholder="<%= t('games.match.questions.placeholderQuestion') %>"
-              class="flex-grow p-1.5 text-sm w-[165px] border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <button 
-              type="button" 
-              id="send_button" 
-              class="bg-blue-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-blue-600 transition"
-            >
-              ->
-            </button>
-          </form>
-        </div>
-        <div class="flex items-center mx-auto">
-          <form class="flex items-cente mx-autor">
-            <select 
-              class="flex-grow p-1.5 w-[165px] text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              <!-- Add options here -->
-            </select>
-            <button 
-              type="button" 
-              id="send_answer_button" 
-              class="bg-green-500 text-white text-sm py-1.5 px-3 rounded-r-md hover:bg-green-600 transition"
-            >
-              ->
-            </button>
-          </form>
-        </div>
+    <button id="saveDiscardedCharactersButton" class="transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out bg-secondary-default dark:bg-transparent dark:text-tertiary-default dark:border-2 dark:border-tertiary-default text-white font-bold py-2 px-4 rounded mx-auto hidden w-full m-2"><%= t('games.match.questions.save') %></button>
+
+    <div id="game_footer" class="flex justify-between flex-wrap text-center">
+      <div id="selected-character" class="p-2 my-4 mx-auto dark:border-2 dark:border-tertiary-default rounded-md shadow-xl" data-selected-character-name="<%= @game && @game.player1.id == @current_user.id ? @game.player1_choosen_character : @game.player2_choosen_character  %>">
+        <h3 class="text-md font-medium text-secondary-default dark:text-tertiary-default mb-3 w-[150px]"><%= t('games.match.questions.selectedCharacterTitle') %></h3>
       </div>
-    <% end %>
-  </div>
-</div>
+      <div class="p-2 items-center mx-auto dark:border-2 dark:border-tertiary-default my-4 rounded-md shadow-xl min-h-[172px]" >
+        <h3 class="text-md font-medium text-secondary-default dark:text-tertiary-default mb-10 flex items-center mx-auto text-center"><%= t('games.match.questions.cardsLeftTitle') %></h3>
+        <div class="text-md font-medium text-primary-default font-size-4 text-4xl text-center items-center m-auto">29</div>
+      </div>
+      <% if @game.round.id == @current_user.id %>
+        <div id="questions_game" class="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center dark:border-2 dark:border-tertiary-default">
+          <h3 class="text-md font-medium text-secondary-default dark:text-tertiary-default mb-5 items-center mx-auto  text-center"><%= t('games.match.questions.title') %></h3>
 
-<div id="questionModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-    <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg">
-        <p id="questionText" class="mb-4"></p>
-        <button id="yesButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"><%= t('games.match.questions.yesBtn') %></button>
-        <button id="noButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+          <div class="flex items-center mx-auto">
+            <form class="flex items-center mb-4 mx-auto">
+              <input 
+                type="text" 
+                id="message_input" 
+                placeholder="<%= t('games.match.questions.placeholderQuestion') %>"
+                class="flex-grow p-1.5 border-y-2 border-l-2 border-r-none text-sm w-[165px] text-white placeholder-white bg-secondary-default border-secondary-default dark:text-tertiary-default dark:border-tertiary-default dark:bg-transparent dark:placeholder-tertiary-default rounded-l-md focus-visible:ring-transparent focus-visible:border-secondary-default"
+              />
+              <button 
+                type="button" 
+                id="send_button" 
+                class="bg-primary-default dark:bg-tertiary-default dark:border-tertiary-default text-white text-sm py-1.5 px-3 rounded-r-md border-y-2 border-primary-default transform hover:scale-x-110 transition duration-300 ease-out"
+              >
+                ->
+              </button>
+            </form>
+          </div>
+          <div class="flex items-center mx-auto">
+            <form class="flex items-cente mx-autor">
+              <select 
+                class="flex-grow cursor-pointer p-1.5 w-[165px] text-sm border-y-2 border-l-2 border-r-none rounded-l-md focus:outline-none  text-white placeholder-white bg-secondary-default border-secondary-default dark:text-tertiary-default dark:border-tertiary-default dark:bg-transparent dark:placeholder-tertiary-default focus-visible:ring-transparent focus-visible:border-secondary-default"
+              >
+                <!-- Add options here -->
+              </select>
+              <button 
+                type="button" 
+                id="send_answer_button" 
+                class="bg-primary-default dark:bg-tertiary-default text-white text-sm py-1.5 px-3 rounded-r-md  transform hover:scale-x-110 transition duration-300 ease-out"
+              >
+                ->
+              </button>
+            </form>
+          </div>
+        </div>
+      <% end %>
     </div>
-</div>
-<div id="responsePopUp" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-    <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg">
-        <p id="responseText" class="mb-4"></p>
-    </div>
-</div>
-<div id="loader_game" class="flex flex-col items-center justify-center h-screen space-y-4">
-  <div class="w-16 h-16 border-4 border-t-transparent border-gray-300 rounded-full animate-spin"></div>
-  <p class="text-gray-500 text-lg font-semibold">Waiting for the other player</p>
-</div>
+  </div>
+
+  <div id="questionModal" class=" hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+      <div class="relative top-1/4 mx-auto p-5 w-11/12 sm:w-1/3 bg-white dark:bg-black dark:border-2 dark:border-tertiary-default text-black rounded-lg shadow-lg">
+          <p id="questionText" class="mb-4"></p>
+          <button id="yesButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"><%= t('games.match.questions.yesBtn') %></button>
+          <button id="noButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+      </div>
+  </div>
+  <div id="responsePopUp" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+      <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default">
+          <h3 class="font-bold text-secondary-default dark:dark:text-tertiary-default text-lg"><%= t('games.match.questions.answerPopUpTitle') %></h3>
+          <p class="ml-2" id="responseText"></p>
+      </div>
+  </div>
+  <div id="loader_game" class="flex flex-col items-center justify-center h-screen space-y-4">
+    <div class="w-16 h-16 border-4 border-t-transparent dark:border-t-transparent border-secondary-default dark:border-tertiary-default rounded-full animate-spin"></div>
+    <p class="text-secondary-default dark:text-tertiary-default text-lg font-semibold"><%= t('games.match.waiting') %></p>
+  </div>

@@ -2,17 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "autofill.css";
-/* Import your custom styles */
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/
 input.no-autocomplete-field-green:-webkit-autofill,
 input.no-autocomplete-field-green:-webkit-autofill:hover,
 input.no-autocomplete-field-green:-webkit-autofill:focus,
@@ -117,4 +107,59 @@ select.no-autocomplete-field-green:-webkit-autofill:focus {
 .flip-card-game-back {
   transform: rotateX(180deg);
   border-radius: 0px 0px 15px 15px;
+}
+
+.question-modal-popup {
+  position: relative; /* Matches "relative" */
+  top: 25%; /* Matches "top-1/4" */
+  margin-left: auto; /* Matches "mx-auto" */
+  margin-right: auto; /* Matches "mx-auto" */
+  padding: 1.25rem; /* Matches "p-5" */
+  width: 91.666667%; /* Matches "w-11/12" */
+}
+
+@media (min-width: 640px) { /* Matches "sm:w-1/3" */
+  .question-modal-popup {
+    width: 33.333333%;
+  }
+}
+
+.question-modal-popup {
+  background-color: white; /* Matches "bg-white" */
+  color: black; /* Matches "text-black" */
+  border-radius: 0.5rem; /* Matches "rounded-lg" */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Matches "shadow-lg" */
+}
+
+@media (prefers-color-scheme: dark) { /* Matches "dark:" styles */
+  .question-modal-popup {
+    background-color: black; /* Matches "dark:bg-black" */
+    border: 2px solid #7c3aed; /* Matches "dark:border-2 dark:border-tertiary-default" */
+    color: #7c3aed
+  }
+}
+
+
+.yes-btn {
+  background-color: #84cc16; /* Matches "dark:bg-black" */
+  color: #ffffff
+}
+
+.no-btn {
+  background-color: #dc2626; /* Matches "dark:bg-black" */
+  color: #ffffff
+}
+
+@media (prefers-color-scheme: dark) { /* Matches "dark:" styles */
+  .question-modal-btn {
+    background-color: black; /* Matches "dark:bg-black" */
+    border: 2px solid #7c3aed; /* Matches "dark:border-2 dark:border-tertiary-default" */
+    color: #7c3aed
+  }
+}
+
+@media (prefers-color-scheme: dark) { /* Matches "dark:" styles */
+  .dark-tertiary {
+    color: #7c3aed
+  }
 }

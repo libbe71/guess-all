@@ -82,6 +82,7 @@ it:
             yesBtn: "Si"
         match: 
             title: "Gioca"
+            waiting: Aspetta l'altro giocatore
             questions: 
                 title: "Fai la tua mossa"
                 placeholderQuestion: "Fai una domanda"
@@ -90,5 +91,6 @@ it:
                 cardsLeftTitle: "Caselle rimaste all'avversario"
                 yesBtn: "Si"
                 save: "Salva"
+                answerPopUpTitle: "Risposta:"
 
 
