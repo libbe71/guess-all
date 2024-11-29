@@ -60,14 +60,17 @@ select.no-autocomplete-field-green:-webkit-autofill:focus {
 /* Position the front and back side */
 .flip-card-login-front,
 .flip-card-login-back {
-    -webkit-backface-visibility: hidden;
-    /* Safari */
-    backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 /* Style the back side */
 .flip-card-login-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+    -moz-transform: rotateY(180deg) translateZ(1px);
 }
 
 
