@@ -92,13 +92,15 @@ if(gameContainer){
     document.addEventListener('DOMContentLoaded', () => {
         const input = document?.getElementById('message_input');
         const sendButton = document.getElementById('send_button');
-        console.log(sendButton)
     
         // Send message when "Enter" is pressed
         input && input?.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            sendQuestionEL(event, input)
-        }
+            if (event.key === 'Enter') {
+                event.preventDefault()
+                event.stopImmediatePropagation()
+                event.stopPropagation()
+                sendQuestionEL(event, input)
+            }
         });
     
         if (!sendButton) return;
@@ -160,7 +162,15 @@ if(gameContainer){
         sendButton.type = "button";
         sendButton.id = "send_button";
         sendButton.textContent = "->";
-    
+          // Send message when "Enter" is pressed
+        messageInput && messageInput?.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            event.stopImmediatePropagation()
+            event.stopPropagation()
+            sendQuestionEL(event, messageInput)
+        }
+    });
         // Add event listener to the first button
         sendButton.addEventListener("click", (event, input) => {
             sendQuestionEL(event, messageInput);
