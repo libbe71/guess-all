@@ -1,4 +1,4 @@
-export function toggleGames() {
+function toggleGames() {
   const ongoingGames = document.getElementById('ongoing-games');
   const endedGames = document.getElementById('ended-games');
   const toggleButton = document.getElementById('toggle-button');
@@ -24,6 +24,8 @@ const currentLocale = document
   }
 }
 
-const toggleButton = document.getElementById("toggle-button")
-if(toggleButton)
-  toggleButton.addEventListener('click', ()=>toggleGames())
+export function toggleGamesEL(){
+  const toggleButton = document.getElementById("toggle-button")
+  if(toggleButton)
+    toggleButton.addEventListener('click', ()=>toggleGames())
+}

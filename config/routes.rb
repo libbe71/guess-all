@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     get  "/user/:id/games" , to: 'games#index'
     get  "/user/:id/games/create" , to: 'games#create'
     get  "/user/:id/games/:gameId" , to: 'games#show'
+    get  "/user/:id/games/:gameId/history" , to: 'games#history'
     get '/user/:id/games/:gameId/select_character/:player', to: 'games#select_character'
 
   end

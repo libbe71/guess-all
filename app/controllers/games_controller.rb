@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :check_user, only: [:show, :select_character]
-  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move]
+  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move, :history]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]
 
@@ -16,6 +16,9 @@ class GamesController < ApplicationController
   # Show a specific game (gameplay view)
   def show
     # Game will be rendered in a WebSocket room (handled below)
+  end
+  def history
+    @moves = @game.moves
   end
  
   # Show a specific game (gameplay view)
@@ -127,6 +130,8 @@ class GamesController < ApplicationController
   def make_move
     question = params[:question]
     answer = params[:answer]
+    position = @game.moves.count + 1
+
     # Create the move with the current user
     @game.moves.create!(
       question: question,

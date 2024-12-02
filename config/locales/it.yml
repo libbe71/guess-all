@@ -93,5 +93,12 @@ it:
                 yesBtn: "Si"
                 save: "Salva"
                 answerPopUpTitle: "Risposta:"
+        history:
+            question: "Domanda:"
+            answer: "Risposta:"
+            selected: ha selezionato
+            selectedTitle: Personaggi Selezionati
+            messagesTitle:  Domande e risposte
+            winnerTitle:  Vincitore
 
 

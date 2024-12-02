@@ -93,4 +93,12 @@ en:
                 yesBtn: "Yes"
                 save: "Save"
                 answerPopUpTitle: "Answer:"
+        history:
+            question: "Question:"
+            answer: "Answer:"
+            selected: selected
+            selectedTitle: Selected characters
+            messagesTitle:  Q&A
+            winnerTitle:  Winner
+            
 

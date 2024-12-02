@@ -7,7 +7,7 @@ import { toSquareHome } from "./toSquare.js"
 import { changeTheme, applyTheme, autoTheme} from "./changeTheme.js"
 import { logout } from "./logout.js"
 import { friends, friendsSent, friendsReceived, gamesToStart, users } from "./friends.js"
-import { toggleGames} from "./gamesListToggle.js"
+import { toggleGamesEL} from "./gamesListToggle.js"
 
 export function startOnLoad() {
     if (window.location.hash === '#_=_') {
@@ -31,5 +31,5 @@ export function startOnLoad() {
     friendsReceived();
     gamesToStart();
     users();
-    toggleGames();
+    toggleGamesEL();
 }

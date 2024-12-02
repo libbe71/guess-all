@@ -5,12 +5,6 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  safelist: [
-    'fixed', 'inset-0', 'bg-gray-600', 'bg-opacity-50', 'overflow-y-auto', 'h-full',
-    'w-full', 'relative', 'top-1/4', 'mx-auto', 'p-5', 'border', 'w-11/12', 'sm:w-1/3',
-    'bg-white', 'rounded-lg', 'shadow-lg', 'bg-green-500', 'hover:bg-green-700',
-    'bg-red-500', 'hover:bg-red-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded',
-  ],
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
