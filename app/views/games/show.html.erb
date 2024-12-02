@@ -75,12 +75,16 @@
   </div>
   <div id="responsePopUp" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
       <div class="relative top-1/4 mx-auto p-5 border w-11/12 sm:w-1/3 bg-white rounded-lg shadow-lg dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default">
-          <h3 class="font-bold text-secondary-default dark:dark:text-tertiary-default text-lg"><%= t('games.match.questions.answerPopUpTitle') %></h3>
+          <button id="closePopUp" class="absolute top-2 right-4 text-lg font-bold dark:text-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer">&times;</button>
+          <h3 class="font-bold text-secondary-default dark:dark:text-tertiary-default text-lg">
+              <%= t('games.match.questions.answerPopUpTitle') %>
+          </h3>
           <p class="ml-2" id="responseText"></p>
       </div>
   </div>
+
   <div id="loader_game" class="w-screen h-screen" >
-      <div class="absolute left-0 w-[500px] h-[32px]">
+    <div class="absolute left-0 w-[500px] h-[32px]">
     <%= link_to "/#{@current_locale}/user/#{@current_user.id}/games", id:"logout-mobile", class:"absolute" do %>
       <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
         <img  src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>

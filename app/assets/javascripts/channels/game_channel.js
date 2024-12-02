@@ -591,17 +591,20 @@ if(gameContainer){
     }
 
     // app/javascript/channels/game_channel.js
-
-    function showResponsePopUp(message){
+    function showResponsePopUp(message) {
         const responsePopUp = document.getElementById('responsePopUp');
         const responseText = document.getElementById('responseText');
+        const closePopUpButton = document.getElementById('closePopUp');
+    
         responseText.innerText = message;
-        responsePopUp.style.display = 'block';
-
-        setTimeout(()=>{
-            responsePopUp.style.display = 'none';
-        },2000)
+        responsePopUp.classList.remove('hidden'); // Show the pop-up
+    
+        // Add click event for the close button
+        closePopUpButton.addEventListener('click', () => {
+            responsePopUp.classList.add('hidden'); // Hide the pop-up
+        });
     }
+    
     function makeMove(question, answer){
         console.log("before")
         fetch(`/games/${gameId}/make_move`, {
