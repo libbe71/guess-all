@@ -100,5 +100,6 @@ it:
             selectedTitle: Personaggi Selezionati
             messagesTitle:  Domande e risposte
             winnerTitle:  Vincitore
+    notAvailable: "Questa funzione sarà disponibile presto"
 
 
