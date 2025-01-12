@@ -13,11 +13,34 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   # General method to ensure the logged-in user matches the user from the URL
-    private
+   private
 
   def authorize_user!
+    user_id = params[:id] # Use snake_case for variables in Ruby
+    if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i || @current_user.role != "user"
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
+  def authorize_moderator!
+    user_id = params[:id] # Use snake_case for variables in Ruby
+    if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i || @current_user.role != "moderator"
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
+  def authorize_admin!
+    user_id = params[:id] # Use snake_case for variables in Ruby
+    if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i || @current_user.role != "admin"
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
+  def authorize_all!
     user_id = params[:id] # Use snake_case for variables in Ruby
     if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i
       flash[:alert] = "You are not authorized to access this page."
@@ -25,7 +48,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
 
   def set_current_user
     if session[:user_id]

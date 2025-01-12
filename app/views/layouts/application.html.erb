@@ -92,7 +92,7 @@
               </div>
             <% end %>
             <div class="flex flex-end items-center space-x-3 rtl:space-x-reverse cursor-pointer">
-                <%= button_to @current_user.username, "/#{I18n.locale || it}/user/#{@current_user.id}profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+                <%= button_to @current_user.username, "/#{I18n.locale || it}/user/#{@current_user.id}/profile", :method => "get",  class: "mx-auto text-tertiary-default dark:text-secondary-default text-lg font-semibold cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
             </div>
           </div>
         </nav>

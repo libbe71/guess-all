@@ -1,7 +1,28 @@
 class UsersController < ApplicationController  
-  before_action :authorize_user!, except: [:new, :create, :check_username_availability]
+  before_action :authorize_user!, only: [:show] #new, :create, :check_username_availability, :moderator, :admin
+  before_action :authorize_moderator!, only: [:moderator]
+  before_action :authorize_admin!, only: [:admin]
+  before_action :authorize_all!, only: [:settings, :profile, :edit, :update, :save_settings]
   def index
     @users = User.all
+
+    rescue => e
+      message = e.message 
+      flash[:error] = message
+      redirect_to "/#{@current_locale || "it"}/auth"
+  end
+
+  def admin
+    @current_user = User.find(params[:id])
+
+    rescue => e
+      message = e.message 
+      flash[:error] = message
+      redirect_to "/#{@current_locale || "it"}/auth"
+  end
+
+  def moderator
+    @current_user = User.find(params[:id])
 
     rescue => e
       message = e.message 
@@ -119,7 +140,7 @@ end
       params.require(:user).permit(:locale, :theme)
   end
   def user_update_params
-    params.permit(:username, :email_address, :password)
+    params.require(:user).permit(:username, :email_address, :password)
   end
 
   #basic resctrict actions

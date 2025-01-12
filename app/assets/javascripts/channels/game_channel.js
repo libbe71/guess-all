@@ -35,8 +35,6 @@ if(gameContainer){
         },
 
         received(data) {
-            const messages = document.getElementById('messages');
-            console.log(data.sender, currentUser, currentUser !== data.sender)
             if(currentUser !== data.sender){
                 if(data.type === "question") {
                     createQuestionModal(data.message, ()=>gameChannel.speak(currentUser, "response", {question: data.message, answer: "Yes"}), ()=>gameChannel.speak(currentUser, "response", {question: data.message, answer:"No"}))
@@ -52,7 +50,9 @@ if(gameContainer){
                 } 
                 else if(data.type === "end_game") {
                     showResponsePopUp(data.message)
-                    window.location.href = pathSplitted.slice(0,urlSplitted.length-1).join("/")
+                    setTimeout(function() {
+                        window.location.href = pathSplitted.slice(0,urlSplitted.length-1).join("/")
+                    }, 3000);
 
                 } 
                 else if (data.type==="connection"){
@@ -77,6 +77,9 @@ if(gameContainer){
                         }
                     }
                 }
+                else if (data.type==="update_cards_left"){
+                    updateCardsLeft();
+                }
             }
         },
 
@@ -90,8 +93,29 @@ if(gameContainer){
 
 
     document.addEventListener('DOMContentLoaded', () => {
+
+        updateCardsLeft()
         const input = document?.getElementById('message_input');
         const sendButton = document.getElementById('send_button');
+        const selectElement = document.querySelector('#questions_game select');
+        const sendAnswerButton = document.getElementById('send_answer_button');
+        // Create and append cards for each name in the array
+        males.forEach(name => {
+            cardContainer.appendChild(createCard(name, "male"));
+        });
+        females.forEach(name => {
+            cardContainer.appendChild(createCard(name, "female"));
+        });
+
+        updateSelectOptions();
+        createSelectedCharacterCard()
+
+        if (sendAnswerButton)
+            // Send selected character when the "Send" button is clicked
+            sendAnswerButton.addEventListener('click', () => {
+                const selectedCharacter = selectElement.value; // Get the selected value
+                sendAnswerEL(selectedCharacter)
+            });
     
         // Send message when "Enter" is pressed
         input && input?.addEventListener('keypress', (event) => {
@@ -103,26 +127,12 @@ if(gameContainer){
             }
         });
     
-        if (!sendButton) return;
-    
-        // Send message when the "Send" button is clicked
-        sendButton&&sendButton?.addEventListener('click', (event) => {
-            sendQuestionEL(event, input)
-        });
+        if (sendButton)
+            sendButton?.addEventListener('click', (event) => {
+                sendQuestionEL(event, input)
+            });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const selectElement = document.querySelector('#questions_game select');
-        const sendAnswerButton = document.getElementById('send_answer_button');
-
-        if (!sendAnswerButton) return;
-
-        // Send selected character when the "Send" button is clicked
-        sendAnswerButton.addEventListener('click', () => {
-            const selectedCharacter = selectElement.value; // Get the selected value
-            sendAnswerEL(selectedCharacter)
-        });
-    });
 
     const createQuestionsGame = () => {
         const game_footer = document.getElementById("game_footer")
@@ -218,7 +228,7 @@ if(gameContainer){
     };
     
     function removeQuestionsGame() {
-    const questionsGameDiv = document.getElementById("questions_game");
+        const questionsGameDiv = document.getElementById("questions_game");
         if (questionsGameDiv) {
             questionsGameDiv.remove();
         } else {
@@ -276,7 +286,9 @@ if(gameContainer){
                         //here
                         makeMove(selectedCharacter+"?", response)
                         showResponsePopUp(response)
-                        window.location.href = urlSplitted.slice(0,urlSplitted.length-1).join("/")
+                        setTimeout(function() {
+                            window.location.href = urlSplitted.slice(0,urlSplitted.length-1).join("/")
+                        }, 3000);
                         gameChannel.speak(currentUser, 'end_game', "You Lose"); 
 
                     }
@@ -321,58 +333,58 @@ if(gameContainer){
     }
     // Function to update the select options with non-discarded characters
     const updateSelectOptions = () => {
-    // Get the select element
-    const selectElement = document.querySelector('#questions_game select');
-    if(selectElement){
-        // Clear existing options
-        selectElement.innerHTML = '';
+        // Get the select element
+        const selectElement = document.querySelector('#questions_game select');
+        if(selectElement){
+            // Clear existing options
+            selectElement.innerHTML = '';
 
-        // Combine males and females into one array
-        const allCharacters = [...males, ...females];
+            // Combine males and females into one array
+            const allCharacters = [...males, ...females];
 
-        // Filter out discarded characters
-        const nonDiscardedCharacters = allCharacters.filter(name => !actualDiscardedCharacters.includes(name));
+            // Filter out discarded characters
+            const nonDiscardedCharacters = allCharacters.filter(name => !actualDiscardedCharacters.includes(name));
 
-        // Add a default option
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        
+            // Add a default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            
 
-        if(currentLocale==="it")
-            defaultOption.textContent = 'Scegli una risposta';
-        else if(currentLocale==="en")
-            defaultOption.textContent = 'Select an answer';
-        selectElement.appendChild(defaultOption);
+            if(currentLocale==="it")
+                defaultOption.textContent = 'Scegli una risposta';
+            else if(currentLocale==="en")
+                defaultOption.textContent = 'Select an answer';
+            selectElement.appendChild(defaultOption);
 
-        // Add non-discarded characters as options
-        nonDiscardedCharacters.forEach(name => {
-            const option = document.createElement('option');
-            option.value = name;
-            option.textContent = name;
-            selectElement.appendChild(option);
-        });
-    }
-    }
-
-    function arraysHaveSameValues(arr1, arr2) {
-    // First, check if the arrays have the same length
-    if (arr1.length !== arr2.length) {
-        return false;
-    }
-
-    // Sort both arrays
-    const sortedArr1 = arr1.slice().sort();
-    const sortedArr2 = arr2.slice().sort();
-
-    // Compare each value
-    for (let i = 0; i < sortedArr1.length; i++) {
-        if (sortedArr1[i] !== sortedArr2[i]) {
-        return false;
+            // Add non-discarded characters as options
+            nonDiscardedCharacters.forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                selectElement.appendChild(option);
+            });
         }
     }
 
-    // If all checks passed, the arrays have the same values
-    return true;
+    function arraysHaveSameValues(arr1, arr2) {
+        // First, check if the arrays have the same length
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+
+        // Sort both arrays
+        const sortedArr1 = arr1.slice().sort();
+        const sortedArr2 = arr2.slice().sort();
+
+        // Compare each value
+        for (let i = 0; i < sortedArr1.length; i++) {
+            if (sortedArr1[i] !== sortedArr2[i]) {
+            return false;
+            }
+        }
+
+        // If all checks passed, the arrays have the same values
+        return true;
     }
     // Create the modal dynamically using JavaScript
     function createQuestionModal(text = 'Are you sure?', onYes = () => {}, onNo = () => {}) {
@@ -512,6 +524,7 @@ if(gameContainer){
                     originalDiscardedCharacters = [...actualDiscardedCharacters]
                     saveDiscardedCharactersButton.className = saveDiscardedCharactersButton.className.replaceAll(" hidden", "")
                     saveDiscardedCharactersButton.className = saveDiscardedCharactersButton.className + " hidden"
+                    gameChannel.speak(currentUser, "update_cards_left")
                     } else {
                         alert("Error saving changes");
                     }
@@ -542,21 +555,6 @@ if(gameContainer){
 
         return card;
     }
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Create and append cards for each name in the array
-        males.forEach(name => {
-            cardContainer.appendChild(createCard(name, "male"));
-        });
-        females.forEach(name => {
-            cardContainer.appendChild(createCard(name, "female"));
-        });
-
-        updateSelectOptions();
-        createSelectedCharacterCard()
-    })
-    //selected-character
 
     // Function to create a card
     function createSelectedCharacterCard() {
@@ -616,7 +614,6 @@ if(gameContainer){
     }
     
     function makeMove(question, answer){
-        console.log("before")
         fetch(`/games/${gameId}/make_move`, {
             method: 'POST',
             headers: {
@@ -637,5 +634,35 @@ if(gameContainer){
             console.log("catch")
             alert("Error saving changes", error);
         })
+    }
+
+    function updateCardsLeft(){
+        fetch(`/games/${gameId}/opponent_cards_left`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                player: nPlayer
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const cardsLeft = document?.getElementById('cards_left');
+                console.log(data)
+                cardsLeft.innerText = data.opponent_cards_left;
+            } else {
+                console.error(data)
+
+                alert("Error update cards left");
+            }
+        })
+        .catch(error => {
+            console.error(error)
+            alert("Error update cards left");
+
+        });
     }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_29_134700) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_08_192846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,14 +86,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_29_134700) do
     t.string "theme"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["twitter_id"], name: "index_users_on_twitter_id", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "friends", "users", column: "user1_id"
-  add_foreign_key "friends", "users", column: "user2_id"
-  add_foreign_key "games", "users", column: "player1_id"
-  add_foreign_key "games", "users", column: "player2_id"
-  add_foreign_key "games", "users", column: "round_id"
-  add_foreign_key "games", "users", column: "winner_id"
-  add_foreign_key "moves", "games"
-  add_foreign_key "moves", "users"
+  add_foreign_key "friends", "users", column: "user1_id", on_delete: :cascade
+  add_foreign_key "friends", "users", column: "user2_id", on_delete: :cascade
+  add_foreign_key "games", "users", column: "player1_id", on_delete: :cascade
+  add_foreign_key "games", "users", column: "player2_id", on_delete: :cascade
+  add_foreign_key "games", "users", column: "round_id", on_delete: :cascade
+  add_foreign_key "games", "users", column: "winner_id", on_delete: :cascade
+  add_foreign_key "moves", "games", on_delete: :cascade
+  add_foreign_key "moves", "users", on_delete: :cascade
 end

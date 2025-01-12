@@ -22,7 +22,7 @@
       </div>
       <div class="p-2 items-center mx-auto dark:border-2 dark:border-tertiary-default my-4 rounded-md shadow-xl min-h-[172px]" >
         <h3 class="text-md font-medium text-secondary-default dark:text-tertiary-default mb-10 flex items-center mx-auto text-center"><%= t('games.match.questions.cardsLeftTitle') %></h3>
-        <div class="text-md font-medium text-primary-default font-size-4 text-4xl text-center items-center m-auto">29</div>
+        <div id="cards_left" class="text-md font-medium text-primary-default font-size-4 text-4xl text-center items-center m-auto">29</div>
       </div>
       <% if @game.round.id == @current_user.id %>
         <div id="questions_game" class="p-2 my-4 max-w-sm rounded-md shadow-xl mx-auto text-center dark:border-2 dark:border-tertiary-default">

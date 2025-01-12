@@ -10,5 +10,4 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  #has many :notifications, as: :recipient
 end

@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
-  before_action :check_user, only: [:show, :select_character]
-  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move, :history]
+  before_action :authorize_user!, except: [:new, :save_selected_character, :opponent_cards_left, :save_discarded_characters, :is_answer_correct, :toggle_round, :make_move, :opponent_cards_left]
+  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move, :history, :opponent_cards_left]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]
+  
 
   def index
     @games = Game.where(status: "started")
@@ -105,6 +106,22 @@ class GamesController < ApplicationController
     end
   end
 
+  def opponent_cards_left       
+    opponent_discarded_cards = if params[:player] == "1"
+                       @game.player2_characters_discarded
+                     elsif params[:player] == "2"
+                       @game.player1_characters_discarded
+                     end
+    number_opponent_discarded_cards = opponent_discarded_cards.split(",").length                
+    opponent_cards_left = 24-number_opponent_discarded_cards
+    if opponent_cards_left
+      render json: { success: true, opponent_cards_left: opponent_cards_left  }
+    else
+      render json: { success: false, errors: @game.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+  
+
   def after_character_selected
   end
   # Create a new game session between two users
@@ -139,6 +156,8 @@ class GamesController < ApplicationController
       position: position,
       user: @current_user
     )
+
+    render json: { success: true }
   end
 
   private
@@ -168,14 +187,6 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:player2_id)
-  end
-
-  def check_user 
-    @game = Game.find(params[:gameId])
-    if @game.player1.id != @current_user.id && @game.player2.id != @current_user.id 
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
-    end
   end
 
 end

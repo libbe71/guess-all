@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     
     resources :users
     get '/user/:id', to: 'users#show'
+    get '/moderator/:id', to: 'users#moderator'
+    get '/admin/:id', to: 'users#admin'
     get '/user/:id/settings', to: 'users#settings'
     get '/user/:id/profile', to: 'users#profile'
     patch '/users/:id/update', to: 'users#update'
@@ -66,6 +68,7 @@ Rails.application.routes.draw do
   post  "/games/:gameId/is_answer_correct" , to: 'games#is_answer_correct'
   post  "/games/:gameId/toggle_round", to: 'games#toggle_round'
   post  "/games/:gameId/make_move", to: 'games#make_move'
+  post  "/games/:gameId/opponent_cards_left", to: 'games#opponent_cards_left'
 
   post '/users/check_username_availability', to: 'users#check_username_availability'
   post '/friends/create', to: 'friends#create'
