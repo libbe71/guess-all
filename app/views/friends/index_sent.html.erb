@@ -17,7 +17,7 @@
     </div>
     <div class="relative h-[calc(100%-275px)] dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
       <% if @sent.present? %>
-        <ul id="users-list">
+        <ul id="users-list" data-current-user="<%=@current_user.id%>">
           <% @sent.each do |user| %>
             <div class="px-4 py-4 sm:px-6">
               <div class="flex items-center justify-between">

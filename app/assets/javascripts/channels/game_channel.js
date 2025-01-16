@@ -241,7 +241,7 @@ if(gameContainer){
             gameChannel.speak(currentUser, 'question', input.value); // Add message_type as 'chat'
             input.value = '';
             event.preventDefault();
-            fetch(`/games/${gameId}/toggle_round`, {
+            fetch(`/user/${currentUser}/games/${gameId}/toggle_round`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -265,7 +265,7 @@ if(gameContainer){
     }
     const sendAnswerEL = (selectedCharacter) =>{
         if (selectedCharacter.trim() !== '') {
-            fetch(`/games/${gameId}/is_answer_correct`, {
+            fetch(`/user/${currentUser}/games/${gameId}/is_answer_correct`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -298,7 +298,7 @@ if(gameContainer){
                             response = "Answer Wrong"
                         makeMove(selectedCharacter+"?", response)
                         showResponsePopUp(response)
-                        fetch(`/games/${gameId}/toggle_round`, {
+                        fetch(`/user/${currentUser}/games/${gameId}/toggle_round`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -507,7 +507,7 @@ if(gameContainer){
         // Add flip functionality
         card.addEventListener('click', function () {
             saveDiscardedCharactersButton.onclick = function () {
-                fetch(`/games/${gameId}/save_discarded_characters`, {
+                fetch(`/user/${currentUser}/games/${gameId}/save_discarded_characters`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -614,7 +614,7 @@ if(gameContainer){
     }
     
     function makeMove(question, answer){
-        fetch(`/games/${gameId}/make_move`, {
+        fetch(`/user/${currentUser}/games/${gameId}/make_move`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -633,7 +633,7 @@ if(gameContainer){
     }
 
     function updateCardsLeft(){
-        fetch(`/games/${gameId}/opponent_cards_left`, {
+        fetch(`/user/${currentUser}/games/${gameId}/opponent_cards_left`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

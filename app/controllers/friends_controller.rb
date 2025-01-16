@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  before_action :authorize_user!, except: [:create, :accept, :delete, :search_friends, :search_users, :search_received ]
+  before_action :authorize_user!
 
   def show
     @pending = Friend.where(user_id: params[:id], status: 'pending')

@@ -11,7 +11,7 @@
     <h1 class="text-4xl font-bold m-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-10 mb-4" >
         <%= t('games.selectCharacter.title') %>
     </h1>
-	<div class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 items-start h-[600px] overflow-y-scroll" id="select-character-container">
+	<div id="select-character-container" data-current-user="<%= @current_user.id%>" class="w-full flex flex-wrap sm:w-[640px] align-center p-1 justify-center gap-1 items-start h-[600px] overflow-y-scroll">
 	</div>
 	<div id="confirmationPopup" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 shadow-xl rounded-lg hidden text-center items-center">
 		<p className="py-2 my-2"><%= t('games.selectCharacter.popUp') %></p>
@@ -31,6 +31,7 @@ const females = ['anna', 'aurora', "ilaria", 'elisa', "emma", "federica", "gaia"
 
 // Get the container
 const container = document.getElementById('select-character-container');
+
 // Function to create a card
 function createCard(name, gender) {
     //<img src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>
@@ -84,8 +85,10 @@ card.addEventListener('click', function () {
 
     yesBtn.onclick = function () {
         popup.className = popup.className + ' hidden';  // Hide popup on confirmation
-        if (player && gameId) {
-            fetch(`/games/${gameId}/save_selected_character`, {
+        if (player && gameId && container) {
+            const currentUser = container.dataset.currentUser;
+
+            fetch(`/user/${currentUser}/games/${gameId}/save_selected_character`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

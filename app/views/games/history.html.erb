@@ -63,7 +63,7 @@
     <%= t('games.history.winnerTitle') %>
   </h3>
   <div class="text-xl font-bold mx-auto w-full text-center text-tertiary-default dark:text-tertiary-default" >
-    <%= @game.winner.username %>
+    <%= @game.winner&.username %>
   </div>
 
 </div>

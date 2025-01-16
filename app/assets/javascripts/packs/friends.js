@@ -12,28 +12,31 @@ export const friends = () => {
         userList.addEventListener("click", function (event) {
             if (event.target.name === "delete") {
                 event.preventDefault();
+                const currentUser = userList.dataset.currentUser
                 const userId = event.target.dataset.userId;
-                deleteFriend(userId);
+                deleteFriend(currentUser, userId);
             }
         });
 };
 export function friendsSent() {
     const searchInput = document.getElementById("users-search-sent");
     const userList = document.getElementById("users-list");
-    searchInput &&
+    searchInput && userList &&
         searchInput.addEventListener("input", function () {
             const searchQuery = this.value.trim();
-            getUsersList(searchQuery, userList, "search_sent");
+            const currentUser = userList.dataset.currentUser
+            getUsersList(currentUser, searchQuery, userList, "search_sent");
         });
 }
 export function friendsReceived() {
     const searchInput = document.getElementById("users-search-received");
     const userList = document.getElementById("users-list");
 
-    searchInput &&
+    searchInput && userList &&
         searchInput.addEventListener("input", function () {
             const searchQuery = this.value.trim();
-            getUsersList(searchQuery, userList, "search_received");
+            const currentUser = userList.dataset.currentUser
+            getUsersList(currentUser, searchQuery, userList, "search_received");
         });
 
     // Add event listener for the "Send" link
@@ -42,12 +45,13 @@ export function friendsReceived() {
             if (event.target.name === "delete") {
                 event.preventDefault();
                 const userId = event.target.dataset.userId;
-                const searchQuery = searchInput.value ?? "";
-                deleteFriend(userId, searchQuery, userList);
+                const currentUser = userList.dataset.currentUser
+                deleteFriend(currentUser, userId);
             } else if (event.target.name === "accept") {
                 event.preventDefault();
                 const userId = event.target.dataset.userId;
-                acceptFriend(userId);
+                const currentUser = userList.dataset.currentUser
+                acceptFriend(currentUser, userId);
             }
         });
 }
@@ -55,10 +59,11 @@ export function users() {
     const searchInput = document.getElementById("users-search");
     const userList = document.getElementById("users-list");
 
-    searchInput &&
+    searchInput && userList &&
         searchInput.addEventListener("input", function () {
             const searchQuery = this.value.trim();
-            getUsersList(searchQuery, userList, "search_users");
+            const currentUser = userList.dataset.currentUser
+            getUsersList(currentUser, searchQuery, userList, "search_users");
         });
 
     // Add event listener for the "Send" link
@@ -68,7 +73,8 @@ export function users() {
                 event.preventDefault();
                 const userId = event.target.dataset.userId;
                 const searchQuery = searchInput.value ?? "";
-                sendFriendRequest(userId, searchQuery, userList);
+                const currentUser = userList.dataset.currentUser
+                sendFriendRequest(currentUser, userId, searchQuery, userList);
             }
         });
 }
@@ -76,28 +82,29 @@ export function users() {
 export const gamesToStart = () => {
     const userList = document.getElementById('to-Start-list');
 
-    fetch(`/friends/search_friends/`)
-      .then(response =>  response.json() )
-      .then(users => {
-        if (userList) {
-          let usersListHtml = "";
-          users && users.forEach(user => {
-              usersListHtml += gameToStartLi(user);
-          });
-          userList.innerHTML = usersListHtml;
-
-          // Attach event listeners to the "Start" buttons after rendering the users
-          document.querySelectorAll('button[name="start-new-game"]').forEach(button => {
-            button.addEventListener('click', (e) => {
-              const friendId = button.getAttribute('data-user-id');
-              startNewGame(friendId); // Pass the friend ID to create the game
+    if (userList) {
+        const currentUser = userList.dataset.currentUser
+        fetch(`/user/${currentUser}/friends/search_friends/`)
+        .then(response =>  response.json() )
+        .then(users => {
+            let usersListHtml = "";
+            users && users.forEach(user => {
+                usersListHtml += gameToStartLi(user);
             });
-          });
-        }
-      })
-    .catch(error => {
-      console.error('Error fetching search results:', error);
-    });
+            userList.innerHTML = usersListHtml;
+
+            // Attach event listeners to the "Start" buttons after rendering the users
+            document.querySelectorAll('button[name="start-new-game"]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const friendId = button.getAttribute('data-user-id');
+                    startNewGame(currentUser, friendId); // Pass the friend ID to create the game
+                });
+            });
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    }
 }
 
 const requestSentTranslation = () => {
@@ -183,11 +190,11 @@ const gameToStartLi = (user) => `
     </div>
 `;
 
-function deleteFriend(userId) {
+function deleteFriend(currentUser, userId) {
     const csrfToken = document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
-    fetch(`/friends/delete`, {
+    fetch(`/user/${currentUser}/friends/delete`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -202,12 +209,12 @@ function deleteFriend(userId) {
             location.reload();
         });
 }
-function getUsersList(searchQuery, userList, path) {
+function getUsersList(currentUser, searchQuery, userList, path) {
     if (searchQuery === "" && path === "search_users") {
         if (userList) userList.innerHTML = "";
         return;
     }
-    fetch(`/friends/${path}/${searchQuery}`)
+    fetch(`/user/${currentUser}/friends/${path}/${searchQuery}`)
         .then((response) => response.json())
         .then((users) => {
             if (userList) {
@@ -237,11 +244,11 @@ function getUsersList(searchQuery, userList, path) {
             console.error("Error fetching search results:", error);
         });
 }
-function sendFriendRequest(userId) {
+function sendFriendRequest(currentUser, userId) {
     const csrfToken = document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
-    fetch(`/friends/create`, {
+    fetch(`/user/${currentUser}/friends/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -256,11 +263,11 @@ function sendFriendRequest(userId) {
             location.reload();
         });
 }
-function acceptFriend(userId) {
+function acceptFriend(currentUser, userId) {
     const csrfToken = document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
-    fetch(`/friends/accept`, {
+    fetch(`/user/${currentUser}/friends/accept`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -278,8 +285,8 @@ function acceptFriend(userId) {
 
 
 // Function to send the AJAX request to create a new game
-function startNewGame(friendId) {
-  fetch(`/games/new`, {
+function startNewGame(currentUser, friendId) {
+  fetch(`/user/${currentUser}/games/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

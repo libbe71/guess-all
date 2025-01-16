@@ -10,7 +10,7 @@
 
     <div class="relative h-[calc(100%-150px)] dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
         <% if @users.present? %>
-            <ul id="users-list">
+            <ul id="users-list" data-current-user="<%=@current_user.id%>">
             </ul>
         <% end %>
     <div>

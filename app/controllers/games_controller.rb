@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authorize_user!, except: [:new, :save_selected_character, :opponent_cards_left, :save_discarded_characters, :is_answer_correct, :toggle_round, :make_move, :opponent_cards_left, :check_game, :set_winner]
+  before_action :authorize_user!, except: [:new, :check_game, :set_winner]
   before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_winner, :toggle_round, :make_move, :history, :opponent_cards_left, :check_game]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]

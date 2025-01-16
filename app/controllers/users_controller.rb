@@ -86,7 +86,7 @@ class UsersController < ApplicationController
   
   def moderator
     @current_user = User.find(params[:id])
-    @games = Game.all
+    @games = Game.order(id: :desc)
 
     rescue => e
       message = e.message 

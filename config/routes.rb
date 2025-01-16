@@ -65,25 +65,30 @@ Rails.application.routes.draw do
     get "/moderator/:id/games/:gameId", to: 'games#check_game'
 
   end
-  post  "/games/new" , to: 'games#new'
-  post  "/games/:gameId/save_selected_character" , to: 'games#save_selected_character'
-  post  "/games/:gameId/save_discarded_characters" , to: 'games#save_discarded_characters'
-  post  "/games/:gameId/is_answer_correct" , to: 'games#is_answer_correct'
-  post  "/games/:gameId/toggle_round", to: 'games#toggle_round'
-  post  "/games/:gameId/make_move", to: 'games#make_move'
-  post  "/games/:gameId/opponent_cards_left", to: 'games#opponent_cards_left'
+  post  "/user/:id/games/new" , to: 'games#new'
+  post  "/user/:id/games/:gameId/save_selected_character" , to: 'games#save_selected_character'
+  post  "/user/:id/games/:gameId/save_discarded_characters" , to: 'games#save_discarded_characters'
+  post  "/user/:id/games/:gameId/is_answer_correct" , to: 'games#is_answer_correct'
+  post  "/user/:id/games/:gameId/toggle_round", to: 'games#toggle_round'
+  post  "/user/:id/games/:gameId/make_move", to: 'games#make_move'
+  post  "/user/:id/games/:gameId/opponent_cards_left", to: 'games#opponent_cards_left'
 
   post '/users/check_username_availability', to: 'users#check_username_availability'
-  post '/friends/create', to: 'friends#create'
-  post "/friends/delete", to: 'friends#delete'
-  patch "/friends/accept", to: 'friends#accept'
-  get "/friends/search_users(/:search_query)", to: 'friends#search_users'
-  get "/friends/search_sent(/:search_query)", to: 'friends#search_sent'
-  get "/friends/search_received(/:search_query)", to: 'friends#search_received'
-  get "/friends/search_friends(/:search_query)", to: 'friends#search_friends'
+  
+  post '/user/:id/friends/create', to: 'friends#create'
+  post "/user/:id/friends/delete", to: 'friends#delete'
+  patch "/user/:id/friends/accept", to: 'friends#accept'
+  get "/user/:id/friends/search_users(/:search_query)", to: 'friends#search_users'
+  get "/user/:id/friends/search_sent(/:search_query)", to: 'friends#search_sent'
+  get "/user/:id/friends/search_received(/:search_query)", to: 'friends#search_received'
+  get "/user/:id/friends/search_friends(/:search_query)", to: 'friends#search_friends'
+
   post "/admin/:id/delete_moderator", to: 'users#delete_moderator'
   get "/admin/:id/search_moderators(/:search_query)", to: 'users#search_moderators'
   get "/admin/:id/search_moderators", to: 'users#admin'
+
   patch "/moderator/:id/games/:gameId/set_winner/:playerId", to: "games#set_winner"
+
+
   match '*unmatched', to: 'auth#login_or_register', via: :all
 end
