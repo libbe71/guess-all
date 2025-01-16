@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+
+
   # General method to ensure the logged-in user matches the user from the URL
    private
 
@@ -34,6 +37,11 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin!
     user_id = params[:id] # Use snake_case for variables in Ruby
+    puts params[:id]
+    puts @current_user
+    puts @current_user.id
+    puts @current_user.role
+    puts  user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i || @current_user.role != "admin"
     if user_id.nil? || @current_user.nil? || @current_user.id != user_id.to_i || @current_user.role != "admin"
       flash[:alert] = "You are not authorized to access this page."
       redirect_to root_path

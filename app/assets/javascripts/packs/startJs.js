@@ -9,6 +9,7 @@ import { logout } from "./logout.js"
 import { friends, friendsSent, friendsReceived, gamesToStart, users } from "./friends.js"
 import { toggleGamesEL } from "./gamesListToggle.js"
 import { notAvailableFeatureEL } from "./notAvailableFeature.js"
+import { moderators } from "./moderators.js"
 
 export function startOnLoad() {
     if (window.location.hash === '#_=_') {
@@ -34,4 +35,5 @@ export function startOnLoad() {
     users();
     toggleGamesEL();
     notAvailableFeatureEL();
+    moderators();
 }

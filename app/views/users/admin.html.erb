@@ -1,1 +1,23 @@
-admin
+<div id="admin-page" class="w-full" data-admin-id=<%= @current_user.id %>>
+    <input id="moderators-search" class= "w-11/12 justify-center sm:w-2/3 placeholder-tertiary-default dark:placeholder-black text-tertiary-default dark:text-black bg-white dark:bg-tertiary-default  m-auto mt-12 px-6 py-2 m-auto rounded-md flex outline-none bg-white border-none focus:border-none focus:ring-0 shadow-xl" , placeholder = "<%= t('friends.search.searchBar') %>" />
+    <div class="relative h-[calc(100%-275px)] dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-8 overflow-scroll">
+      <% if @moderators.present? %>
+        <ul id="moderators-list">
+          <% @moderators.each do |moderator| %>
+                            <div class="px-4 py-4 sm:px-6">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-lg leading-6 font-medium text-black dark:text-tertiary-default"><%= moderator.username %></h3>
+                      <img name="delete" src="/images/friends/remove-icon.png" class="h-8 flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out" alt="Delete friendship" data-moderator-id=<%= moderator.id %> />
+                      </div>
+                  </div>
+          <% end %>
+        </ul>
+      <% end %>
+    <div>
+  </div>
+</div>
+
+<div class="flex mt-6 w-1/2 mx-auto max-w-xs bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md">
+  <%= link_to t('admin.moderator.create'), url_for("/admin/#{@current_user.id}/create_moderator"), class: "text-center w-full p-2 text-white dark:text-black max-w-xs cursor-pointer p-2 rounded-md" %>
+</div>
+

@@ -24,9 +24,11 @@ Rails.application.routes.draw do
     get '/user/:id', to: 'users#show'
     get '/moderator/:id', to: 'users#moderator'
     get '/admin/:id', to: 'users#admin'
+    get '/admin/:id/create_moderator', to: 'users#create_moderator'
     get '/user/:id/settings', to: 'users#settings'
     get '/user/:id/profile', to: 'users#profile'
     patch '/users/:id/update', to: 'users#update'
+    post '/moderator/:id/create', to: 'users#new_moderator'
 
     #get '/login', to: 'users#index'
     #post '/sessions', to: 'sessions#create'
@@ -78,5 +80,8 @@ Rails.application.routes.draw do
   get "/friends/search_sent(/:search_query)", to: 'friends#search_sent'
   get "/friends/search_received(/:search_query)", to: 'friends#search_received'
   get "/friends/search_friends(/:search_query)", to: 'friends#search_friends'
+  post "/admin/:id/delete_moderator", to: 'users#delete_moderator'
+  get "/admin/:id/search_moderators(/:search_query)", to: 'users#search_moderators'
+  get "/admin/:id/search_moderators", to: 'users#admin'
   match '*unmatched', to: 'auth#login_or_register', via: :all
 end

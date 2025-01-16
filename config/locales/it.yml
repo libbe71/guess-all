@@ -101,5 +101,10 @@ it:
             messagesTitle:  Domande e risposte
             winnerTitle:  Vincitore
     notAvailable: "Questa funzione sarà disponibile presto"
+    admin: 
+        moderator:
+            create: "Aggiungi un moderatore"
+            title: "Nuovo moderatore"
+            button: "Crea"
 
 

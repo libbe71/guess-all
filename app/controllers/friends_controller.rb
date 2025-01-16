@@ -45,9 +45,9 @@ class FriendsController < ApplicationController
   def index_users
     if friends_search_params[:search_query].present?
       search_query = friends_search_params[:search_query]
-      @users = search_users(search_query)
+      @users = search_users(search_query).where(role: "user")
     else
-      @users = User.all
+      @users = User.all.where(role: "user")
     end
 
     @users = @users&.paginate(page: 1, per_page: 10)
