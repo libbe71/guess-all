@@ -86,6 +86,7 @@ class UsersController < ApplicationController
   
   def moderator
     @current_user = User.find(params[:id])
+    @games = Game.all
 
     rescue => e
       message = e.message 
@@ -185,7 +186,6 @@ end
   def check_username_availability
     username = params[:username]
     user = User.where('lower(username) = ?', username.downcase).first
-    puts user 
     #user.nil? check if user in db; (current_user && user.id === current_user.id) check the current user isn't displayed as already taken (edit)
     ret = !!(user.nil? || (@current_user && user.id === @current_user.id))
     render json: { available: ret  }
@@ -208,7 +208,6 @@ end
   def user_update_params
     params.require(:user).permit(:username, :email_address, :password)
   end
-
 
   def moderator_search_params
     params.permit(:id, :locale, :search_query)

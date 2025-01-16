@@ -1,0 +1,96 @@
+
+<div class="w-full">
+	<%= link_to "/#{@current_locale}/moderator/#{@current_user.id}/", id:"logout-mobile", class:"absolute" do %>
+		<div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
+			<img  src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>
+		</div>
+	<% end %>
+<div class="p-4 rounded-md mx-auto space-y-4 w-full w-full sm:w-1/2">
+  <h3 class="text-xl font-bold mx-auto w-full text-center text-secondary-default dark:text-tertiary-default mt-2 mb-4" >
+    <%= t('games.history.selectedTitle') %>
+  </h3>
+  <div class="flex justify-betweenxw">
+    <div class="mx-auto items-center text-center">
+      <div class="mx-auto dark:text-tertiary-default"><%= @game.player2.username %> <%= t('games.history.selected') %></div>
+      <div id="selected-character" data-selected-character-name="<%= @game.player2_choosen_character %>" class="w-[100px] mx-auto">
+        <div class="flip-card-game-inner">
+          <div class="flip-card-game-front dark:border-2 dark:border-tertiary-default overflow-hidden text-center text-white bg-blue-500 rounded-t-xl border-4 border-black">
+            <img src="/images/games/characters/<%= @game.player2_choosen_character %>.png" alt="<%= @game.player2_choosen_character %>" class="object-fill">
+              <div class="text-secondary-default dark:text-tertiary-default"><%= @game.player2_choosen_character %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto dark:text-tertiary-default">
+      <%= @game.player1.username %> <%= t('games.history.selected') %>
+    <div id="selected-character" data-selected-character-name="<%= @game.player1_choosen_character %>" class="w-[100px] mx-auto">
+      <div class="flip-card-game-inner">
+        <div class="flip-card-game-front dark:border-2 dark:border-tertiary-default overflow-hidden text-center text-white bg-blue-500 rounded-t-xl border-4 border-black">
+          <img src="/images/games/characters/<%= @game.player1_choosen_character %>.png" alt="<%= @game.player1_choosen_character %>" class="object-fill">
+            <div class="text-secondary-default dark:text-tertiary-default"><%= @game.player1_choosen_character %></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <h3 class="text-xl font-bold mx-auto w-full text-center text-secondary-default dark:text-tertiary-default" >
+    <%= t('games.history.messagesTitle') %>
+  </h3>
+  <div class="h-[calc(100%-350px)] overflow-y-scroll px-4 py-1 shadow-lg dark:border-2 dark:border-tertiary-default dark:rounded-md">
+    <% @moves.each_with_index do |move, index| %>
+      <div class="flex items-start space-x-4 space-y-2 <%= index.even? ? 'flex-row-reverse' : '' %>">
+        <!-- User Avatar -->
+        <div class="flex-shrink-0 <%= index.even? ? 'ml-[16px] ' : '' %>">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default  <%= index.even? ? 'bg-primary-default' : 'bg-secondary-default' %>">
+            <%= move.user.username[0].upcase %>
+          </div>
+        </div>
+        
+        <!-- Message Content -->
+        <div class="max-w-sm p-3 rounded-xl shadow-xl dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default <%= index.even? ? 'bg-primary-default bg-opacity-50' : 'bg-secondary-default bg-opacity-50' %>">
+          <h3 class="text-lg font-bold text-black dark:text-tertiary-default">
+            <%= move.user.username %>
+          </h3>
+          <p class="text-sm text-black dark:text-tertiary-default">
+            <span class="font-medium text-md text-black font-semibold dark:text-tertiary-default"><%= t('games.history.question') %></span> <%= move.question %><br>
+            <span class="font-medium text-md text-black font-semibold dark:text-tertiary-default"><%= t('games.history.answer') %></span> <%= move.answer %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <h3 class="text-xl font-bold mx-auto w-full text-center text-secondary-default dark:text-tertiary-default" >
+    <%= t('games.history.winnerTitle') %>
+  </h3>
+  <div class="text-xl font-bold mx-auto w-full text-center text-tertiary-default dark:text-tertiary-default" >
+    <%= @game.winner&.username || "..." %>
+  </div>
+
+  </div>
+  <div class="flex justify-center my-2">
+    <button 
+      name="set-winner" 
+      data-moderator-id="<%= @current_user.id %>"
+      data-player-id="<%= @game.player1.id %>"
+      data-game-id="<%= @game.id %>"
+      class="px-4 py-2 mx-2 bg-secondary-default dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default text-white rounded shadow hover:bg-primary-dark transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"
+      >
+      <%= t('games.setWinner') %> 
+      <%= @game.player1.username %>
+
+    </button>
+    <button 
+      name="set-winner" 
+      data-moderator-id="<%= @current_user.id %>"
+      data-player-id="<%= @game.player2.id %>"
+      data-game-id="<%= @game.id %>"
+      class="px-4 py-2 mx-2 bg-secondary-default dark:bg-black dark:border-2 dark:border-tertiary-default dark:text-tertiary-default text-white rounded shadow hover:bg-primary-dark transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"
+      >
+      <%= t('games.setWinner') %>
+      <%= @game.player2.username %>
+    </button>
+  </div>
+
+</div>
+

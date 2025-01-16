@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     get  "/user/:id/games/:gameId" , to: 'games#show'
     get  "/user/:id/games/:gameId/history" , to: 'games#history'
     get '/user/:id/games/:gameId/select_character/:player', to: 'games#select_character'
+    get "/moderator/:id/games/:gameId", to: 'games#check_game'
 
   end
   post  "/games/new" , to: 'games#new'
@@ -83,5 +84,6 @@ Rails.application.routes.draw do
   post "/admin/:id/delete_moderator", to: 'users#delete_moderator'
   get "/admin/:id/search_moderators(/:search_query)", to: 'users#search_moderators'
   get "/admin/:id/search_moderators", to: 'users#admin'
+  patch "/moderator/:id/games/:gameId/set_winner/:playerId", to: "games#set_winner"
   match '*unmatched', to: 'auth#login_or_register', via: :all
 end

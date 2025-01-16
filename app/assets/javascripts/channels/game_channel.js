@@ -625,10 +625,6 @@ if(gameContainer){
                 answer: answer
             })
         })
-        .then(()=>{
-            console.log("then")
-
-        })
         .catch(error => {
 
             console.log("catch")

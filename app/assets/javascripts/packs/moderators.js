@@ -22,22 +22,24 @@ export const moderators = () => {
     const searchInput = document.getElementById("moderators-search");
     const moderatorsList = document.getElementById("moderators-list");
     const adminPage = document.getElementById("admin-page");
-    const adminId = adminPage.dataset.adminId;
-    searchInput &&
-        searchInput.addEventListener("input", function () {
-            const searchQuery = this.value.trim();
-            getModeratorsList(adminId, searchQuery, moderatorsList);
-        });
+    if(adminPage){
+        const adminId = adminPage.dataset.adminId;
+        searchInput &&
+            searchInput.addEventListener("input", function () {
+                const searchQuery = this.value.trim();
+                getModeratorsList(adminId, searchQuery, moderatorsList);
+            });
 
-    // Add event listener for the "Send" link
-    moderatorsList &&
-    moderatorsList.addEventListener("click", function (event) {
-            if (event.target.name === "delete") {
-                event.preventDefault();
-                const moderatorId = event.target.dataset.moderatorId;
-                deleteModerator(adminId, moderatorId);
-            }
-        });
+        // Add event listener for the "Send" link
+        moderatorsList &&
+        moderatorsList.addEventListener("click", function (event) {
+                if (event.target.name === "delete") {
+                    event.preventDefault();
+                    const moderatorId = event.target.dataset.moderatorId;
+                    deleteModerator(adminId, moderatorId);
+                }
+            });
+    }
 };
 
 function getModeratorsList(adminId, searchQuery, userList) {

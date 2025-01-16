@@ -1,1 +1,12 @@
-moderator
+  <div id="ongoing-games" class="dark:border-tertiary-default shadow-md dark:border flip-card-login-inner w-screen mx-auto sm:w-[400px] rounded-md mt-4 h-[calc(100vh-100px)] min-h-[90px] overflow-scroll">
+    <ul>
+      <% @games.each do |game| %>
+        <a href="/<%= @current_locale %>/moderator/<%= @current_user.id %>/games/<%= game.id %>" class="px-4 py-4 sm:px-6">
+          <div class="transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer">
+            <div class="text-secondary-default text-bold dark:text-tertiary-default">Game <%= game.id %></div>
+            <div class="text-primary-default dark:text-tertiary-default text-xl"><%= game.player1.username %> VS <%= game.player2.username %></div>
+          </div>
+        </a>
+      <% end %>
+    </ul>
+  </div>

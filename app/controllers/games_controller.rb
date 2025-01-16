@@ -1,8 +1,10 @@
 class GamesController < ApplicationController
-  before_action :authorize_user!, except: [:new, :save_selected_character, :opponent_cards_left, :save_discarded_characters, :is_answer_correct, :toggle_round, :make_move, :opponent_cards_left]
-  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_game_winner, :toggle_round, :make_move, :history, :opponent_cards_left]
+  before_action :authorize_user!, except: [:new, :save_selected_character, :opponent_cards_left, :save_discarded_characters, :is_answer_correct, :toggle_round, :make_move, :opponent_cards_left, :check_game, :set_winner]
+  before_action :set_game, only: [:show, :select_character, :save_selected_character, :save_discarded_characters, :is_answer_correct, :set_winner, :toggle_round, :make_move, :history, :opponent_cards_left, :check_game]
   before_action :ensure_character_selected, only: [:show]
   before_action :ensure_character_not_selected, only: [:select_character]
+  before_action :authorize_moderator!, only: [:check_game, :set_winner]
+
   
 
   def index
@@ -12,6 +14,12 @@ class GamesController < ApplicationController
     @ended_games = Game.where(status: "finished")
                 .where("player1_id = :user OR player2_id = :user", user: @current_user.id)
                 .order(created_at: :desc)
+  end
+
+
+  def check_game
+    @current_user = User.find(params[:id])
+    @moves = @game.moves
   end
 
   # Show a specific game (gameplay view)
@@ -26,11 +34,12 @@ class GamesController < ApplicationController
   def select_character
   end
 
-  def set_game_winner
+  def set_winner
+    playerId=params[:playerId]
+
     # Ensure only authorized users can set the winner
-  
     # Update game status and winner
-    if @game.update(status: 'finished', winner_id: @current_user.id)
+    if @game.update(status: 'finished', winner_id: playerId)
       render json: { success: true }, status: :ok
     else
       render json: { success: false, error: 'Failed to update game', details: @game.errors.full_messages }, status: :unprocessable_entity
