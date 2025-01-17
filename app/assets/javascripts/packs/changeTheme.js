@@ -9,41 +9,50 @@ export const changeTheme = () => {
     // Apply theme on page load
     applyTheme();
 
+    const selected = ["bg-tertiary-default", "text-white", "dark:text-black"]
+    const notSelected = ["text-black", "dark:text-tertiary-default", "cursor-pointer", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out"]
     // Whenever the user explicitly chooses light mode
     lightModeButton && lightModeButton.addEventListener('click', function () {
         themeField.value = "light";
-        lightModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
-        lightModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        autoModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        autoModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
-        darkModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        darkModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
+        lightModeButton.classList.add(...selected)
+        lightModeButton.classList.remove(...notSelected)
+        
+        autoModeButton.classList.add(...notSelected)
+        autoModeButton.classList.remove(...selected)
+        
+        darkModeButton.classList.add(...notSelected)
+        darkModeButton.classList.remove(...selected)
         localStorage.theme = 'light';
         applyTheme();
+
     });
 
     // Whenever the user explicitly chooses dark mode
     darkModeButton && darkModeButton.addEventListener('click', function () {
         themeField.value = "dark";
-        darkModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
-        darkModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        autoModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        autoModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
-        lightModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        lightModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
+        darkModeButton.classList.add(...selected)
+        darkModeButton.classList.remove(...notSelected)
+        
+        autoModeButton.classList.add(...notSelected)
+        autoModeButton.classList.remove(...selected)
+        
+        lightModeButton.classList.add(...notSelected)
+        lightModeButton.classList.remove(...selected)
         localStorage.theme = 'dark';
-        applyTheme();
+        applyTheme()
     });
 
     // Whenever the user explicitly chooses to respect the OS preference
     autoModeButton && autoModeButton.addEventListener('click', function () {
         themeField.value = "auto";
-        autoModeButton.classList.add("bg-tertiary-default", "text-white", "dark:text-black")
-        autoModeButton.classList.remove("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        darkModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        darkModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
-        lightModeButton.classList.add("cursor-pointer","text-black", "dark:text-white", "transform", "hover:scale-x-110", "hover:scale-y-105", "transition", "duration-300", "ease-out")
-        lightModeButton.classList.remove("bg-tertiary-default", "text-white", "dark:text-black")
+        autoModeButton.classList.add(...selected)
+        autoModeButton.classList.remove(...notSelected)
+
+        darkModeButton.classList.add(...notSelected)
+        darkModeButton.classList.remove(...selected)
+        
+        lightModeButton.classList.add(...notSelected)
+        lightModeButton.classList.remove(...selected)
         localStorage.removeItem('theme');
         applyTheme();
     });
