@@ -4,9 +4,9 @@
 
 ## Rails Server
 
-| Environment | Start Command                                 | Stop Command                             |
-|-------------|-----------------------------------------------|------------------------------------------|
-| Development | `docker-compose -f docker-compose.dev.yml up -d`   | `docker-compose -f docker-compose.dev.yml down -v` |
+| Environment | Start Command| Stop Command|Destroy container|
+|-|-|-|-|
+| Development | `make dev` `make dev-d`|`make dev-stop`|`make dev-destroy`|
 | Production  | `docker-compose -f docker-compose.prod.yml up -d`  | `docker-compose -f docker-compose.prod.yml down -v` |
 
 

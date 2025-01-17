@@ -131,7 +131,7 @@ class UsersController < ApplicationController
   end
 
 def create
-  user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: @current_locale, twitter_id: user_create_params[:twitter_id] || nil, role: "user")
+  user = User.new(username: user_create_params[:username], email_address: user_create_params[:email_address], password: user_create_params[:password], locale: @current_locale, twitter_id: user_create_params[:twitter_id].presence || nil, role: "user")
   save = user.save;
   if save
     @current_user = user
