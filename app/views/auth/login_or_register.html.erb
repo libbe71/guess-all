@@ -1,11 +1,11 @@
 <div class="m-auto"> 
-  <div class="flex flex-rows justify-center mb-10 sm:hidden">
+  <div class="flex flex-rows justify-center my-5 sm:hidden">
     <!-- Locale toggle buttons -->
     <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
   <!--<div class="max-w-xs bg-tertiary-default cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md text-white dark:text-black">-->
   
     <% if I18n.locale == :en %>
-      <%= link_to "Italiano", url_for(locale: 'it'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+      <%= link_to "Italiano", url_for(locale: 'it'), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
         English
       </div>
@@ -13,7 +13,7 @@
         <div class="max-w-xs bg-tertiary-default p-2 rounded-md text-white dark:text-black">
           Italiano
         </div>
-        <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-white max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
+        <%= link_to "English", url_for(locale: 'en'), class: "text-black dark:text-tertiary-default max-w-xs cursor-pointer p-2 transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md" %>
       <% end %>
     </div>
   <div class="flip-card-login flex flex-col justify-center"> 
