@@ -1,17 +1,693 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user: MyString
-  references: MyString
-  game: one
-  question: MyString
-  answer: MyString
+a:
+  id: '1'
+  game_id: 49
+  question: cccc
+  answer: 'No'
   position: 1
-
-two:
-  user: MyString
-  references: MyString
-  game: two
-  question: MyString
-  answer: MyString
+  created_at: 2024-11-29 13:46:03.728694000 Z
+  updated_at: 2024-11-29 13:46:03.728694000 Z
+  user_id: 8
+b:
+  id: '2'
+  game_id: 49
+  question: jjj
+  answer: 'No'
+  position: 2
+  created_at: 2024-11-29 13:49:44.898101000 Z
+  updated_at: 2024-11-29 13:49:44.898101000 Z
+  user_id: 3
+c:
+  id: '3'
+  game_id: 49
+  question: giacomo?
+  answer: Risposta sbagliata
+  position: 3
+  created_at: 2024-11-29 13:51:43.248267000 Z
+  updated_at: 2024-11-29 13:51:43.248267000 Z
+  user_id: 8
+d:
+  id: '4'
+  game_id: 49
+  question: ha incappello?
+  answer: 'No'
+  position: 4
+  created_at: 2024-11-30 11:58:55.747521000 Z
+  updated_at: 2024-11-30 11:58:55.747521000 Z
+  user_id: 8
+e:
+  id: '5'
+  game_id: 49
+  question: ha due occhi?
+  answer: 'No'
+  position: 5
+  created_at: 2024-11-30 11:59:11.922757000 Z
+  updated_at: 2024-11-30 11:59:11.922757000 Z
+  user_id: 3
+f:
+  id: '6'
+  game_id: 49
+  question: ha la maglia?
+  answer: 'No'
+  position: 6
+  created_at: 2024-11-30 11:59:28.809650000 Z
+  updated_at: 2024-11-30 11:59:28.809650000 Z
+  user_id: 8
+g:
+  id: '7'
+  game_id: 49
+  question: ha il cappello
+  answer: 'No'
+  position: 7
+  created_at: 2024-11-30 11:59:37.105224000 Z
+  updated_at: 2024-11-30 11:59:37.105224000 Z
+  user_id: 3
+h:
+  id: '8'
+  game_id: 49
+  question: anna?
+  answer: Risposta sbagliata
+  position: 8
+  created_at: 2024-11-30 11:59:58.077276000 Z
+  updated_at: 2024-11-30 11:59:58.077276000 Z
+  user_id: 8
+i:
+  id: '9'
+  game_id: 49
+  question: giovanni?
+  answer: Answer Wrong
+  position: 9
+  created_at: 2024-11-30 12:00:01.543706000 Z
+  updated_at: 2024-11-30 12:00:01.543706000 Z
+  user_id: 3
+j:
+  id: '10'
+  game_id: 54
+  question: ddd
+  answer: 'No'
   position: 1
+  created_at: 2024-11-30 12:00:44.104973000 Z
+  updated_at: 2024-11-30 12:00:44.104973000 Z
+  user_id: 3
+k:
+  id: '11'
+  game_id: 54
+  question: ddd
+  answer: 'No'
+  position: 2
+  created_at: 2024-11-30 12:00:47.991294000 Z
+  updated_at: 2024-11-30 12:00:47.991294000 Z
+  user_id: 8
+l:
+  id: '12'
+  game_id: 54
+  question: giacomo?
+  answer: Answer Wrong
+  position: 3
+  created_at: 2024-11-30 12:00:52.569966000 Z
+  updated_at: 2024-11-30 12:00:52.569966000 Z
+  user_id: 3
+m:
+  id: '13'
+  game_id: 54
+  question: giacomo?
+  answer: Risposta sbagliata
+  position: 4
+  created_at: 2024-11-30 12:00:58.252743000 Z
+  updated_at: 2024-11-30 12:00:58.252743000 Z
+  user_id: 8
+"n":
+  id: '14'
+  game_id: 54
+  question: aldo?
+  answer: You Won
+  position: 5
+  created_at: 2024-11-30 12:01:01.993137000 Z
+  updated_at: 2024-11-30 12:01:01.993137000 Z
+  user_id: 3
+o:
+  id: '15'
+  game_id: 49
+  question: ccc
+  answer: 'No'
+  position: 10
+  created_at: 2024-12-02 09:57:14.460323000 Z
+  updated_at: 2024-12-02 09:57:14.460323000 Z
+  user_id: 8
+p:
+  id: '16'
+  game_id: 49
+  question: ccc
+  answer: 'No'
+  position: 11
+  created_at: 2024-12-02 09:59:35.823991000 Z
+  updated_at: 2024-12-02 09:59:35.823991000 Z
+  user_id: 3
+q:
+  id: '17'
+  game_id: 49
+  question: fff
+  answer: 'No'
+  position: 12
+  created_at: 2024-12-02 09:59:53.228404000 Z
+  updated_at: 2024-12-02 09:59:53.228404000 Z
+  user_id: 8
+r:
+  id: '18'
+  game_id: 49
+  question: ccc
+  answer: 'No'
+  position: 13
+  created_at: 2024-12-02 09:59:59.553521000 Z
+  updated_at: 2024-12-02 09:59:59.553521000 Z
+  user_id: 3
+s:
+  id: '19'
+  game_id: 49
+  question: xx
+  answer: 'No'
+  position: 14
+  created_at: 2024-12-02 10:00:41.927874000 Z
+  updated_at: 2024-12-02 10:00:41.927874000 Z
+  user_id: 8
+t:
+  id: '20'
+  game_id: 49
+  question: ccc
+  answer: 'No'
+  position: 15
+  created_at: 2024-12-02 10:01:22.113483000 Z
+  updated_at: 2024-12-02 10:01:22.113483000 Z
+  user_id: 3
+u:
+  id: '21'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 16
+  created_at: 2024-12-02 10:03:26.345727000 Z
+  updated_at: 2024-12-02 10:03:26.345727000 Z
+  user_id: 8
+v:
+  id: '22'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 17
+  created_at: 2024-12-02 10:03:37.722469000 Z
+  updated_at: 2024-12-02 10:03:37.722469000 Z
+  user_id: 3
+w:
+  id: '23'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 18
+  created_at: 2024-12-02 10:03:43.128208000 Z
+  updated_at: 2024-12-02 10:03:43.128208000 Z
+  user_id: 8
+x:
+  id: '24'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 19
+  created_at: 2024-12-02 10:04:57.728010000 Z
+  updated_at: 2024-12-02 10:04:57.728010000 Z
+  user_id: 3
+"y":
+  id: '25'
+  game_id: 49
+  question: ddddd
+  answer: 'No'
+  position: 20
+  created_at: 2024-12-02 10:06:04.611988000 Z
+  updated_at: 2024-12-02 10:06:04.611988000 Z
+  user_id: 8
+z:
+  id: '26'
+  game_id: 49
+  question: sss
+  answer: 'No'
+  position: 21
+  created_at: 2024-12-02 10:08:08.478096000 Z
+  updated_at: 2024-12-02 10:08:08.478096000 Z
+  user_id: 3
+"{":
+  id: '27'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 22
+  created_at: 2024-12-02 10:08:29.941083000 Z
+  updated_at: 2024-12-02 10:08:29.941083000 Z
+  user_id: 8
+"|":
+  id: '28'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 23
+  created_at: 2024-12-02 10:08:53.870063000 Z
+  updated_at: 2024-12-02 10:08:53.870063000 Z
+  user_id: 3
+"}":
+  id: '29'
+  game_id: 49
+  question: dd
+  answer: 'No'
+  position: 24
+  created_at: 2024-12-02 10:09:02.888477000 Z
+  updated_at: 2024-12-02 10:09:02.888477000 Z
+  user_id: 8
+"~":
+  id: '30'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 25
+  created_at: 2024-12-02 10:09:16.882621000 Z
+  updated_at: 2024-12-02 10:09:16.882621000 Z
+  user_id: 3
+"\x7F":
+  id: '31'
+  game_id: 49
+  question: dd
+  answer: 'No'
+  position: 26
+  created_at: 2024-12-02 10:09:30.901363000 Z
+  updated_at: 2024-12-02 10:09:30.901363000 Z
+  user_id: 8
+!binary "gA==":
+  id: '32'
+  game_id: 49
+  question: cc
+  answer: 'No'
+  position: 27
+  created_at: 2024-12-02 10:09:59.623028000 Z
+  updated_at: 2024-12-02 10:09:59.623028000 Z
+  user_id: 3
+!binary "gQ==":
+  id: '33'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 28
+  created_at: 2024-12-02 10:10:30.366477000 Z
+  updated_at: 2024-12-02 10:10:30.366477000 Z
+  user_id: 8
+!binary "gg==":
+  id: '34'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 29
+  created_at: 2024-12-02 10:11:02.728284000 Z
+  updated_at: 2024-12-02 10:11:02.728284000 Z
+  user_id: 3
+!binary "gw==":
+  id: '35'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 30
+  created_at: 2024-12-02 10:13:15.533651000 Z
+  updated_at: 2024-12-02 10:13:15.533651000 Z
+  user_id: 8
+!binary "hA==":
+  id: '36'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 31
+  created_at: 2024-12-02 10:13:27.245089000 Z
+  updated_at: 2024-12-02 10:13:27.245089000 Z
+  user_id: 3
+!binary "hQ==":
+  id: '37'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 32
+  created_at: 2024-12-02 10:13:42.298405000 Z
+  updated_at: 2024-12-02 10:13:42.298405000 Z
+  user_id: 8
+!binary "hg==":
+  id: '38'
+  game_id: 49
+  question: dddd
+  answer: 'No'
+  position: 33
+  created_at: 2024-12-02 10:13:58.796436000 Z
+  updated_at: 2024-12-02 10:13:58.796436000 Z
+  user_id: 3
+!binary "hw==":
+  id: '39'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 34
+  created_at: 2024-12-02 10:18:04.142457000 Z
+  updated_at: 2024-12-02 10:18:04.142457000 Z
+  user_id: 8
+!binary "iA==":
+  id: '40'
+  game_id: 49
+  question: xx
+  answer: 'No'
+  position: 35
+  created_at: 2024-12-02 10:18:16.502950000 Z
+  updated_at: 2024-12-02 10:18:16.502950000 Z
+  user_id: 3
+!binary "iQ==":
+  id: '41'
+  game_id: 49
+  question: ù
+  answer: 'No'
+  position: 36
+  created_at: 2024-12-02 10:20:01.931670000 Z
+  updated_at: 2024-12-02 10:20:01.931670000 Z
+  user_id: 8
+!binary "ig==":
+  id: '42'
+  game_id: 49
+  question: j
+  answer: 'No'
+  position: 37
+  created_at: 2024-12-02 10:21:52.441145000 Z
+  updated_at: 2024-12-02 10:21:52.441145000 Z
+  user_id: 3
+!binary "iw==":
+  id: '43'
+  game_id: 49
+  question: x
+  answer: 'No'
+  position: 38
+  created_at: 2024-12-02 10:24:18.568788000 Z
+  updated_at: 2024-12-02 10:24:18.568788000 Z
+  user_id: 8
+!binary "jA==":
+  id: '44'
+  game_id: 49
+  question: dd
+  answer: 'No'
+  position: 39
+  created_at: 2024-12-02 10:24:27.609762000 Z
+  updated_at: 2024-12-02 10:24:27.609762000 Z
+  user_id: 3
+!binary "jQ==":
+  id: '45'
+  game_id: 49
+  question: jj
+  answer: 'No'
+  position: 40
+  created_at: 2024-12-02 10:24:53.670929000 Z
+  updated_at: 2024-12-02 10:24:53.670929000 Z
+  user_id: 8
+!binary "jg==":
+  id: '46'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 41
+  created_at: 2024-12-02 10:27:09.913260000 Z
+  updated_at: 2024-12-02 10:27:09.913260000 Z
+  user_id: 3
+!binary "jw==":
+  id: '47'
+  game_id: 49
+  question: xxx
+  answer: 'No'
+  position: 42
+  created_at: 2024-12-02 10:28:11.533470000 Z
+  updated_at: 2024-12-02 10:28:11.533470000 Z
+  user_id: 8
+!binary "kA==":
+  id: '48'
+  game_id: 49
+  question: ccc
+  answer: 'No'
+  position: 43
+  created_at: 2024-12-02 10:29:08.271433000 Z
+  updated_at: 2024-12-02 10:29:08.271433000 Z
+  user_id: 3
+!binary "kQ==":
+  id: '49'
+  game_id: 49
+  question: cc
+  answer: 'No'
+  position: 44
+  created_at: 2024-12-02 10:29:11.786071000 Z
+  updated_at: 2024-12-02 10:29:11.786071000 Z
+  user_id: 8
+!binary "kg==":
+  id: '50'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 45
+  created_at: 2024-12-02 10:29:40.210751000 Z
+  updated_at: 2024-12-02 10:29:40.210751000 Z
+  user_id: 8
+!binary "kw==":
+  id: '51'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 46
+  created_at: 2024-12-02 10:29:46.051452000 Z
+  updated_at: 2024-12-02 10:29:46.051452000 Z
+  user_id: 3
+!binary "lA==":
+  id: '52'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 47
+  created_at: 2024-12-02 10:29:49.457086000 Z
+  updated_at: 2024-12-02 10:29:49.457086000 Z
+  user_id: 8
+!binary "lQ==":
+  id: '53'
+  game_id: 49
+  question: ddd
+  answer: 'No'
+  position: 48
+  created_at: 2024-12-02 10:31:07.689232000 Z
+  updated_at: 2024-12-02 10:31:07.689232000 Z
+  user_id: 8
+!binary "lg==":
+  id: '54'
+  game_id: 49
+  question: dddd
+  answer: 'No'
+  position: 49
+  created_at: 2024-12-02 10:31:19.439544000 Z
+  updated_at: 2024-12-02 10:31:19.439544000 Z
+  user_id: 3
+!binary "lw==":
+  id: '55'
+  game_id: 55
+  question: ha i capelli marroni?
+  answer: 'Yes'
+  position: 1
+  created_at: 2024-12-28 16:34:26.173876000 Z
+  updated_at: 2024-12-28 16:34:26.173876000 Z
+  user_id: 12
+!binary "mA==":
+  id: '56'
+  game_id: 55
+  question: ddd
+  answer: 'No'
+  position: 2
+  created_at: 2024-12-28 16:35:05.267918000 Z
+  updated_at: 2024-12-28 16:35:05.267918000 Z
+  user_id: 2
+!binary "mQ==":
+  id: '57'
+  game_id: 55
+  question: aldo?
+  answer: Hai vinto
+  position: 3
+  created_at: 2024-12-28 16:36:33.274481000 Z
+  updated_at: 2024-12-28 16:36:33.274481000 Z
+  user_id: 12
+!binary "mg==":
+  id: '58'
+  game_id: 56
+  question: ddd
+  answer: 'No'
+  position: 1
+  created_at: 2024-12-30 17:57:51.512600000 Z
+  updated_at: 2024-12-30 17:57:51.512600000 Z
+  user_id: 12
+!binary "mw==":
+  id: '59'
+  game_id: 56
+  question: fff
+  answer: 'No'
+  position: 2
+  created_at: 2024-12-31 15:32:22.288369000 Z
+  updated_at: 2024-12-31 15:32:22.288369000 Z
+  user_id: 2
+!binary "nA==":
+  id: '60'
+  game_id: 56
+  question: giacomo?
+  answer: Risposta sbagliata
+  position: 3
+  created_at: 2024-12-31 15:32:27.761507000 Z
+  updated_at: 2024-12-31 15:32:27.761507000 Z
+  user_id: 12
+!binary "nQ==":
+  id: '61'
+  game_id: 56
+  question: giulia?
+  answer: Risposta sbagliata
+  position: 4
+  created_at: 2024-12-31 15:32:34.108606000 Z
+  updated_at: 2024-12-31 15:32:34.108606000 Z
+  user_id: 2
+!binary "ng==":
+  id: '62'
+  game_id: 56
+  question: aldo?
+  answer: Hai vinto
+  position: 5
+  created_at: 2024-12-31 15:32:40.061737000 Z
+  updated_at: 2024-12-31 15:32:40.061737000 Z
+  user_id: 12
+!binary "nw==":
+  id: '63'
+  game_id: 57
+  question: gaia?
+  answer: Risposta sbagliata
+  position: 1
+  created_at: 2024-12-31 15:36:10.795092000 Z
+  updated_at: 2024-12-31 15:36:10.795092000 Z
+  user_id: 12
+!binary "oA==":
+  id: '64'
+  game_id: 57
+  question: aldo?
+  answer: Hai vinto
+  position: 2
+  created_at: 2024-12-31 15:36:18.221544000 Z
+  updated_at: 2024-12-31 15:36:18.221544000 Z
+  user_id: 2
+!binary "oQ==":
+  id: '65'
+  game_id: 58
+  question: aldo?
+  answer: Hai vinto
+  position: 1
+  created_at: 2024-12-31 15:39:39.783444000 Z
+  updated_at: 2024-12-31 15:39:39.783444000 Z
+  user_id: 12
+!binary "og==":
+  id: '66'
+  game_id: 59
+  question: aldo?
+  answer: Hai vinto
+  position: 1
+  created_at: 2024-12-31 15:42:46.630959000 Z
+  updated_at: 2024-12-31 15:42:46.630959000 Z
+  user_id: 12
+!binary "ow==":
+  id: '67'
+  game_id: 59
+  question: aldo?
+  answer: Hai vinto
+  position: 2
+  created_at: 2024-12-31 15:42:54.803027000 Z
+  updated_at: 2024-12-31 15:42:54.803027000 Z
+  user_id: 12
+!binary "pA==":
+  id: '68'
+  game_id: 59
+  question: aldo?
+  answer: Hai vinto
+  position: 3
+  created_at: 2024-12-31 15:45:22.671804000 Z
+  updated_at: 2024-12-31 15:45:22.671804000 Z
+  user_id: 12
+!binary "pQ==":
+  id: '69'
+  game_id: 59
+  question: aldo?
+  answer: Hai vinto
+  position: 4
+  created_at: 2024-12-31 15:45:46.019133000 Z
+  updated_at: 2024-12-31 15:45:46.019133000 Z
+  user_id: 12
+!binary "pg==":
+  id: '70'
+  game_id: 60
+  question: aldo?
+  answer: Hai vinto
+  position: 1
+  created_at: 2024-12-31 15:46:41.618555000 Z
+  updated_at: 2024-12-31 15:46:41.618555000 Z
+  user_id: 12
+!binary "pw==":
+  id: '71'
+  game_id: 61
+  question: aldo?
+  answer: Hai vinto
+  position: 1
+  created_at: 2024-12-31 15:51:21.614739000 Z
+  updated_at: 2024-12-31 15:51:21.614739000 Z
+  user_id: 12
+!binary "qA==":
+  id: '72'
+  game_id: 63
+  question: giacomo?
+  answer: Hai vinto
+  position: 1
+  created_at: 2025-01-16 14:01:52.352703000 Z
+  updated_at: 2025-01-16 14:01:52.352703000 Z
+  user_id: 3
+!binary "qQ==":
+  id: '73'
+  game_id: 66
+  question: ciao
+  answer: 'No'
+  position: 1
+  created_at: 2025-01-16 14:04:00.234508000 Z
+  updated_at: 2025-01-16 14:04:00.234508000 Z
+  user_id: 3
+!binary "qg==":
+  id: '74'
+  game_id: 66
+  question: aldo?
+  answer: Risposta sbagliata
+  position: 2
+  created_at: 2025-01-16 14:04:06.229282000 Z
+  updated_at: 2025-01-16 14:04:06.229282000 Z
+  user_id: 2
+!binary "qw==":
+  id: '75'
+  game_id: 66
+  question: aldo?
+  answer: Hai vinto
+  position: 3
+  created_at: 2025-01-16 14:04:15.922345000 Z
+  updated_at: 2025-01-16 14:04:15.922345000 Z
+  user_id: 3
+!binary "rA==":
+  id: '76'
+  game_id: 62
+  question: ciao
+  answer: 'No'
+  position: 1
+  created_at: 2025-01-16 14:05:23.633146000 Z
+  updated_at: 2025-01-16 14:05:23.633146000 Z
+  user_id: 3
+!binary "rQ==":
+  id: '77'
+  game_id: 62
+  question: lucia?
+  answer: Risposta sbagliata
+  position: 2
+  created_at: 2025-01-16 14:05:27.542848000 Z
+  updated_at: 2025-01-16 14:05:27.542848000 Z
+  user_id: 2

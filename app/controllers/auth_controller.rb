@@ -14,16 +14,16 @@ class AuthController < ApplicationController
   end
   def create_session
     identifier = auth_params[:identifier].downcase
-    user = User.where("LOWER(email_address) = ? OR LOWER(username) = ?", identifier, identifier).first
 
+    user = User.where("LOWER(email_address) = ? OR LOWER(username) = ?", identifier, identifier).first
     if user&.authenticate(auth_params[:password])
       session[:user_id] = user.id
       if user&.locale
         @current_locale =  user&.locale
       end
+
       I18n.locale = @current_locale
       flash[:notice] = t('snackbar.loginSuccess')
-
       if user?
         redirect_to "/#{@current_locale}/user/#{@current_user["id"]}"
       elsif moderator?
@@ -36,11 +36,13 @@ class AuthController < ApplicationController
     else
       raise AuthError, t('snackbar.loginError')
     end
+
     rescue => e
       message = e.message
       flash[:error] = message
       redirect_to "/#{@current_locale}/auth"
-      
+
+
   end
 
   def destroy_session
@@ -57,6 +59,7 @@ class AuthController < ApplicationController
   end
 
   def user?
+    puts "DEBUG: user? #{@current_user.role == "user"}"
     !!@current_user && @current_user.role == "user"
   end
   def moderator?

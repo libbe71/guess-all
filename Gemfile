@@ -97,3 +97,4 @@ end
 
 gem "timeout", "~> 0.4.1"
 
+gem "redis", "~> 5.3"

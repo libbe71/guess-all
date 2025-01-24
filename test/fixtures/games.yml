@@ -1,13 +1,741 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  player1: one
-  player2: one
-  status: MyString
-  winner: one
-
-two:
-  player1: two
-  player2: two
-  status: MyString
-  winner: two
+a:
+  id: '53'
+  player1_id: 8
+  player2_id: 3
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-30 11:50:05.265407000 Z
+  updated_at: 2024-11-30 11:50:44.863789000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+b:
+  id: '64'
+  player1_id: 2
+  player2_id: 3
+  status: finished
+  winner_id:
+  created_at: 2025-01-08 18:37:11.582865000 Z
+  updated_at: 2025-01-16 13:08:59.441106000 Z
+  player1_choosen_character: giovanni
+  player2_choosen_character:
+  round_id: 2
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+c:
+  id: '10'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:16:26.107080000 Z
+  updated_at: 2024-11-06 09:16:26.107080000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+d:
+  id: '11'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:16:32.691209000 Z
+  updated_at: 2024-11-06 09:16:32.691209000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+e:
+  id: '12'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:16:43.317783000 Z
+  updated_at: 2024-11-06 09:16:43.317783000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+f:
+  id: '14'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:19:29.708932000 Z
+  updated_at: 2024-11-06 09:19:29.708932000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+g:
+  id: '15'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:19:45.925864000 Z
+  updated_at: 2024-11-06 09:19:45.925864000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+h:
+  id: '16'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:20:26.912905000 Z
+  updated_at: 2024-11-06 09:20:26.912905000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+i:
+  id: '17'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:20:48.228552000 Z
+  updated_at: 2024-11-06 09:20:48.228552000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+j:
+  id: '18'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:21:11.629780000 Z
+  updated_at: 2024-11-06 09:21:11.629780000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+k:
+  id: '19'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:21:42.227736000 Z
+  updated_at: 2024-11-06 09:21:42.227736000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+l:
+  id: '20'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:21:58.664030000 Z
+  updated_at: 2024-11-06 09:21:58.664030000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+m:
+  id: '21'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:22:34.060738000 Z
+  updated_at: 2024-11-06 09:22:34.060738000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"n":
+  id: '22'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:22:50.549085000 Z
+  updated_at: 2024-11-06 09:22:50.549085000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+o:
+  id: '23'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:23:08.999568000 Z
+  updated_at: 2024-11-06 09:23:08.999568000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+p:
+  id: '24'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:24:26.216439000 Z
+  updated_at: 2024-11-06 09:24:26.216439000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+q:
+  id: '25'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:24:48.958969000 Z
+  updated_at: 2024-11-06 09:24:48.958969000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+r:
+  id: '26'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:25:10.046333000 Z
+  updated_at: 2024-11-06 09:25:10.046333000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+s:
+  id: '27'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:25:50.206727000 Z
+  updated_at: 2024-11-06 09:25:50.206727000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+t:
+  id: '28'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:29:20.890844000 Z
+  updated_at: 2024-11-06 09:29:20.890844000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+u:
+  id: '29'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:29:42.578675000 Z
+  updated_at: 2024-11-06 09:29:42.578675000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+v:
+  id: '30'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:30:45.026799000 Z
+  updated_at: 2024-11-06 09:30:45.026799000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+w:
+  id: '31'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:31:59.393204000 Z
+  updated_at: 2024-11-06 09:31:59.393204000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+x:
+  id: '32'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:32:12.539698000 Z
+  updated_at: 2024-11-06 09:32:12.539698000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"y":
+  id: '33'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:32:29.294232000 Z
+  updated_at: 2024-11-06 09:32:29.294232000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+z:
+  id: '34'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:32:56.461899000 Z
+  updated_at: 2024-11-06 09:32:56.461899000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"{":
+  id: '35'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:34:13.295397000 Z
+  updated_at: 2024-11-06 09:34:13.295397000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"|":
+  id: '36'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:37:21.929560000 Z
+  updated_at: 2024-11-06 09:37:21.929560000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"}":
+  id: '37'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:37:48.165021000 Z
+  updated_at: 2024-11-06 09:37:48.165021000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"~":
+  id: '38'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:38:34.628974000 Z
+  updated_at: 2024-11-06 09:38:34.628974000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+"\x7F":
+  id: '39'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:39:05.685477000 Z
+  updated_at: 2024-11-06 09:39:05.685477000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "gA==":
+  id: '55'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 12
+  created_at: 2024-12-28 16:32:06.650261000 Z
+  updated_at: 2024-12-28 16:36:33.238289000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: giovanni,pino,lucio,giacomo,mario,olmo,simone,sergio,ilaria,elisa,giulia,gaia,federica,emma,anna,jessica,lucia,margherita,martina
+  player2_characters_discarded: ''
+!binary "gQ==":
+  id: '42'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:44:38.261090000 Z
+  updated_at: 2024-11-06 09:44:38.261090000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "gg==":
+  id: '61'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 12
+  created_at: 2024-12-31 15:51:07.804713000 Z
+  updated_at: 2024-12-31 15:51:21.542049000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "gw==":
+  id: '59'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 12
+  created_at: 2024-12-31 15:42:17.877338000 Z
+  updated_at: 2024-12-31 15:42:46.599834000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "hA==":
+  id: '57'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 2
+  created_at: 2024-12-31 15:34:14.629765000 Z
+  updated_at: 2024-12-31 15:36:18.179920000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 2
+  player1_characters_discarded: lucia,elisa,luca,paolo,olmo,mario,sergio,simone
+  player2_characters_discarded: ''
+!binary "hQ==":
+  id: '47'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:50:49.071001000 Z
+  updated_at: 2024-11-21 09:44:43.971799000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "hg==":
+  id: '44'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:49:15.385710000 Z
+  updated_at: 2024-11-26 18:03:41.325061000 Z
+  player1_choosen_character: ilaria
+  player2_choosen_character: giacomo
+  round_id: 3
+  player1_characters_discarded: olmo
+  player2_characters_discarded: ''
+!binary "hw==":
+  id: '54'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-30 12:00:19.811174000 Z
+  updated_at: 2024-11-30 12:01:01.942419000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "iA==":
+  id: '46'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:50:03.898270000 Z
+  updated_at: 2024-11-21 09:49:38.545236000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "iQ==":
+  id: '52'
+  player1_id: 3
+  player2_id: 9
+  status: started
+  winner_id:
+  created_at: 2024-11-26 21:32:18.897062000 Z
+  updated_at: 2024-11-26 21:32:20.979400000 Z
+  player1_choosen_character: paolo
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "ig==":
+  id: '45'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:49:44.142688000 Z
+  updated_at: 2024-11-21 09:50:58.734919000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "iw==":
+  id: '58'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 12
+  created_at: 2024-12-31 15:39:18.510640000 Z
+  updated_at: 2024-12-31 15:39:39.751426000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "jA==":
+  id: '43'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:48:20.950181000 Z
+  updated_at: 2024-11-27 17:42:58.140615000 Z
+  player1_choosen_character: paolo
+  player2_choosen_character: olmo
+  round_id: 3
+  player1_characters_discarded: jessica,lucio,mariello,luca,giovanni,giacomo,aldo,ilaria,paolo,pino,elisa,lucia
+  player2_characters_discarded: ''
+!binary "jQ==":
+  id: '50'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 3
+  created_at: 2024-11-06 09:53:38.786847000 Z
+  updated_at: 2024-11-20 19:04:19.185933000 Z
+  player1_choosen_character: aurora
+  player2_choosen_character: paolo
+  round_id: 3
+  player1_characters_discarded:
+  player2_characters_discarded: gaia,aurora,paolo,luca,aldo,giacomo,giovanni,pino,sergio,mariello,lucio,simone,olmo,mario,anna,ilaria,elisa,emma,federica
+!binary "jg==":
+  id: '40'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:40:15.357283000 Z
+  updated_at: 2024-11-27 17:43:13.226305000 Z
+  player1_choosen_character: mariello
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "jw==":
+  id: '60'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 12
+  created_at: 2024-12-31 15:46:26.085549000 Z
+  updated_at: 2024-12-31 15:46:41.587833000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "kA==":
+  id: '48'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id:
+  created_at: 2024-11-06 09:51:38.479401000 Z
+  updated_at: 2025-01-16 13:09:17.995464000 Z
+  player1_choosen_character: giacomo
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "kQ==":
+  id: '49'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id:
+  created_at: 2024-11-06 09:52:19.194769000 Z
+  updated_at: 2025-01-16 13:05:53.910476000 Z
+  player1_choosen_character: olmo
+  player2_choosen_character: pino
+  round_id: 3
+  player1_characters_discarded: aldo,lucia,emma,martina,aurora,luca,gaia
+  player2_characters_discarded: luca
+!binary "kg==":
+  id: '9'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id:
+  created_at: 2024-11-02 18:20:38.946830000 Z
+  updated_at: 2025-01-16 13:08:34.563575000 Z
+  player1_choosen_character: giacomo
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "kw==":
+  id: '41'
+  player1_id: 3
+  player2_id: 8
+  status: started
+  winner_id:
+  created_at: 2024-11-06 09:44:13.552022000 Z
+  updated_at: 2024-11-27 17:51:56.346917000 Z
+  player1_choosen_character: luca
+  player2_choosen_character: paolo
+  round_id: 8
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "lA==":
+  id: '56'
+  player1_id: 12
+  player2_id: 2
+  status: finished
+  winner_id: 2
+  created_at: 2024-12-30 17:57:31.023107000 Z
+  updated_at: 2025-01-16 13:15:00.193439000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: aldo
+  round_id: 12
+  player1_characters_discarded: jessica,emma,sergio,federica,simone,pino,margherita,paolo,olmo,elisa,ilaria,aurora
+  player2_characters_discarded: ilaria,pino,paolo,aurora,anna,jessica,emma,sergio,mariello,luca,giovanni,giacomo,mario,lucio,simone,federica,martina,margherita,gaia,aldo,olmo,elisa
+!binary "lQ==":
+  id: '13'
+  player1_id: 3
+  player2_id: 8
+  status: finished
+  winner_id: 8
+  created_at: 2024-11-06 09:17:05.188418000 Z
+  updated_at: 2025-01-16 13:15:06.453748000 Z
+  player1_choosen_character:
+  player2_choosen_character:
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "lg==":
+  id: '65'
+  player1_id: 3
+  player2_id: 2
+  status: finished
+  winner_id: 2
+  created_at: 2025-01-16 13:42:15.761227000 Z
+  updated_at: 2025-01-16 13:52:16.103711000 Z
+  player1_choosen_character: aldo
+  player2_choosen_character: lucio
+  round_id: 2
+  player1_characters_discarded: olmo,ilaria,lucia
+  player2_characters_discarded: aurora,ilaria
+!binary "lw==":
+  id: '63'
+  player1_id: 2
+  player2_id: 3
+  status: finished
+  winner_id: 3
+  created_at: 2025-01-08 18:35:21.316774000 Z
+  updated_at: 2025-01-16 14:01:52.309706000 Z
+  player1_choosen_character: giacomo
+  player2_choosen_character: giovanni
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "mA==":
+  id: '66'
+  player1_id: 3
+  player2_id: 2
+  status: finished
+  winner_id: 3
+  created_at: 2025-01-16 14:03:41.382466000 Z
+  updated_at: 2025-01-16 14:04:15.876247000 Z
+  player1_choosen_character: mario
+  player2_choosen_character: aldo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''
+!binary "mQ==":
+  id: '62'
+  player1_id: 3
+  player2_id: 2
+  status: started
+  winner_id:
+  created_at: 2025-01-08 18:35:16.943548000 Z
+  updated_at: 2025-01-16 14:05:27.547549000 Z
+  player1_choosen_character: elisa
+  player2_choosen_character: giacomo
+  round_id: 3
+  player1_characters_discarded: ''
+  player2_characters_discarded: ''

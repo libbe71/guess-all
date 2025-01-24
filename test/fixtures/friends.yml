@@ -1,7 +1,133 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  status: MyString
-
-two:
-  status: MyString
+a:
+  id: '22'
+  user1_id:
+  user2_id: 3
+  status: pending
+  created_at: 2024-05-27 21:15:42.757457000 Z
+  updated_at: 2024-05-27 21:15:42.757457000 Z
+b:
+  id: '23'
+  user1_id:
+  user2_id: 3
+  status: pending
+  created_at: 2024-05-27 21:15:44.934871000 Z
+  updated_at: 2024-05-27 21:15:44.934871000 Z
+c:
+  id: '24'
+  user1_id:
+  user2_id: 3
+  status: pending
+  created_at: 2024-05-27 21:15:45.585214000 Z
+  updated_at: 2024-05-27 21:15:45.585214000 Z
+d:
+  id: '25'
+  user1_id:
+  user2_id: 3
+  status: pending
+  created_at: 2024-05-27 21:15:46.199362000 Z
+  updated_at: 2024-05-27 21:15:46.199362000 Z
+e:
+  id: '26'
+  user1_id:
+  user2_id: 4
+  status: pending
+  created_at: 2024-05-27 21:15:54.588063000 Z
+  updated_at: 2024-05-27 21:15:54.588063000 Z
+f:
+  id: '27'
+  user1_id:
+  user2_id: 2
+  status: pending
+  created_at: 2024-05-27 21:36:36.153664000 Z
+  updated_at: 2024-05-27 21:36:36.153664000 Z
+g:
+  id: '28'
+  user1_id:
+  user2_id: 2
+  status: pending
+  created_at: 2024-05-27 21:36:37.702754000 Z
+  updated_at: 2024-05-27 21:36:37.702754000 Z
+h:
+  id: '29'
+  user1_id:
+  user2_id: 2
+  status: pending
+  created_at: 2024-05-28 04:07:24.015147000 Z
+  updated_at: 2024-05-28 04:07:24.015147000 Z
+i:
+  id: '30'
+  user1_id:
+  user2_id: 2
+  status: pending
+  created_at: 2024-05-28 04:08:16.979079000 Z
+  updated_at: 2024-05-28 04:08:16.979079000 Z
+j:
+  id: '35'
+  user1_id: 2
+  user2_id: 4
+  status: pending
+  created_at: 2024-05-28 04:24:29.108640000 Z
+  updated_at: 2024-05-28 04:24:29.108640000 Z
+k:
+  id: '54'
+  user1_id: 2
+  user2_id: 6
+  status: pending
+  created_at: 2024-10-07 18:23:44.271644000 Z
+  updated_at: 2024-10-07 18:23:44.271644000 Z
+l:
+  id: '56'
+  user1_id: 8
+  user2_id: 2
+  status: accepted
+  created_at: 2024-10-08 18:09:04.265847000 Z
+  updated_at: 2024-10-08 18:10:57.402403000 Z
+m:
+  id: '60'
+  user1_id: 9
+  user2_id: 3
+  status: accepted
+  created_at: 2024-11-26 21:31:46.603264000 Z
+  updated_at: 2024-11-26 21:32:12.507192000 Z
+n:
+  id: '62'
+  user1_id: 12
+  user2_id: 9
+  status: pending
+  created_at: 2024-12-28 16:28:30.235377000 Z
+  updated_at: 2024-12-28 16:28:30.235377000 Z
+o:
+  id: '63'
+  user1_id: 10
+  user2_id: 12
+  status: pending
+  created_at: 2024-12-28 16:29:43.473344000 Z
+  updated_at: 2024-12-28 16:29:43.473344000 Z
+p:
+  id: '59'
+  user1_id: 3
+  user2_id: 2
+  status: accepted
+  created_at: 2024-10-14 17:47:31.989686000 Z
+  updated_at: 2025-01-08 18:34:27.311378000 Z
+q:
+  id: '64'
+  user1_id: 3
+  user2_id: 10
+  status: pending
+  created_at: 2025-01-16 14:20:31.861018000 Z
+  updated_at: 2025-01-16 14:20:31.861018000 Z
+r:
+  id: '66'
+  user1_id: 12
+  user2_id: 3
+  status: accepted
+  created_at: 2025-01-16 14:21:42.766986000 Z
+  updated_at: 2025-01-16 14:21:48.363585000 Z
+s:
+  id: '67'
+  user1_id: 3
+  user2_id: 13
+  status: pending
+  created_at: 2025-01-16 14:24:54.622881000 Z
+  updated_at: 2025-01-16 14:24:54.622881000 Z

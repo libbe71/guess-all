@@ -1,11 +1,6 @@
 class FriendsController < ApplicationController
   before_action :authorize_user!
 
-  def show
-    @pending = Friend.where(user_id: params[:id], status: 'pending')
-    @accepted = Friend.where(user_id: params[:id], status: 'accepted')
-  end
-
   def create
     friend_id = friends_send_params[:friend_id]
     friend_request = Friend.new(user1_id: @current_user&.id, user2_id: friend_id, status: 'pending')
