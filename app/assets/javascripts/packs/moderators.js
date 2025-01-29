@@ -1,7 +1,5 @@
 function deleteModerator(adminId, moderatorId) {
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+    const csrfToken = document?.querySelector('meta[name="csrf-token"]')?.content
     fetch(`/admin/${adminId}/delete_moderator`, {
         method: "POST",
         headers: {

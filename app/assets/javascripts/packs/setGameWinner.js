@@ -3,7 +3,7 @@ const setWinnerEL = (moderatorId, gameId, playerId) =>{
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
         }
     })
     .then(response => response.json())

@@ -5,7 +5,7 @@ a:
   twitter_id:
   password_digest: "$2a$12$70EHsOnZczZ30Z2WuFarOOZ17m3hDe6cR7KDkc9.YK0WgMMxl85ni"
   locale: it
-  theme:
+  theme: light
   created_at: 2025-01-16 18:36:33.783984000 Z
   updated_at: 2025-01-16 18:36:33.783984000 Z
   role: user
@@ -15,7 +15,7 @@ b:
   email_address: a@a.it
   twitter_id:
   password_digest: "$2a$12$q4YiWprY6yze98/c54qZrOPECd3aT9YY8IcfXLrHOILwoClSTh7m2"
-  locale: en
+  locale: it
   theme: light
   created_at: 2024-05-17 07:59:21.558258000 Z
   updated_at: 2025-01-17 07:15:49.872129000 Z
@@ -27,7 +27,7 @@ c:
   twitter_id:
   password_digest: "$2a$12$PHSmGKViXbSUVCRzxh84quMtVQNWNRtPUcjfRMR8D1YSRe5U8tdzq"
   locale: it
-  theme:
+  theme: light
   created_at: 2024-05-17 07:59:31.654708000 Z
   updated_at: 2024-05-17 07:59:31.654708000 Z
   role: user
@@ -38,7 +38,7 @@ d:
   twitter_id:
   password_digest: "$2a$12$64HhMlZTQW4mDmsuqhUwqOUo.K4iTRuY0o63kxLwn7eFSzpC/QZBq"
   locale: it
-  theme:
+  theme: light
   created_at: 2024-10-07 17:43:54.344117000 Z
   updated_at: 2024-10-07 17:43:54.344117000 Z
   role: user
@@ -49,7 +49,7 @@ e:
   twitter_id:
   password_digest: "$2a$12$0HdkZ5KsCeTzX.IQvBoqeetoCFdn8hAHF0/XwQrwLO9H.FhVSkoAa"
   locale: it
-  theme: dark
+  theme: light
   created_at: 2024-05-16 21:25:31.887597000 Z
   updated_at: 2024-10-28 18:21:03.568803000 Z
   role: user
@@ -60,7 +60,7 @@ f:
   twitter_id:
   password_digest: "$2a$12$9oC3XatSQhezLlILqWdVaeZmb8nCqBnS2kXPslQKmDQVuAJuKq7S2"
   locale: it
-  theme: ''
+  theme: light
   created_at: 2024-10-08 17:11:55.926672000 Z
   updated_at: 2024-11-25 19:15:37.323421000 Z
   role: user
@@ -70,8 +70,8 @@ g:
   email_address: test@test.it
   twitter_id:
   password_digest: "$2a$12$eg.Z25APogZ2yQjG9DPQKOMtYJO6wBXEiNvQQjYu1bkgEoXuH7GwK"
-  locale: en
-  theme:
+  locale: it
+  theme: light
   created_at: 2024-11-26 21:27:02.631450000 Z
   updated_at: 2024-11-26 21:27:02.631450000 Z
   role: user
@@ -82,7 +82,7 @@ h:
   twitter_id: '1564860997969612803'
   password_digest: "$2a$12$6cX4nsNST4nXzWfgW3LE0.TYKNyRxK58SwSVGByZAIQ75qv0LuN1S"
   locale: it
-  theme:
+  theme: light
   created_at: 2024-11-27 10:32:53.203956000 Z
   updated_at: 2024-11-27 10:32:53.203956000 Z
   role: user
@@ -93,7 +93,7 @@ i:
   twitter_id:
   password_digest: "$2a$12$nX.PerryPJogCZRxkQ2ihemHOCFgECaxwRVk.e06EiBcGJpWSho5u"
   locale: it
-  theme:
+  theme: light
   created_at: 2024-11-29 09:24:10.333188000 Z
   updated_at: 2024-11-29 09:24:10.333188000 Z
   role: user
@@ -104,7 +104,7 @@ j:
   twitter_id:
   password_digest: "$2a$12$X/JD8Fg2dbIatv7y/Yn2eOL0zeyZJc.Cc0NHlXiwjA6AbBu258qf2"
   locale: it
-  theme: ''
+  theme: light
   created_at: 2024-12-28 16:27:23.807804000 Z
   updated_at: 2024-12-28 16:27:56.533316000 Z
   role: user
@@ -115,7 +115,7 @@ k:
   twitter_id: ''
   password_digest: "$2a$12$YW4uXC6t2O/s2LJcdeRddO0QEq8KRCn0vfKRXtzHAMf9MNeAT4VZq"
   locale: it
-  theme:
+  theme: light
   created_at: 2024-12-30 16:23:35.045539000 Z
   updated_at: 2024-12-30 16:23:35.045539000 Z
   role: user
@@ -126,7 +126,7 @@ l:
   twitter_id:
   password_digest: "$2a$12$TtZ0j6yrGCLzOf/imWezuu3TnPhgo8Sz65XsIEbqSXvM9fE3.MJW2"
   locale: it
-  theme: ''
+  theme: light
   created_at: 2024-10-07 17:44:20.837978000 Z
   updated_at: 2024-10-09 17:47:08.323483000 Z
   role: user
@@ -136,8 +136,8 @@ m:
   email_address: mod@mod.it
   twitter_id:
   password_digest: "$2a$12$FRl88WFjczT9OBvNJVxijeX/1EzlKz53eCHDoKCp.pmZqL7ZPyh8m"
-  locale: en
-  theme:
+  locale: it
+  theme: light
   created_at: 2025-01-14 19:25:40.339239000 Z
   updated_at: 2025-01-14 19:25:40.339239000 Z
   role: moderator
@@ -147,8 +147,8 @@ m:
   email_address: moderator@moderator.it
   twitter_id:
   password_digest: "$2a$12$AnxcWfSL1F6CJPoVBr0fJu3bLyGNukIuwl/DwR.uuDphp7T9liFQO"
-  locale: en
-  theme:
+  locale: it
+  theme: light
   created_at: 2025-01-16 10:23:14.868535000 Z
   updated_at: 2025-01-16 10:23:14.868535000 Z
   role: moderator
@@ -158,8 +158,8 @@ o:
   email_address: admin@admin.com
   twitter_id:
   password_digest: "$2a$12$.ZxNUnYXsnzrz2bKe.Y4uOCOvCilxMPbgIizsxZVLhmkRzBugLr3."
-  locale: en
-  theme: ''
+  locale: it
+  theme: light
   created_at: 2025-01-08 20:02:52.949588000 Z
   updated_at: 2025-01-16 10:27:49.269933000 Z
   role: admin

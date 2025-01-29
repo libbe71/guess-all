@@ -7,6 +7,7 @@ class AuthController < ApplicationController
     elsif admin?
       redirect_to "/#{@current_locale}/admin/#{@current_user["id"]}"
     end
+  
     rescue => e
       message = e.message
       flash[:error] = message
@@ -21,7 +22,7 @@ class AuthController < ApplicationController
       if user&.locale
         @current_locale =  user&.locale
       end
-
+      set_current_user
       I18n.locale = @current_locale
       flash[:notice] = t('snackbar.loginSuccess')
       if user?
@@ -59,7 +60,6 @@ class AuthController < ApplicationController
   end
 
   def user?
-    puts "DEBUG: user? #{@current_user.role == "user"}"
     !!@current_user && @current_user.role == "user"
   end
   def moderator?

@@ -191,9 +191,7 @@ const gameToStartLi = (user) => `
 `;
 
 function deleteFriend(currentUser, userId) {
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+    const csrfToken = document?.querySelector('meta[name="csrf-token"]')?.content
     fetch(`/user/${currentUser}/friends/delete`, {
         method: "POST",
         headers: {
@@ -245,9 +243,7 @@ function getUsersList(currentUser, searchQuery, userList, path) {
         });
 }
 function sendFriendRequest(currentUser, userId) {
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+    const csrfToken = document?.querySelector('meta[name="csrf-token"]')?.content
     fetch(`/user/${currentUser}/friends/create`, {
         method: "POST",
         headers: {
@@ -264,9 +260,7 @@ function sendFriendRequest(currentUser, userId) {
         });
 }
 function acceptFriend(currentUser, userId) {
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+    const csrfToken = document?.querySelector('meta[name="csrf-token"]')?.content
     fetch(`/user/${currentUser}/friends/accept`, {
         method: "PATCH",
         headers: {
@@ -290,7 +284,7 @@ function startNewGame(currentUser, friendId) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
     },
     body: JSON.stringify({ game: { player2_id: friendId } }) // Send friend ID as player2
   })

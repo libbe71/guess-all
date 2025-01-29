@@ -1,6 +1,6 @@
 
 <div class="w-full ">
-    <%= link_to "/#{@current_locale}/user/#{@current_user.id}", id:"logout-mobile", class:"absolute" do %>
+    <%= link_to "/#{@current_locale}/user/#{@current_user.id}", id:"back", class:"absolute" do %>
     <div class="flex flex-end items-center space-x-3 px-2 rtl:space-x-reverse cursor-pointer">
     <img src="/images/friends/undo-arrow.png" class="h-8 flex flex-end items-center transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer mt-2 ml-2" alt="Undo friend"/>
       <!--<img src="/images/icons/logout_tertiary.png" class="h-8 hidden dark:block" alt="Settings" />-->
@@ -35,6 +35,6 @@
 </div>
 
 <div class="flex mt-6 w-1/2 mx-auto max-w-xs bg-tertiary-default transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out rounded-md">
-  <%= link_to t('friends.add'), url_for("/user/#{@current_user.id}/friends/search_users"), class: "text-center w-full p-2 text-white dark:text-black max-w-xs cursor-pointer p-2 rounded-md" %>
+  <%= link_to t('friends.add'), url_for("/user/#{@current_user.id}/friends/search_users"), id: "add-friend-link", class: "text-center w-full p-2 text-white dark:text-black max-w-xs cursor-pointer p-2 rounded-md" %>
 </div>
 

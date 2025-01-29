@@ -49,7 +49,7 @@ function validateRegisterUsername(usernameInput) {
   const username = usernameInput.value.trim();
       if (username.length === 0) return;
 
-      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const csrfToken = document?.querySelector('meta[name="csrf-token"]')?.content
 
       fetch('/users/check_username_availability', {
         method: 'POST',

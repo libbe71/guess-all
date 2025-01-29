@@ -245,7 +245,7 @@ if(gameContainer){
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                    'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
                 },
             })
             .then(response => response.json())
@@ -269,7 +269,7 @@ if(gameContainer){
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                    'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
                 },
                 body: JSON.stringify({
                     player: nPlayer,
@@ -302,7 +302,7 @@ if(gameContainer){
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                                'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
                             },
                         })
                         .then(response => response.json())
@@ -511,7 +511,7 @@ if(gameContainer){
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                        'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
                     },
                     body: JSON.stringify({
                         player: nPlayer,
@@ -618,7 +618,7 @@ if(gameContainer){
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
             },
             body: JSON.stringify({
                 question: question,
@@ -637,7 +637,7 @@ if(gameContainer){
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                'X-CSRF-Token': document?.querySelector('meta[name="csrf-token"]')?.content
             },
             body: JSON.stringify({
                 player: nPlayer

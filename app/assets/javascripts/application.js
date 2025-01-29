@@ -3,5 +3,6 @@ import { startOnLoad } from "./packs/startJs";
 import "./channels"
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM loaded");
     startOnLoad();
 });
