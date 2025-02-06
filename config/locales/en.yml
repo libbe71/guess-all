@@ -40,7 +40,6 @@ en:
         emailCheck: "E-mail not valid"
         emptyCheck: "Field can't be empty"
     snackbar:
-        loginSuccess: "Login successful"
         loginError: "Invalid email/username or password"
         oAuthError: "OAuth Unauthorized error"
         registerSuccess: "Registration succesfull"

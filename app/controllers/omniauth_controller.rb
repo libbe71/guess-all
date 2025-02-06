@@ -27,7 +27,6 @@ class OmniauthController < ApplicationController
       end
       if user
         session[:user_id] = user.id
-        flash[:notice] = t('snackbar.loginSuccess')
         if (user.locale)
           @current_locale = user.locale;
         end

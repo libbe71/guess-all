@@ -24,7 +24,6 @@ class AuthController < ApplicationController
       end
       set_current_user
       I18n.locale = @current_locale
-      flash[:notice] = t('snackbar.loginSuccess')
       if user?
         redirect_to "/#{@current_locale}/user/#{@current_user["id"]}"
       elsif moderator?
@@ -48,7 +47,6 @@ class AuthController < ApplicationController
 
   def destroy_session
     session[:user_id] = nil
-    flash[:notice] = t('snackbar.logoutSuccess')
     redirect_to root_path
   end
   
