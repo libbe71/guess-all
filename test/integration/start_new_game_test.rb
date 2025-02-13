@@ -4,7 +4,7 @@ class StartNewGameTest < ActionDispatch::IntegrationTest
     @friend = users(:j)
   end
 
-  test 'can send a friend request' do
+  test 'can start a new game' do
     visit "/auth"
     fill_in "identifier_login_field", with: @user.username
     fill_in "password_login_field", with: "a"

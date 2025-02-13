@@ -8,3 +8,5 @@ dev-destroy:
 	@docker compose -f docker-compose.dev.yml down -v
 dev-logs: 
 	@docker compose -f docker-compose.dev.yml logs web -f
+tests: 
+	rails test

@@ -9,7 +9,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     post "/auth/create_session", params: { auth:{identifier: @user.username, password: "a"} }
   end
 
-  test "should assign @friends with accepted requests" do
+  test "should veify the number of @games" do
     get "/it/user/#{@user.id}/games"
     assert_response :success
     games = @controller.instance_variable_get(:@games)

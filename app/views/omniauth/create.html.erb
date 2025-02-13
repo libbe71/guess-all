@@ -96,7 +96,7 @@
               <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="username_register_field" id="usernameRegisterAvailabilityMessage"><%= t('login_or_register.usernameCheck') %></label>
             </div>
             <div class="w-3/4 m-auto relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
-              <%= form.text_field :email_address, id: "email_register_field", name: "user[email_address]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.e-mail')}", value: @email_address, readonly: true %>
+              <%= form.text_field :email_address, id: "email_register_field", name: "user[email_address]", class: "bg-secondary-default no-autocomplete-field-green focus:outline-none text-white dark:text-black placeholder-white dark:placeholder-black border-none focus:ring-0 w-full rounded-lg autofill shadow-md", placeholder: "#{t('login_or_register.e-mail')}", value: @email_address, readonly: !@twitter_id.present? %>
               <label class="absolute hidden bottom-[-15px] text-error-default text-xs left-0" for="identifier_register_field" id="emailRegisterValidityMessage"><%= t('login_or_register.emailCheck') %></label>
             </div>
             <div class="w-3/4 m-auto hidden relative flex mb-10 rounded-xl max-w-sm focus:outline-none">
